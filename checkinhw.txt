@@ -2,6 +2,7 @@
 Casey git test
 collin git test
 Kaleb git test
+Brittany git tes
 =======
 first line of text
 >>>>>>> ac35279970924f73a3ad3beb719fcd86d4cde897
