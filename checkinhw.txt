@@ -1,1 +1,14 @@
+<<<<<<< HEAD
 first line of text
+=======
+<<<<<<< HEAD
+Casey git test
+collin git test
+Kaleb git test
+Brittany git tes
+Claudia git test
+Jeremiah git test
+=======
+first line of text
+>>>>>>> ac35279970924f73a3ad3beb719fcd86d4cde897
+>>>>>>> ddf42806b0b5a9dd1323344c19943f1f5e186996
