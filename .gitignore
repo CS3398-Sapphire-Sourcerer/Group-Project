@@ -14,6 +14,7 @@ settings.py
 .DS_Store
 *.db
 .xml
+.iml
 
 # C extensions
 *.so
