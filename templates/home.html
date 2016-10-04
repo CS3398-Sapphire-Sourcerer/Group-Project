@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOMEPAGE *CHANGE ME*</title>
+</head>
+<body>
+<p>Hey this is a test paragraph</p>
+<!--This is how you use jinja to display variables from python into html-->
+{% for this in that.it%}
+<ul>
+    <li>{{ this }}</li>
+
+    <li>List 3</li>
+
+{% endfor %}
+<li>List 2 {{ person }}</li>
+</body>
+</html>
