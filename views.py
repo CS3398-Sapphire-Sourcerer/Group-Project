@@ -60,6 +60,10 @@ def signup_submission():
     # # but flask is able to extract to create a "Temp user ID" so we can know whos logged in and to authenticate their
     # # actions while logged into this "Session"
 
+
+
+
+
 if __name__ == '__main__':
     app.run()
 
