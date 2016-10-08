@@ -10,11 +10,9 @@ app = Flask(__name__)
 
 
 # this is the function that will show the user the home.html page
-# @app.route('/', methods = ['GET'])
-# def splash_screen():
-#
-#    names = 'bobby hill'
-#    return flask.render_template('home.html', person=names)
+@app.route('/', methods = ['GET'])
+def splash_screen():
+    return flask.render_template('home.html')
 
 # TODO create a signup.html file within templates
 # this function displays the html page that contains the forms for the signup page
