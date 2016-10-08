@@ -4,22 +4,22 @@
 from flask import Flask
 import flask
 
-
 # generates the app
 app = Flask(__name__)
 
 
 # this is the function that will show the user the home.html page
-@app.route('/', methods = ['GET'])
+@app.route('/', methods=['GET'])
 def splash_screen():
     return flask.render_template('home.html')
 
-# TODO create a signup.html file within templates
+
 # this function displays the html page that contains the forms for the signup page
 # It is a GET page because it is sending data to the user, and not receiving the form data...yet
 @app.route('/signup', methods=['GET'])
 def signup_forms():
-    return flask.render_template('signup.html', state = 'first_attempt_at_signup_for_user_session')
+    return flask.render_template('signup.html', state='first_attempt_at_signup_for_user_session')
+
 
 # This function pairs with the previous because when the user clicks submit, It is sending data back to the server using
 # a "POST" request. This will allow this python function to scrape the form data from the request, assign to variables,
@@ -57,11 +57,26 @@ def signup_submission():
     # # session keys keep track of users currently logged into the app, this is information that the browser generates
     # # but flask is able to extract to create a "Temp user ID" so we can know whos logged in and to authenticate their
     # # actions while logged into this "Session"
+    return flask.redirect('home.html')
 
 
+@app.route('/signin', methods=['GET'])
+def sign_in():
+    # this is the page displaying the sign in forms, which is accessed from the nav bar. This will connect to the POST
+    # method of the signin.html page.
+    return flask.render_template('signin.html')
 
+
+@app.route('/signin', methods=['POST'])
+def sign_in_submit():
+    user_name = flask.request.form['user_name']  # this pulls the form data for the user login
+    pass_word = flask.request.form['pass_word']  # this pulls the form data for the user pass word
+
+    # @@@@ here is where we will call the data base to ensure the user exists and if they have valid pass word and
+    # username
+
+    return flask.redirect('home.html')
 
 
 if __name__ == '__main__':
     app.run()
-
