@@ -62,6 +62,8 @@ def signup_submission():
 
 #TODO, app.route('/users')
 
+#TODO, app.route('/users/<int:uid>')
+
 #TODO app.route('/app')
 
 #TODO app.route('/teams')

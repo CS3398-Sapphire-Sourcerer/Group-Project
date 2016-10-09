@@ -1,0 +1,6 @@
+# turn this into a settings.py file
+
+SECRET_KEY = 'SMaJh5nDNtoHTLTEbWYawcuPGQbToK8A'
+ADMIN_PASSWORD = 'bobcat'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///Group_DataBase.db'
+SQLALCHEMY_TRACK_MODIFICATIONS = True
