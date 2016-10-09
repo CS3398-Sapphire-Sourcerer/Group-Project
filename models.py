@@ -4,9 +4,9 @@ from init import app, datab
 class User(datab.Model):
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
     user_name = datab.Column(datab.String(20))
-    pass_word = datab.Column(datab.string(64))
+    pass_word = datab.Column(datab.String(64))
     q_num_answered = datab.Column(datab.Integer)
-    Score = datab.Column
+    #Score = datab.Column
 
 
 class Question(datab.Model):
@@ -27,3 +27,5 @@ class Building(datab.Model):
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
     owner = datab.Column(datab.Integer) # this holds team ID for th team owner
     #cords = datab.Column()
+
+datab.create_all(app=app)

@@ -3,15 +3,16 @@
 # these import libraries
 from flask import Flask
 import flask
+import models
+from init import app, datab
 
-# generates the app
-app = Flask(__name__)
+
 
 
 # this is the function that will show the user the home.html page
 @app.route('/', methods=['GET'])
 def splash_screen():
-    return flask.render_template('home.html')
+    return flask.render_template('homeTest.html')
 
 
 # this function displays the html page that contains the forms for the signup page
