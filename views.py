@@ -12,7 +12,8 @@ from init import app, datab
 # this is the function that will show the user the home.html page
 @app.route('/', methods=['GET'])
 def splash_screen():
-    return flask.render_template('homeTest.html')
+    return flask.render_template('index.html')
+
 
 
 # this function displays the html page that contains the forms for the signup page
@@ -29,7 +30,7 @@ def signup_forms():
 @app.route('/signup', methods=['POST'])
 def signup_submission():
     # this next few commands will be stripping out the form data from the html file signup.html when the user submits
-    user_name = flask.request.form['user']  # 'user' refers to the label 'user' for the form input in the html file
+    user_name = flask.request.form['username']  # 'user' refers to the label 'user' for the form input in the html file
     password1 = flask.request.form['password1']  # 'password1 refers to the form input with the label password1
     password2 = flask.request.form['password2']  # This makes sure the two password form inputs are the same
 
@@ -58,7 +59,7 @@ def signup_submission():
     # # session keys keep track of users currently logged into the app, this is information that the browser generates
     # # but flask is able to extract to create a "Temp user ID" so we can know whos logged in and to authenticate their
     # # actions while logged into this "Session"
-    return flask.redirect('home.html')
+    return flask.redirect('index.html')
 
 #TODO, app.route('/users')
 
