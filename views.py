@@ -59,6 +59,12 @@ def signup_submission():
     # # actions while logged into this "Session"
     return flask.redirect('home.html')
 
+#TODO, app.route('/users')
+
+#TODO app.route('/app')
+
+#TODO app.route('/teams')
+
 
 @app.route('/signin', methods=['GET'])
 def sign_in():
