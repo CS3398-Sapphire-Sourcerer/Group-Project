@@ -1,67 +1,20 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+{% extends 'base.html' %} {# this imports the base.html in as a template #}
+{% block title %} {# this is the opening tage for adding the title #}
+Quiz cats
+{% endblock %}  {# this is the closing tag for the title #}
 
-    <title>APP NAME</title>
+{#<meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">#}
 
-<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="/static/side-menu.css">
-    <!--<![endif]-->
-
-</head>
-<body>
-
-<div id="layout">
-    <!-- Menu toggle -->
-    <a href="#menu" id="menuLink" class="menu-link">
-        <!-- Hamburger icon -->
-        <span></span>
-    </a>
-
-    <div id="menu">
-        <div class="pure-menu">
-            <a class="pure-menu-heading" href="/">APP NAME</a>
-
-            <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="/" class="pure-menu-link">Home</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Teams</a></li>
-                <li class="pure-menu-item" class="menu-item-divided pure-menu-selected">
-                    <a href="#" class="pure-menu-link">Users</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Profile</a></li>
-                <li class="pure-menu-item"><a href="/signup" class="pure-menu-link">Sign Up</a></li>
-            </ul>
-        </div>
-    </div>
-
+{# This is where you begin to fill in the data you want on the page #}
+{% block content %}
 
 <div id="map" style="width:1600px;height:900px;background:white"></div>
 <!-- Does the google maps api for the background -->
-<script>
-function myMap() {
-    var mapOptions = {
-        center: new google.maps.LatLng(29.8893, -97.9402),
-        zoom: 17,
-        scrollwheel: false,
-        disableDoubleClickZoom: true,
-        mapTypeId: google.maps.MapTypeId.HYBRID
-    }
-var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-}
-</script>
-
+<script src="/static/static_map_homepage.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
 
-</div>
-<script src="/static/ui.js"></script>
+{#    this is how you end the content block #}
+{% endblock %}
 
-
-</body>
-</html>

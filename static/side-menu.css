@@ -24,6 +24,7 @@ Add transition to containers so they can push in and out.
 This is the parent `<div>` that contains the menu and the content area.
 */
 #layout {
+    float: left;
     position: relative;
     padding-left: 0;
 }
@@ -257,3 +258,10 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     }
 }
 
+.signup_forms {
+    /* this is for the sign up forms for some reason I cant get them to recenter*/
+    position: relative;
+    margin-top: 20%;
+    margin-left: 20%;
+    align-content: center;
+}

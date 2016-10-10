@@ -1,12 +1,22 @@
 # views.py is the file that will be handling the creating of the html pages and the routing of the browser URLS
 
 # these import libraries
-from flask import Flask
+import base64
+import os
 import flask
 import models
 from init import app, datab
 
 
+
+
+
+@app.before_request
+def setup_user():
+    # authentication token so that we know when a user is logged in while broswing
+    if 'auth_user' in flask.session:
+        user = models.User.query.get(flask.session['auth_user'])
+        flask.g.user = user
 
 
 # this is the function that will show the user the home.html page
@@ -15,12 +25,11 @@ def splash_screen():
     return flask.render_template('index.html')
 
 
-
 # this function displays the html page that contains the forms for the signup page
 # It is a GET page because it is sending data to the user, and not receiving the form data...yet
 @app.route('/signup', methods=['GET'])
 def signup_forms():
-    return flask.render_template('signup.html', state='first_attempt_at_signup_for_user_session')
+    return flask.render_template('signup.html')
 
 
 # This function pairs with the previous because when the user clicks submit, It is sending data back to the server using
@@ -33,7 +42,7 @@ def signup_submission():
     user_name = flask.request.form['username']  # 'user' refers to the label 'user' for the form input in the html file
     password1 = flask.request.form['password1']  # 'password1 refers to the form input with the label password1
     password2 = flask.request.form['password2']  # This makes sure the two password form inputs are the same
-
+    email = flask.request.form['email']
     # These next few lines are for checking passwords and making sure user name is long enough, if any of the conditions
     # fail they will route the user back to the signup page with the forms cleared with a failure message, The state
     # variable that is included in the flask.render is to inform the user why the signup failed
@@ -41,52 +50,65 @@ def signup_submission():
         return flask.render_template('signup.html', state='Passwords did not match')
     if (len(user_name)) > 20:
         return flask.render_template('signup.html', state='User name is too long')
-    if (len(user_name)) < 8:
+    if (len(user_name)) < 1:
         return flask.render_template('signup.html', state='User name is too short')
     # Test the database to determine if username is already taken to prevent duplicates
-    # existing = **DATABASE QUERY** models.User.query.filter_by(login=user_name).first()
-    # if existing is not None:
-    #    return flask.render_template('signup.html', state='User name is already taken')
+    existing = models.User.query.filter_by(user_name=user_name).first()
+    if existing is not None:
+        return flask.render_template('signup.html', state='User name is already taken')
     # <input type="hidden" name="url" value="{{ request.args.url }}"> goes into the html for token/session auth
-    #
+
     # @@@ Starting here we know the user submission passed and we will input the variables into the database
-    # user = models.User() # This line creates the database object for users
-    # user.login = user_name # This stores the user_name into the login field in the user database object
+    user = models.User()  # This line creates the database object for users
+    user.user_name = user_name  # This stores the user_name into the login field in the user database object
+    user.pass_word = password1
+    user.email = email
     # user.pass_hash =  bcrypt.hashpw(password1.encode('utf8'), bcrypt.gensalt(15)) # this encrypts and stores the hash
-    # db.session.add(user) # this adds the object to the database submit queue
-    # db.session.commit() # this is the actual storing of the database object into database, similar to git operations
-    # flask.session['auth_user'] = user.id # this stores the session key information for the user into the database,
+    datab.session.add(user)  # this adds the object to the database submit queue
+    datab.session.commit()  # this is the actual storing of the database object into database, similar to git operations
+    flask.session['auth_user'] = user.id  # this stores the session key information for the user into the database,
     # # session keys keep track of users currently logged into the app, this is information that the browser generates
     # # but flask is able to extract to create a "Temp user ID" so we can know whos logged in and to authenticate their
     # # actions while logged into this "Session"
-    return flask.redirect('index.html')
+    return flask.redirect(flask.url_for('splash_screen'))
 
-#TODO, app.route('/users')
 
-#TODO, app.route('/users/<int:uid>')
+# TODO, app.route('/users')
 
-#TODO app.route('/app')
+# TODO, app.route('/users/<int:uid>')
 
-#TODO app.route('/teams')
+# TODO app.route('/app')
+
+# TODO app.route('/teams')
 
 
 @app.route('/signin', methods=['GET'])
 def sign_in():
     # this is the page displaying the sign in forms, which is accessed from the nav bar. This will connect to the POST
     # method of the signin.html page.
-    return flask.render_template('signin.html')
+    return flask.render_template('signin.html', state='good')
 
 
 @app.route('/signin', methods=['POST'])
 def sign_in_submit():
-    user_name = flask.request.form['user_name']  # this pulls the form data for the user login
-    pass_word = flask.request.form['pass_word']  # this pulls the form data for the user pass word
+    user_name = flask.request.form['username']  # this pulls the form data for the user login
+    pass_word = flask.request.form['password']  # this pulls the form data for the user pass word
 
+    user = models.User.query.filter_by(user_name=user_name).first()
     # @@@@ here is where we will call the data base to ensure the user exists and if they have valid pass word and
-    # username
+    if user is not None:
+        if pass_word == user.pass_word:
+            flask.session['auth_user'] = user.id
+            return flask.redirect(flask.url_for('splash_screen'))
 
-    return flask.redirect('home.html')
+    return flask.render_template('signin.html', state='bad')
 
+@app.route('/logout')
+def handle_logout():
+    del flask.session['auth_user']
+    return flask.redirect(flask.request.args.get('url', '/'), 303)
 
-if __name__ == '__main__':
-    app.run()
+@app.errorhandler(404)
+def bad_page(err):
+    return flask.render_template('404.html'), 404
+
