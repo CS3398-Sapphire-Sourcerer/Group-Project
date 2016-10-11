@@ -9,6 +9,8 @@
 {%  block content %}
 <div class = "users_list">
     <h3>User List</h3>
+
+    <!-- this for loop grabs all users in the database and list out links to their pages. -->
     {% for user in users %}
         <a href = "/users/{{ user.id }}">{{ user.user_name }}</a><br>
     {% endfor %}

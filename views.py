@@ -73,33 +73,28 @@ def signup_submission():
     return flask.redirect(flask.url_for('splash_screen'))
 
 
-# TODO, app.route('/users')
-
 @app.route('/users/', methods=['GET'])
 def users_default():
-    # TODO, create users template
-    u = models.User.query.all()
-    users = list(u)
+    u = models.User.query.all()         #get all users
+    users = list(u)                     #save all users in a list format, pass list to users.html
     return flask.render_template('users.html', users=users)
 
-# TODO, app.route('/users/<int:uid>')
 @app.route('/users/<int:uid>', methods=['GET'])
 def users_profile(uid):
     tempUser = models.User.query.get(uid)
 
     if tempUser is None:
-        #no user by that ID
+        #user does not exist at that id, go to 404 page.
         flask.abort(404)
     else:
         return flask.render_template('user_profile.html', userInfo=tempUser, uid=uid)
 
 
-
-
 # TODO app.route('/app')
 
-# TODO app.route('/teams')
-
+@app.route('/teams', methods=['GET'])
+def team_page():
+    return flask.render_template('teams.html')
 
 @app.route('/signin', methods=['GET'])
 def sign_in():
