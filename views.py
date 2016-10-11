@@ -75,7 +75,26 @@ def signup_submission():
 
 # TODO, app.route('/users')
 
+@app.route('/users/', methods=['GET'])
+def users_default():
+    # TODO, create users template
+    u = models.User.query.all()
+    users = list(u)
+    return flask.render_template('users.html', users=users)
+
 # TODO, app.route('/users/<int:uid>')
+@app.route('/users/<int:uid>', methods=['GET'])
+def users_profile(uid):
+    tempUser = models.User.query.get(uid)
+
+    if tempUser is None:
+        #no user by that ID
+        flask.abort(404)
+    else:
+        return flask.render_template('user_profile.html', userInfo=tempUser, uid=uid)
+
+
+
 
 # TODO app.route('/app')
 
