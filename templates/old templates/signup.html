@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <style>
 input[type=text], select {
@@ -34,6 +35,9 @@ div {
 </style>
 <body>
 
+<link rel="stylesheet" href="css/layouts/side-menu.css">
+<script src="js/ui.js"></script>
+
 <h3>Sign up</h3>
 
 <div>
@@ -44,17 +48,15 @@ div {
     <label for="lname">Last Name<span class="req">*</span></label>
     <input type="text" id="lname" name="lastname">
 
-    <label for="lname">Last Name<span class="req">*</span></label>
-    <input type="text" id="lname" name="lastname">
+    <label>Set A Password<span class="req">*</span></label>
+    <input type="password"required autocomplete="off"/>
 
     <label>Set A Password<span class="req">*</span></label>
     <input type="password"required autocomplete="off"/>
 
 
-    <select id="country" name="country">
+    <select id="university" name="country">
       <option value="txst">Texas State University</option>
-      <option value="SHU">Sam Houston</option>
-      <option value="LC">Lamar College</option>
     </select>
 
     <input type="submit" value="Submit">
