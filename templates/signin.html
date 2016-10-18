@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+    {% block title %}Sign In {% endblock %}
+
+
+{% block content %}
+    <div class="signup_forms">
+     <h3>Sign in</h3>
+        {% if state != 'good' %}{# detect if we need to show the error message #}
+        <p class="error">Invalid user name or password.</p>
+        {% endif %}
+
+    {#    name= needs to be included in the inputs on a form, that is how we know what data to recieve#}
+    <form action="/signin" class="pure-form pure-form-aligned" method="POST">
+    {#    <input type="hidden" name="url" value="{{ request.args.url }}">#}
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="username">Username</label>
+            <input id="username" type="text" placeholder="Username" name="username">
+        </div>
+        <div class="pure-control-group">
+            <label for="password1">Password</label>
+            <input id="password1" type="password" placeholder="Password" name="password">
+        </div>
+        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+    </fieldset>
+    </form></center>
+    <a class="pure-button login" href="/signup">Create New Account</a>
+    </div>
+
+{% endblock %}

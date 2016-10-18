@@ -5,8 +5,11 @@ class User(datab.Model):
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
     user_name = datab.Column(datab.String(20))
     pass_word = datab.Column(datab.String(64))
-    q_num_answered = datab.Column(datab.Integer)
-    #Score = datab.Column
+    email = datab.Column(datab.String(64))
+    q_correct = datab.Column(datab.Integer)
+    q_total = datab.Column(datab.Integer)
+    Score = datab.Column(datab.Integer)
+
 
 
 class Question(datab.Model):

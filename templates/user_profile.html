@@ -1,0 +1,18 @@
+<!-- This page should be used to format individual user profiles. Currently, it just displays the user's name. -->
+
+{% extends 'base.html' %}
+
+{%  block content %}
+<div class = "teams">
+    <h3>{{ userInfo.user_name }}'s Page</h3>
+</div>
+
+<style>.teams{
+    position: relative;
+    margin-top: 10%;
+    margin-left: 20%;
+    align-content: center;
+
+} </style>
+{%  endblock %}
+

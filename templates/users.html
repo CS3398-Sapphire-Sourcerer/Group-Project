@@ -1,0 +1,26 @@
+<!-- This page should contain a list of all users on our site, sorted alphabetically.
+
+ TODO: Figure out how to move pages out from under the nav bar, other than including css on each page.
+
+ -->
+
+{% extends 'base.html' %}
+
+{%  block content %}
+<div class = "users_list">
+    <h3>User List</h3>
+
+    <!-- this for loop grabs all users in the database and list out links to their pages. -->
+    {% for user in users %}
+        <a href = "/users/{{ user.id }}">{{ user.user_name }}</a><br>
+    {% endfor %}
+</div>
+
+<style>.users_list{
+    position: relative;
+    margin-top: 10%;
+    margin-left: 20%;
+    align-content: center;
+
+} </style>
+{%  endblock %}
