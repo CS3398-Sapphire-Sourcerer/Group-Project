@@ -72,6 +72,40 @@ def signup_submission():
     # # actions while logged into this "Session"
     return flask.redirect(flask.url_for('splash_screen'))
 
+#Populate question forms
+@app.route('/questions', methods=['GET'])
+def question_forms():
+    return flask.render_template('question_submission.html')
+
+#Adding route for question and answer submission
+@app.route('/questions', methods=['POST'])
+def question_submission():
+    #Get info
+    question_text = flask.request.form['Question']
+    question_type = int(flask.request.form['Type'])
+    answer_text = flask.request.form['Answer']
+
+    #TODO, verify information and error checking, check for exact duplicate questions/answers
+
+
+    #Create models and fill data fields
+    question = models.Question()
+    current_answer = models.Answer()
+
+    question.q_text = question_text
+    question.q_type = question_type
+    question.q_answer = current_answer.id   #current_answer.id   #Pulled from model that was just created
+
+    current_answer.a_text = answer_text
+    current_answer.a_type = question_type
+
+    #Save values to DataBase
+    datab.session.add(question)
+    datab.session.add(current_answer)
+    datab.session.commit()
+
+    #TODO, return successful state if good data, poor state if not
+    return flask.redirect(flask.url_for('question_submission'))
 
 @app.route('/users/', methods=['GET'])
 def users_default():
