@@ -6,6 +6,7 @@ import os
 import flask
 import models
 from init import app, datab
+from flask import request
 
 
 
@@ -121,6 +122,37 @@ def sign_in_submit():
 def handle_logout():
     del flask.session['auth_user']
     return flask.redirect(flask.request.args.get('url', '/'), 303)
+
+@app.route('/cjsTest1')
+def locTest():
+    return flask.render_template('httpRequestTest.html', state='good')
+
+@app.route("/cjsTest2", methods=['GET'])
+def testResponse():
+    #TODO : MAKE A PROPER REPONSE OBJECT WITH APPROPRIATE HEADERS
+    print(request.args)
+    return "hello"
+
+#@app.route('/users/<int:uid>', methods=['GET'])
+#def users_profile(uid):
+#    tempUser = models.User.query.get(uid)
+#
+#    if tempUser is None:
+#        #user does not exist at that id, go to 404 page.
+#        flask.abort(404)
+#    else:
+#        return flask.render_template('user_profile.html', userInfo=tempUser, uid=uid)
+
+
+@app.route('/updatePos/<uid>/<lat>/<long>', methods=['POST'])
+def updatePos(uid, lat, long):
+    uid = int(uid)
+    lat = float(lat)
+    long = float(long)
+
+    return "hello the end of time"
+
+
 
 @app.errorhandler(404)
 def bad_page(err):
