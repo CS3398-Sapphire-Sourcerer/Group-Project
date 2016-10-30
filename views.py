@@ -122,6 +122,16 @@ def handle_logout():
     del flask.session['auth_user']
     return flask.redirect(flask.request.args.get('url', '/'), 303)
 
+@app.route('/cjsTest1')
+def locTest():
+    return flask.render_template('httpRequestTest.html', state='good')
+
+@app.route("/cjsTest2", methods=['GET'])
+def testResponse():
+    #TODO : MAKE A PROPER REPONSE OBJECT WITH APPROPRIATE HEADERS
+
+    return "hello"
+
 @app.errorhandler(404)
 def bad_page(err):
     return flask.render_template('404.html'), 404
