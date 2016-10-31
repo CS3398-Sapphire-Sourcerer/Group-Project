@@ -125,13 +125,25 @@ def handle_logout():
 
 @app.route('/cjsTest1')
 def locTest():
+    #user = models.User.query.filter_by(user_name=user_name).first()
+    # @@@@ here is where we will call the data base to ensure the user exists and if they have valid pass word and
+    #if user is not None:
+    #    if pass_word == user.pass_word:
+    #        flask.session['auth_user'] = user.id
+    #        return flask.redirect(flask.url_for('splash_screen'))
+
     return flask.render_template('httpRequestTest.html', state='good')
 
-@app.route("/cjsTest2", methods=['GET'])
-def testResponse():
-    #TODO : MAKE A PROPER REPONSE OBJECT WITH APPROPRIATE HEADERS
-    print(request.args)
-    return "hello"
+
+
+
+@app.route('/updatePos/<uid>/<lat>/<long>', methods=['POST'])
+def updatePos(uid, lat, long):
+    uid = int(uid)
+    lat = float(lat)
+    long = float(long)
+
+    return "hello the end of time"
 
 #@app.route('/users/<int:uid>', methods=['GET'])
 #def users_profile(uid):
@@ -143,18 +155,6 @@ def testResponse():
 #    else:
 #        return flask.render_template('user_profile.html', userInfo=tempUser, uid=uid)
 
-
-@app.route('/updatePos/<uid>/<lat>/<long>', methods=['POST'])
-def updatePos(uid, lat, long):
-    uid = int(uid)
-    lat = float(lat)
-    long = float(long)
-
-    return "hello the end of time"
-
-
-
 @app.errorhandler(404)
 def bad_page(err):
     return flask.render_template('404.html'), 404
-
