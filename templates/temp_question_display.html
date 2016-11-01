@@ -1,0 +1,56 @@
+<!-- This file is intented for team information. Things like points, area controlled and member list -->
+
+{% extends 'base.html' %}
+
+{%  block content %}
+    <div class = "quiz">
+        <h3>TESTING</h3>
+
+        <div class = "question_veiw" id = "question_view">
+        {% for q in questions.question_list %}
+            <hr>
+            <h3>Question {{ q.question.id }}</h3>
+            {{ q.question.q_text }} <br>
+            {% for answer in q.answers_list %}
+                <button onclick="checkAnswer({{q.question.q_answer}},{{answer.id}})">
+                {{ answer.a_text }}
+                </button>
+            {% endfor %}
+        {% endfor %}
+        </div>
+
+        <hr>
+
+    <hr>
+
+    </div>
+
+<script>
+    function checkAnswer (answer_key, selected_key) {
+        if (answer_key == selected_key) {
+            alert("You got the answer right!")
+        } else {
+            alert("You got the answer wrong. :(")
+        }
+    }
+
+    function nextQuestion () {
+        $("#question_view").innerHTML = ("{{ questions.question_list[questions.question_index].question.q_text }} <br>"
+            +" {% for answer in questions.question_list[questions.question_index].answers_list %}"
+            +"    <button onclick=\"checkAnswer({{questions.question_list[questions.question_index].question.q_answer}},{{answer.id}})\">"
+            +"    {{ answer.a_text }}"
+            +"    </button>"
+            +"{% endfor %}"
+        )
+    }
+
+</script>
+
+<style>.quiz{
+    position: relative;
+    margin-top: 10%;
+    margin-left: 20%;
+    align-content: center;
+
+} </style>
+{%  endblock %}

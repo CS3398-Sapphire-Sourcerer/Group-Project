@@ -16,6 +16,7 @@ class question_handler:
     POTENTIAL_ANSWERS = 4  #Number of possible answers to each question, one answer is correct
 
     question_list = []     #List of questions for current building session
+    question_index = 0
 
     type
 
@@ -36,10 +37,10 @@ class question_handler:
             q.answers_list = self.getPotentialtAnswers(question)
             self.question_list.append(q)
 
-        for questionData in self.question_list:
-            print (questionData.question.q_text)
-            for answers in questionData.answers_list:
-                print ("->" + answers.a_text)
+        #for questionData in self.question_list:
+        #    print (questionData.question.q_text)
+        #    for answers in questionData.answers_list:
+        #        print ("->" + answers.a_text)
 
 
     #Query database for N random questions, return list
@@ -56,13 +57,16 @@ class question_handler:
 
     #Query database for list of answers, including one correct answer
     def getPotentialtAnswers(self, question):
-        a = models.Answer.query.filter_by(a_type = question.q_type)
-        potentialAnswers = list(a)
+        correctAnswer = self.getCorrectAnswer(question)
+
+        #Get all answers that are of a specific type and NOT the correct answer
+        a = models.Answer.query.filter(models.Answer.a_type == question.q_type, models.Answer.id != correctAnswer.id)
+        potentialAnswers = list(a)                          #Turn into list format
 
         shuffle(potentialAnswers)
-        del potentialAnswers[self.POTENTIAL_ANSWERS-1:]        #Save only 3 shuffled answers
+        del potentialAnswers[self.POTENTIAL_ANSWERS-1:]     #Save only 3 shuffled answers
         print (potentialAnswers)
-        potentialAnswers.append(self.getCorrectAnswer(question))  #Append correct answer
+        potentialAnswers.append(correctAnswer)              #Append correct answer
         shuffle(potentialAnswers)                           #Shuffle the N possible answers
 
         return potentialAnswers
@@ -77,4 +81,13 @@ class question_handler:
         key = question.q_answer
         answer = models.Answer.query.filter_by(id = key).first()
         return answer
+
+    def setQuestionIndex(self, newIndex):
+        self.question_index = newIndex
+        return None
+
+    def nextQuestionIndex(self):
+        self.question_index = self.question_index + 1
+        if self.question_index >= self.SESSION_LENGTH:
+            self.question_index = 0
 

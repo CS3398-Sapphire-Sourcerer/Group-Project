@@ -7,6 +7,7 @@ import flask
 import models
 import dynamicTest #TODO remove dynamicTest before merging. Added for testing purposes, not needed by app
 import questionLogic
+import majorIDs
 from init import app, datab
 
 
@@ -19,13 +20,6 @@ def setup_user():
     if 'auth_user' in flask.session:
         user = models.User.query.get(flask.session['auth_user'])
         flask.g.user = user
-
-
-#TODO, remove this function after testing dynamic updates via flask
-@app.route('/dynamic', methods=['GET'])
-def dynamicTestPage():
-    textChange = dynamicTest.hello()
-    return flask.render_template('temp_question_display.html', textChange = textChange)
 
 # this is the function that will show the user the home.html page
 @app.route('/', methods=['GET'])
@@ -81,11 +75,13 @@ def signup_submission():
     return flask.redirect(flask.url_for('splash_screen'))
 
 #Populate question forms
+@app.route('/see_questions', methods=['GET'])
+def question_session_display():
+    questions = questionLogic.question_handler(majorIDs.ENGLISH)
+    return flask.render_template('temp_question_display.html', questions = questions)
+
 @app.route('/questions', methods=['GET'])
 def question_forms():
-
-    testHandler = questionLogic.question_handler(1) #TODO: Add catches for expected errors. This test line cause problems if the DB is empty.
-
     return flask.render_template('question_submission.html')
 
 #Adding route for question and answer submission
@@ -96,7 +92,7 @@ def question_submission():
     question_type = int(flask.request.form['Type'])
     answer_text = flask.request.form['Answer']
 
-    #TODO, verify information and error checking, check for exact duplicate questions/answers
+    #TODO, verify information and error checking, check for exact duplicate questions/answers, turn into function
 
 
     #Create models and fill data fields
