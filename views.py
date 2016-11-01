@@ -9,6 +9,7 @@ import dynamicTest #TODO remove dynamicTest before merging. Added for testing pu
 import questionLogic
 import majorIDs
 from init import app, datab
+from flask import request
 
 
 
@@ -168,7 +169,38 @@ def handle_logout():
     del flask.session['auth_user']
     return flask.redirect(flask.request.args.get('url', '/'), 303)
 
+@app.route('/cjsTest1')
+def locTest():
+    #user = models.User.query.filter_by(user_name=user_name).first()
+    # @@@@ here is where we will call the data base to ensure the user exists and if they have valid pass word and
+    #if user is not None:
+    #    if pass_word == user.pass_word:
+    #        flask.session['auth_user'] = user.id
+    #        return flask.redirect(flask.url_for('splash_screen'))
+
+    return flask.render_template('httpRequestTest.html', state='good')
+
+
+
+
+@app.route('/updatePos/<uid>/<lat>/<long>', methods=['POST'])
+def updatePos(uid, lat, long):
+    uid = int(uid)
+    lat = float(lat)
+    long = float(long)
+
+    return "hello the end of time"
+
+#@app.route('/users/<int:uid>', methods=['GET'])
+#def users_profile(uid):
+#    tempUser = models.User.query.get(uid)
+#
+#    if tempUser is None:
+#        #user does not exist at that id, go to 404 page.
+#        flask.abort(404)
+#    else:
+#        return flask.render_template('user_profile.html', userInfo=tempUser, uid=uid)
+
 @app.errorhandler(404)
 def bad_page(err):
     return flask.render_template('404.html'), 404
-
