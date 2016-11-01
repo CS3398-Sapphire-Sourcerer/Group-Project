@@ -5,7 +5,6 @@ import base64
 import os
 import flask
 import models
-import dynamicTest #TODO remove dynamicTest before merging. Added for testing purposes, not needed by app
 import questionLogic
 import majorIDs
 from init import app, datab

@@ -31,11 +31,16 @@ class question_handler:
         self.question_list = []
         workingList = self.getQuestions()
 
-        for question in workingList:
-            q = q_data()
-            q.question = question
-            q.answers_list = self.getPotentialtAnswers(question)
-            self.question_list.append(q)
+        if len(workingList) < self.SESSION_LENGTH:
+            print("***ERROR, not enough questions in category. Enter more questions for testing or handle case with too few entries.***")
+            return False
+        else:
+            for question in workingList:
+                q = q_data()
+                q.question = question
+                q.answers_list = self.getPotentialtAnswers(question)
+                self.question_list.append(q)
+            return True
 
         #for questionData in self.question_list:
         #    print (questionData.question.q_text)
@@ -65,7 +70,6 @@ class question_handler:
 
         shuffle(potentialAnswers)
         del potentialAnswers[self.POTENTIAL_ANSWERS-1:]     #Save only 3 shuffled answers
-        print (potentialAnswers)
         potentialAnswers.append(correctAnswer)              #Append correct answer
         shuffle(potentialAnswers)                           #Shuffle the N possible answers
 
