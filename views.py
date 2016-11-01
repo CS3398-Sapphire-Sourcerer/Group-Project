@@ -5,6 +5,8 @@ import base64
 import os
 import flask
 import models
+import dynamicTest #TODO remove dynamicTest before merging. Added for testing purposes, not needed by app
+import questionLogic
 from init import app, datab
 
 
@@ -18,6 +20,12 @@ def setup_user():
         user = models.User.query.get(flask.session['auth_user'])
         flask.g.user = user
 
+
+#TODO, remove this function after testing dynamic updates via flask
+@app.route('/dynamic', methods=['GET'])
+def dynamicTestPage():
+    textChange = dynamicTest.hello()
+    return flask.render_template('temp_question_display.html', textChange = textChange)
 
 # this is the function that will show the user the home.html page
 @app.route('/', methods=['GET'])
@@ -75,6 +83,9 @@ def signup_submission():
 #Populate question forms
 @app.route('/questions', methods=['GET'])
 def question_forms():
+
+    testHandler = questionLogic.question_handler(1) #TODO: Add catches for expected errors. This test line cause problems if the DB is empty.
+
     return flask.render_template('question_submission.html')
 
 #Adding route for question and answer submission
@@ -94,18 +105,23 @@ def question_submission():
 
     question.q_text = question_text
     question.q_type = question_type
-    question.q_answer = current_answer.id   #current_answer.id   #Pulled from model that was just created
 
     current_answer.a_text = answer_text
     current_answer.a_type = question_type
 
-    #Save values to DataBase
-    datab.session.add(question)
     datab.session.add(current_answer)
+    datab.session.commit()                  #Save the answer and generate an ID
+
+    question.q_answer = current_answer.id   #current_answer.id   #Pulled from model that was just commited
+
+    datab.session.add(question)             #Save the question
     datab.session.commit()
 
+    #Save values to DataBase
+
+
     #TODO, return successful state if good data, poor state if not
-    return flask.redirect(flask.url_for('question_submission'))
+    return flask.redirect(flask.url_for('question_submission', question_num = len(models.Question.query.all())))
 
 @app.route('/users/', methods=['GET'])
 def users_default():
