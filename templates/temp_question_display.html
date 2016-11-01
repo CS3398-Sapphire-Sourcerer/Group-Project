@@ -34,16 +34,6 @@
         }
     }
 
-    function nextQuestion () {
-        $("#question_view").innerHTML = ("{{ questions.question_list[questions.question_index].question.q_text }} <br>"
-            +" {% for answer in questions.question_list[questions.question_index].answers_list %}"
-            +"    <button onclick=\"checkAnswer({{questions.question_list[questions.question_index].question.q_answer}},{{answer.id}})\">"
-            +"    {{ answer.a_text }}"
-            +"    </button>"
-            +"{% endfor %}"
-        )
-    }
-
 </script>
 
 <style>.quiz{
