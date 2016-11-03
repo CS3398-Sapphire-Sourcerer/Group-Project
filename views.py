@@ -200,6 +200,10 @@ def updatePos(uid, lat, long):
 #    else:
 #        return flask.render_template('user_profile.html', userInfo=tempUser, uid=uid)
 
+@app.route('/app', methods=['GET'])
+def appPage():
+    return flask.render_template('app.html')
+
 @app.errorhandler(404)
 def bad_page(err):
     return flask.render_template('404.html'), 404
