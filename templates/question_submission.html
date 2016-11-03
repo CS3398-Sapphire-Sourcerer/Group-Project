@@ -1,0 +1,55 @@
+<!-- This file is meant for adding questions and answers to the database for our testing.
+It is not meant to be the front-end we provide to the user. -->
+
+{% extends 'base.html' %}
+
+{%  block content %}
+<div class = "question_header">
+    <h3>Add a Question</h3>
+</div>
+
+<div class = "question_form">
+    <form action="/questions" class="pure-form pure-form-aligned" method="POST">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="question">Question</label>
+                <input id="Question" type="text" placeholder="Question" name="Question">
+            </div>
+            <div class="pure-control-group">
+                <label for="type">Question Category</label>
+                <select id="Type" name="Type">
+                    <!--TODO, get these catagories structured and listed somewhere. -->
+                    <option value="1">Computer Science</option>
+                    <option value="2">Math</option>
+                    <option value="3">English</option>
+                </select>
+            </div>
+            <div class="pure-control-group">
+                <!-- ANswer will have the same type value as the question. -->
+                <label for="question">Answer</label>
+                <input id="Answer" type="text" placeholder="Answer" name="Answer">
+            </div>
+
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </fieldset>
+
+    </form>
+
+</div>
+<style>
+    .question_header {
+        position: relative;
+        margin-top: 10%;
+        margin-left: 20%;
+        align-content: center;
+    }
+
+    .question_form{
+        position: relative;
+        margin-top: 10%;
+        margin-left: 20%;
+        align-content: center;
+    }
+
+} </style>
+{%  endblock %}

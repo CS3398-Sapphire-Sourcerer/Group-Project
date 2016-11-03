@@ -11,6 +11,7 @@ class User(datab.Model):
     Score = datab.Column(datab.Integer)
 
 
+
 class Question(datab.Model):
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
     q_text = datab.Column(datab.String(5000))
@@ -18,7 +19,6 @@ class Question(datab.Model):
     q_value = datab.Column(datab.Integer)
     #some sort of counter to make sure its not asked multiple times in a row.
     #bld_loc = datab.Column() # this should store bld GEO data
-
 
 class Team(datab.Model):
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
@@ -30,7 +30,5 @@ class Building(datab.Model):
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
     owner = datab.Column(datab.Integer) # this holds team ID for th team owner
     #cords = datab.Column()
-
-
 
 datab.create_all(app=app)
