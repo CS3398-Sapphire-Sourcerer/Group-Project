@@ -4,7 +4,13 @@
 
 {%  block content %}
 <div class = "teams">
-    <h3>{{ userInfo.user_name }}'s Page</h3>
+    <h2>{{ userInfo.user_name }}'s Page</h2>
+    <h4>{{ userInfo.email }}</h4>
+
+    <h3>Questions Aswered correctly: {{ userInfo.q_correct }}</h3>
+    <h3>Total Questions attempted: {{ userInfo.q_total }}</h3>
+    <h3>{{ userInfo.user_name }}'s score: {{ userInfo.score }}</h3>
+
 </div>
 
 <style>.teams{
