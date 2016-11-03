@@ -7,9 +7,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <link rel="stylesheet" href="../static/side-menu.css">
-        {# Save the CSRF token where JavaScript can get it #}
-    {#<script>var csrfToken = '{{ session.csrf_token  }}';</script>#}
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+
+
+
+
+
+
+
+    {# Save the CSRF token where JavaScript can get it #}
+    {#<script>var csrfToken = '{{ session.csrf_token  }}';</script>#}
 
     {# the line below is for adding our own titles on each page importing the templates#}
     <title>{% block title %}CJS Testbed{% endblock %}</title>
@@ -54,7 +62,38 @@
         <button name="fireRequest" id="fireRequest">The Button</button>
     </div>
 
+    {% if g.user %}
+        <div style="text-align:center">{{ g.user }}</div>
+        <div style="text-align:center">{{ g.user.id }}</div>
+        <div style="text-align:center">{{ g.user.user_name }}</div>
+        <div style="text-align:center">{{ g.user.pass_word }}</div>
+        <div style="text-align:center">{{ g.user.email }}</div>
+        <div style="text-align:center">{{ g.user.q_correct }}</div>
+        <div style="text-align:center">{{ g.user.q_total }}</div>
+        <div style="text-align:center">{{ g.user.Score }}</div>
+    {% endif %}
+
+
+    <meta id="userSessionID" data-name="uSID" data-other="{{g.user.id}}">
+
+    <script>var userID = $('#userSessionID').data().other;</script>
+    <script>
+        function addTimer() {
+            window.setInterval(geolocateUser, 10000, userID);
+        };
+    </script>
     <script src="/static/httpRequestTest.js"></script>
+    <script>
+        console.log(userID);
+        console.log("Initial read : ", userID);
+        console.log("Typeof userID : ", typeof userID);
+        addTimer();
+        /*
+        $.getScript("/static/httpRequestTest.js")
+            .done(function () {addTimer();})
+            .fail(function () {console.log("Failed");});
+        */
+    </script>
 
     {#    this is how you end the content block #}
     {% endblock %}
