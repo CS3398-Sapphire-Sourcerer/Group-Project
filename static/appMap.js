@@ -10,6 +10,6 @@ function appMap() {
         scrollwheel: true,
         disableDoubleClickZoom: true,
         mapTypeId: google.maps.MapTypeId.HYBRID
-    }
-var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    };
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 }

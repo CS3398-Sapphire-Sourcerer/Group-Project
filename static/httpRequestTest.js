@@ -2,18 +2,6 @@
  * Created by Casey on 10/27/2016.
  */
 
-
-function forceANewUpdateOfTheFile() {
-    console.log("Bullshit");
-}
-
-/*function httpRequestInit(uSID){
-    userID = uSID;
-    console.log(userID);
-    console.log(typeof userID);
-    addTimer();
-}*/
-
 function fireLocationUpdate(position, userID) {
     console.log(position);
     console.log(userID);
