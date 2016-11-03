@@ -3,17 +3,12 @@
 Quiz cats
 {% endblock %}  {# this is the closing tag for the title #}
 
-{#<meta name="viewport" content="width=device-width, initial-scale=1.0">#}
-{#<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">#}
-
-
-{# This is where you begin to fill in the data you want on the page #}
 {% block content %}
 
 <div id="map" style="width:1600px;height:900px;background:white"></div>
 <!-- Does the google maps api for the background -->
 <script src="/static/static_map_homepage.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
 
 {#    this is how you end the content block #}
 {% endblock %}
-
