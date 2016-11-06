@@ -5,27 +5,38 @@ Quiz cats
 
 {% block content %}
 
-<div id="map" style="width:1600px;height:900px;background:white"></div>
+
+
+<script src="/static/socket.io-client-master/socket.io.js"></script>
+
 <!-- Does the google maps api for the background -->
-{# <script src="/static/static_map_homepage.js"></script> #}
+<div id="map" style="width:1600px;height:900px;background:white"></div>
 <script src="/static/appMap.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChk9BH1LKywmR-_dzUhR80ZFJ02X8gjME&callback=appMap"></script>
 
-
-
+<!-- User session ID data -->
 <meta id="userSessionID" data-name="uSID" data-other="{{g.user.id}}">
+<script>var userID = $('#userSessionID').data().other;</script>
+
+<!-- Socket setup -->
+<script>
+    var socket = io('http://localhost:5000');
+
+    socket.on('connect', function(){console.log("Connected")});
+    socket.on('disconnect', function(){console.log("Disconnected")});
+</script>
+
 
 <script>
+    var locationObj = {};
+
     function addTimer() {
-        window.setInterval(geolocateUser, 10000, userID);
+        window.setInterval(geolocateUser, 10000, userID, locationObj);
     };
 </script>
 
 <script src="/static/httpRequestTest.js"></script>
 <script>
-    console.log(userID);
-    console.log("Initial read : ", userID);
-    console.log("Typeof userID : ", typeof userID);
     addTimer();
 </script>
 {#    this is how you end the content block #}
