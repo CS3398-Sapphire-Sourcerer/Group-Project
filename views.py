@@ -13,7 +13,6 @@ from flask import request
 
 
 
-
 @app.before_request
 def setup_user():
     # authentication token so that we know when a user is logged in while broswing
