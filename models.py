@@ -10,6 +10,9 @@ class User(datab.Model):
     q_correct = datab.Column(datab.Integer)
     q_total = datab.Column(datab.Integer)
     Score = datab.Column(datab.Integer)
+    building = datab.Column(datab.Integer, datab.ForeignKey('team.id'))
+
+
 
 class Question(datab.Model):
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
@@ -29,12 +32,13 @@ class Answer(datab.Model):
 class Team(datab.Model):
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
     name = datab.Column(datab.String(30))
-    user = datab.Column(datab.Integer, datab.ForeignKey('user.id'))
 
 
 class Building(datab.Model):
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
-    owner = datab.Column(datab.Integer) # this holds team ID for th team owner
+    owner = datab.Column(datab.Integer, datab.ForeignKey('team.id')) # this holds team ID for th team owner
     #cords = datab.Column()
+    name = datab.Column(datab.String(30))
+    score = datab.Column(datab.Integer)
 
 datab.create_all(app=app)
