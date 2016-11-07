@@ -20,8 +20,8 @@ Quiz cats
 
 <!-- Socket setup -->
 <script>
-    var userID = 1;
-    var socket = io('http://localhost:5000/appTest');
+    console.log(userID)
+    var socket = io.connect();
 
     console.log("Socket?");
     //socket.on('connect', function(){console.log("Connected")});
@@ -39,7 +39,7 @@ Quiz cats
     var locationObj = {};
 
     function addTimer() {
-        window.setInterval(geolocateUser, 75000);
+        window.setInterval(geolocateUser, 5000);
     };
 
 function geolocateUser() {
@@ -59,8 +59,6 @@ function sendLocation(position) {
     console.log(locationObj.latitude);
     console.log(locationObj.longitude);
     socket.emit("changeLocation", locationObj);
-    socket.send(locationObj);
-    console.log(socket);
 }
     //console.log("Getting to sendLocation");
 
@@ -68,7 +66,7 @@ function sendLocation(position) {
 
 </script>
 
-<script src="/static/httpRequestTest.js"></script>
+<!--<script src="/static/httpRequestTest.js"></script>-->
 <script>
     addTimer();
 </script>

@@ -11,14 +11,18 @@ from init import app, datab
 from flask import request
 
 
-
-
 @app.before_request
 def setup_user():
-    # authentication token so that we know when a user is logged in while broswing
     if 'auth_user' in flask.session:
         user = models.User.query.get(flask.session['auth_user'])
+        test = flask.session['auth_user']
+        print("AUTH_USER:", test)
+        if user is None:
+            # old bad cookie, no good
+            del flask.session['auth_user']
+        # save the user in `flask.g`, which is a set of globals for this request
         flask.g.user = user
+
 
 # this is the function that will show the user the home.html page
 @app.route('/', methods=['GET'])
@@ -73,28 +77,31 @@ def signup_submission():
     # # actions while logged into this "Session"
     return flask.redirect(flask.url_for('splash_screen'))
 
-#Populate question forms
+
+# Populate question forms
 @app.route('/see_questions', methods=['GET'])
 def question_session_display():
     questions = questionLogic.question_handler(majorIDs.ENGLISH)
-    return flask.render_template('temp_question_display.html', questions = questions)
+    return flask.render_template('temp_question_display.html', questions=questions)
+
 
 @app.route('/questions', methods=['GET'])
 def question_forms():
     return flask.render_template('question_submission.html')
 
-#Adding route for question and answer submission
+
+# Adding route for question and answer submission
 @app.route('/questions', methods=['POST'])
 def question_submission():
-    #Get info
+    # Get info
     question_text = flask.request.form['Question']
     question_type = int(flask.request.form['Type'])
     answer_text = flask.request.form['Answer']
 
-    #TODO, verify information and error checking, check for exact duplicate questions/answers, turn into function
+    # TODO, verify information and error checking, check for exact duplicate questions/answers, turn into function
 
 
-    #Create models and fill data fields
+    # Create models and fill data fields
     question = models.Question()
     current_answer = models.Answer()
 
@@ -105,31 +112,33 @@ def question_submission():
     current_answer.a_type = question_type
 
     datab.session.add(current_answer)
-    datab.session.commit()                  #Save the answer and generate an ID
+    datab.session.commit()  # Save the answer and generate an ID
 
-    question.q_answer = current_answer.id   #current_answer.id   #Pulled from model that was just commited
+    question.q_answer = current_answer.id  # current_answer.id   #Pulled from model that was just commited
 
-    datab.session.add(question)             #Save the question
+    datab.session.add(question)  # Save the question
     datab.session.commit()
 
-    #Save values to DataBase
+    # Save values to DataBase
 
 
-    #TODO, return successful state if good data, poor state if not
-    return flask.redirect(flask.url_for('question_submission', question_num = len(models.Question.query.all())))
+    # TODO, return successful state if good data, poor state if not
+    return flask.redirect(flask.url_for('question_submission', question_num=len(models.Question.query.all())))
+
 
 @app.route('/users/', methods=['GET'])
 def users_default():
-    u = models.User.query.all()         #get all users
-    users = list(u)                     #save all users in a list format, pass list to users.html
+    u = models.User.query.all()  # get all users
+    users = list(u)  # save all users in a list format, pass list to users.html
     return flask.render_template('users.html', users=users)
+
 
 @app.route('/users/<int:uid>', methods=['GET'])
 def users_profile(uid):
     tempUser = models.User.query.get(uid)
 
     if tempUser is None:
-        #user does not exist at that id, go to 404 page.
+        # user does not exist at that id, go to 404 page.
         flask.abort(404)
     else:
         return flask.render_template('user_profile.html', userInfo=tempUser, uid=uid)
@@ -140,6 +149,7 @@ def users_profile(uid):
 @app.route('/teams', methods=['GET'])
 def team_page():
     return flask.render_template('teams.html')
+
 
 @app.route('/signin', methods=['GET'])
 def sign_in():
@@ -162,23 +172,23 @@ def sign_in_submit():
 
     return flask.render_template('signin.html', state='bad')
 
+
 @app.route('/logout')
 def handle_logout():
     del flask.session['auth_user']
     return flask.redirect(flask.request.args.get('url', '/'), 303)
 
+
 @app.route('/cjsTest1')
 def locTest():
-    #user = models.User.query.filter_by(user_name=user_name).first()
+    # user = models.User.query.filter_by(user_name=user_name).first()
     # @@@@ here is where we will call the data base to ensure the user exists and if they have valid pass word and
-    #if user is not None:
+    # if user is not None:
     #    if pass_word == user.pass_word:
     #        flask.session['auth_user'] = user.id
     #        return flask.redirect(flask.url_for('splash_screen'))
 
     return flask.render_template('httpRequestTest.html', state='good')
-
-
 
 
 @app.route('/updatePos/<uid>/<lat>/<long>', methods=['POST'])
@@ -189,8 +199,9 @@ def updatePos(uid, lat, long):
 
     return "hello the end of time"
 
-#@app.route('/users/<int:uid>', methods=['GET'])
-#def users_profile(uid):
+
+# @app.route('/users/<int:uid>', methods=['GET'])
+# def users_profile(uid):
 #    tempUser = models.User.query.get(uid)
 #
 #    if tempUser is None:
@@ -202,6 +213,7 @@ def updatePos(uid, lat, long):
 @app.route('/app', methods=['GET'])
 def appPage():
     return flask.render_template('app.html')
+
 
 @app.errorhandler(404)
 def bad_page(err):

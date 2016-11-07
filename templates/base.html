@@ -11,13 +11,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         {# Save the CSRF token where JavaScript can get it #}
-    {#<script>var csrfToken = '{{ session.csrf_token  }}';</script>#}
-    {# the line below is for adding our own titles on each page importing the templates#}
+    <script>var csrfToken = '{{ session.csrf_token  }}';</script>
+    <!--{# the line below is for adding our own titles on each page importing the templates#}-->
     <title>{% block title %}Title Me{% endblock %}</title>
 
 </head>
 <body>
-{#this will allow the menu to be on every page with having to manually add it every time #}
+ <script>var csrfToken = '{{ session.csrf_token  }}';</script>
+
+<!--{#this will allow the menu to be on every page with having to manually add it every time #}-->
 <div id="layout">
     <!--******************* THIS MENU-LINK BUTTON NEEDS REPAIR****************-->
     <!-- Menu toggle -->
@@ -68,7 +70,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <p class="navbar-brand">Status Bar</a>
+          <p class="navbar-brand">Status Bar</p>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
