@@ -84,6 +84,7 @@ def question_session_display():
     if flask.g.user and building:
         question_session = None
         question_session = questionLogic.question_handler(flask.g.user.id,building.id)
+        #print(question_session.serializeCurrentQuestion() )
         return flask.render_template('temp_question_display.html', question_session = question_session)
     else:
         print("Error in building session, printing with None")

@@ -30,6 +30,30 @@ socket.on('question', writeQuestionBar);
 function writeQuestionBar(obj) {
     console.log("writeQuestionBar");
     console.log("Received : ", obj);
+
+    var sendObj = obj;
+
+    document.getElementById("q_text_1").textContent = obj.question_data.question.questionText;
+    document.getElementById("q_text_1").value = obj.question_data.question.questionID;
+
+
+    for (var i = 0; i < obj.question_data.answer_list.length; i++) {
+        document.getElementById("answer" + i).textContent = obj.question_data.answer_list[i].answerText;
+        document.getElementById("answer" + i).value = obj.question_data.answer_list[i].answerID;
+    }
+}
+
+function emitAnswer(buttonObj) {
+    console.log("emitAnswer");
+
+    var userAnswerId = buttonObj.value;
+    var questionId = document.getElementById("q_text_1").value;
+
+    socket.emit("answer", questionId, userAnswerId);
+}
+
+function testButtonValue(buttonObj) {
+    alert(buttonObj.value);
 }
 
 // This will be the target of a click handler in a form or however we
