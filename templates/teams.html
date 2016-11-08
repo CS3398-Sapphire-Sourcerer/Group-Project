@@ -3,7 +3,9 @@
 
 
 {% extends 'base.html' %}
+<body>
 
+</body>
 {%  block content %}
 <div class = "Teams">
     <h3>Team info</h3>
@@ -31,41 +33,54 @@
         </div>
     </div>
 </div>
+
 <style>
     .Teams {
         position: relative;
         margin-top: 10%;
         margin-left: 20%;
-        align-content: center; }
+        align-content: center;
+        }
+    h4 {
+            font-family: Monotype Corsiva, cursive;}
+
 
     .Teams .pure-g #teamMaroon h4 {
-            font-family: Monotype Corsiva, cursive;
             background-color: rgba(80,18,20,1);
             color: white;
         }
     .Teams .pure-g #teamMaroon {
-        background-color: rgba(80, 18, 20, 0.8);
+        background-color: rgba(80, 18, 20, 0.6);
         color: white;
     }
 
-    .Teams .pure-g #teamMaroon .Points li:default{
-        background-color: rgba(80, 18, 20,0.6);
+    .Teams .pure-g #teamMaroon .Points li{
+        background-color: rgba(80, 18, 20,0.8);
         color: white;  }
-    .Teams .pure-g #teamMaroon h4 {
-            font-family: Monotype Corsiva, cursive;
-            background-color: rgba(80,18,20,1);
-            color: white;
-        }
-    .Teams .pure-g #teamMaroon {
-        background-color: rgba(80, 18, 20, 0.8);
-        color: white;
-    }
 
-    .Teams .pure-g #teamMaroon .Points li:default{
-        background-color: rgba(80, 18, 20,0.6);
-        color: white;  }
+    .Teams .pure-g #teamGold h4 {
+        background-color: rgba(141, 115, 70 ,1);
+        color: black;  }
+    .Teams .pure-g #teamGold .Points li{
+        background-color: rgba(141, 115, 70, 0.8);}
+    .Teams .pure-g #teamGold  {
+        background-color: rgba(141, 115, 70 ,.6);
+        color: black;}
+
+     .Teams .pure-g #Black h4 {
+        background-color: rgba(0,0, 0, 1);
+        color: lightskyblue;  }
+    .Teams .pure-g #teamBlack .Points li{
+        background-color: rgba(0, 0, 0,.8);
+        color: lightskyblue;}
+    .Teams .pure-g #teamBlack  {
+        background-color: rgba(0, 0, 0, .6);
+        color: lightskyblue;}
+
 
 }</style>
+
+
 
 
 {%  endblock %}
