@@ -5,11 +5,59 @@ Quiz cats
 
 {% block content %}
 
-<div id="map" style="width:1600px;height:900px;background:white"></div>
+
+
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
 <!-- Does the google maps api for the background -->
-{# <script src="/static/static_map_homepage.js"></script> #}
+<div id="map" style="width:1600px;height:900px;background:white"></div>
 <script src="/static/appMap.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChk9BH1LKywmR-_dzUhR80ZFJ02X8gjME&callback=appMap"></script>
 
+<!-- User session ID data -->
+<meta id="userSessionID" data-name="uSID" data-other="{{g.user.id}}">
+<script>var userID = $('#userSessionID').data().other;</script>
+
+<!-- Socket setup -->
+<script>
+    console.log(userID)
+    var socket = io.connect();
+
+    console.log("Socket?");
+
+    var locationObj = {};
+
+    function addTimer() {
+        window.setInterval(geolocateUser, 5000);
+    };
+
+function geolocateUser() {
+    console.log("geolocateUser");
+    console.log("userID : ", userID);
+    navigator.geolocation.getCurrentPosition(function (position) {
+        locationObj.uid = userID;
+        locationObj.latitude = position.coords.latitude;
+        locationObj.longitude = position.coords.longitude;
+        sendLocation()
+    });
+}
+
+function sendLocation(position) {
+    console.log("Do stuff");
+    console.log(locationObj.uid);
+    console.log(locationObj.latitude);
+    console.log(locationObj.longitude);
+    socket.emit("changeLocation", locationObj);
+}
+    //console.log("Getting to sendLocation");
+
+
+
+</script>
+
+<script src="/static/socketHandler.js"></script>
+<script>
+    addTimer();
+</script>
 {#    this is how you end the content block #}
 {% endblock %}

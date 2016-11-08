@@ -1,33 +1,96 @@
 #This class is meant to handle the database queries for questions and answers, as well as store the questions for one
 #building session consisting of N questions.
 
+#Usage note: After connecting session the the database, it is possible for a user to leave a session midway through and
+#            return later. The question list only builds questions are are still valid and answerable, meaning the list
+#            can potentially be shorter than the session length. TODO Revisit this logic if this begins causing errors.
+
+
 from init import datab
 from sqlalchemy import and_
 from random import shuffle
 import models
 
+class q_database_manager:
+    def addQuestionWithAnswer(self, questionText, questionType, answerText):
+        # TODO, add verification to fields, make sure you get good data
+        # Create models and fill data fields
+        question = models.Question()
+        current_answer = models.Answer()
+
+        question.q_text = questionText
+        question.q_type = questionType
+
+        current_answer.a_text = answerText
+        current_answer.a_type = questionType
+
+        datab.session.add(current_answer)
+        datab.session.commit()  # Save the answer and generate an ID
+
+        question.q_answer = current_answer.id  # current_answer.id   #Pulled from model that was just commited
+
+        datab.session.add(question)  # Save the question
+        datab.session.commit()
+
+    def addBuilding(self, new_name, new_type1):
+        #TODO add support for type2, owner and coordinates
+        new_building = models.Building()
+        new_building.name = new_name
+        new_building.type1 = new_type1
+
+        datab.session.add(new_building)
+        datab.session.commit()
 
 class q_data:               # Used to group questions with a specifc answers list
     question = None
     answers_list = []
+
+    def serialize(self):
+        return {
+            'question': self.question.serialize(),
+            'answer_list': [answer.serialize() for answer in self.answers_list]
+        }
 
 class question_handler:
     SESSION_LENGTH = 5     #Max number of questions a user can answer at one building
     POTENTIAL_ANSWERS = 4  #Number of possible answers to each question, one answer is correct
 
     question_list = []     #List of questions for current building session
-    question_index = 0
+    session = None
 
     type
 
-    def __init__ (self, question_type):
-        self.type = question_type
-        self.question_index = 0
-        self.buildNewQuestionSession()
+    def __init__ (self, user_id, building_id):
 
-        return
+        self.session = models.question_session.query.filter(models.question_session.user_id==user_id, models.question_session.building_id==building_id).first()
 
-    def buildNewQuestionSession(self):
+        if self.session is None: #If query session does not exist, build a new session
+            b = models.Building.query.get(building_id)
+            self.type = b.type1                     #If you get errors, verify that this is a building object and not a standard query.
+            self.question_index = 0
+            self.buildNewQuestionSession(user_id, building_id)
+        elif self.session.session_is_open: #If query session does exist, reopen where the user left off.
+            qlist = models.Q_List_Entry.query.filter_by(session_key = self.session.id)
+            workingList = list(qlist)
+
+            if workingList is None: #No entires remain, close the session
+                self.session.session_is_open = False
+                datab.session.commit()
+            else:
+                for q_entry in workingList:
+                    question = models.Question.query.filter_by(id = q_entry.question_key).first()
+                    q = q_data()
+                    q.question = question
+                    q.answers_list = self.getPotentialtAnswers(question)
+                    self.question_list.append(q)
+        else:
+            #The user's question session exist and is closed. Print some message saying they reached their max
+            return None
+
+
+
+
+    def buildNewQuestionSession(self, user_id, building_id):
         self.question_list = []
         workingList = self.getQuestions()
 
@@ -35,17 +98,28 @@ class question_handler:
             print("***ERROR, not enough questions in category. Enter more questions for testing or handle case with too few entries.***")
             return False
         else:
+            #Build session object in database
+            self.session = models.question_session()
+            self.session.building_id = building_id
+            self.session.user_id = user_id
+            self.session.session_is_open = True
+
+            datab.session.add(self.session)
+            datab.session.commit()
+
             for question in workingList:
                 q = q_data()
                 q.question = question
                 q.answers_list = self.getPotentialtAnswers(question)
                 self.question_list.append(q)
-            return True
 
-        #for questionData in self.question_list:
-        #    print (questionData.question.q_text)
-        #    for answers in questionData.answers_list:
-        #        print ("->" + answers.a_text)
+                #Build one q_entry for each question and point them at the current session
+                q_entry = models.Q_List_Entry()
+                q_entry.question_key = question.id
+                q_entry.session_key = self.session.id
+
+                datab.session.add(q_entry)
+            datab.session.commit()
 
 
     #Query database for N random questions, return list
@@ -94,4 +168,10 @@ class question_handler:
         self.question_index = self.question_index + 1
         if self.question_index >= self.SESSION_LENGTH:
             self.question_index = 0
+
+    def serialize(self):
+        return {
+            'sessionLength': self.SESSION_LENGTH,
+            'question_data_entries': [q_data.serialize() for q_data in self.question_list]
+        }
 
