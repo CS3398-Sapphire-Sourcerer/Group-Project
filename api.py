@@ -49,8 +49,8 @@ def location_change(u_loc):
     print(lat, " ", long)
     user = models.User.query.get(uid)
     print(user.email)
-    user.building = 3
-    user_building = 3
+    user.building = 1
+    user_building = 1
     # send lat and long to the building function to determine which building the user is in
     # return the building and save it in the user class
     datab.session.commit()
@@ -62,17 +62,25 @@ def question_serv(cli):
     uid = cli['userID']
     bldid = cli['buildingID']
 
+    print ("****Question was called****")
+
+    print("Building ID:")
+    print (bldid)
+
     Q_handler = questionLogic.question_handler(uid, bldid) #Create question session, or pull session if it exist
-    Q_obj = flask.jsonify(Q_handler.serializeCurrentQuestion())
+    Q_obj = Q_handler.serializeCurrentQuestion()
+
+    #print (Q_handler.serializeCurrentQuestion())
 
     socketio.emit('question', Q_obj, room='user-{}'.format(uid))
 
 @socketio.on('answer')
 def answer_question(cli):
-
+    print("****answer****")
+    app.logger.info("****Answer****")
     # call the database and test the answer and question
-    userAnswer = cli['userAnswer']
-    questionID = cli['questionID']
+    userAnswer = cli['userAnswerId']
+    questionID = cli['questionId']
 
     questionObj = models.Question.query.get(questionID)
 
