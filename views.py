@@ -147,15 +147,16 @@ def users_profile(uid):
 # TODO app.route('/app')
 
 @app.route('/teams', methods=['GET'])
-def team_page():
-
+def team():
     return flask.render_template('teams.html')
 
-@app.route('/team/<int_id>', methods = ['GET'])
+@app.route('/team/<int:team_id>', methods = ['GET'])
 def team_page(team_id):
-    tempTeam = models.Team.query.get(team_id)
+    users = models.User.query.filter_by(team = team_id)
+    users = list(users)
+    team = models.Team.query.get(team_id)
 
-    return flask.render_template('team_profile.html', teamInfo = tempTeam)
+    return flask.render_template('team_page.html', rooster = users, teamInfo = team)
 
 @app.route('/signin', methods=['GET'])
 def sign_in():

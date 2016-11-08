@@ -1,15 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
-    <h1>Team {{team.name}}</h1>
+    <div class = "Team">
+    <h1>Team{{teamInfo.name}}</h1>
+    <h2>Roster</h2>
     <ul>
-        {% for x in rooster %}
-
-        [% endfor %}
-
+        {% for X in rooster %}
+        <li><a href = "/users/{{ X.id }}">{{ X.user_name }}</a></li>
+        {% endfor %}
     </ul>
+    </div>
+    <style>
+    .Team  {
+        position: relative;
+        margin-top: 10%;
+        margin-left: 20%;
+        align-content: center;
 
-</div>
+    }</style>
 
 {% endblock %}

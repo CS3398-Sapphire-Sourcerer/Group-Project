@@ -3,29 +3,27 @@
 
 
 {% extends 'base.html' %}
-<body>
 
-</body>
 {%  block content %}
 <div class = "Teams">
     <h3>Team info</h3>
     <div class="pure-g">
         <div id="teamMaroon" class="pure-u-1 pure-u-md-1-3">
-        <h4><a href="/teams/1">Maroon</a></h4>
+        <h1><a href="/team/1">Maroon</a></h1>
             <p class = "Points">Points:</p>
             {%for X in Maroon%}
             <li><a href = "/users/{{ X.id }}">{{ X.user_name }}</a></li>
             {% endfor %}
         </div>
         <div id="teamGold" class="pure-u-1 pure-u-md-1-3">
-        <h4><a href="/teams/2">Gold</a></h4>
+        <h1><a href="/team/2">Gold</a></h1>
             <p class = "Points">Points:</p>
             {% for X in Gold %}
             <li><a href = "/users/{{ X.id }}">{{ X.user_name }}</a></li>
             {% endfor %}
         </div>
         <div id="teamBlack" class="pure-u-1 pure-u-md-1-3">
-        <h4><a href="/teams/3">Black</a></h4>
+        <h1><a href="/team/3">Black</a></h1>
             <p class = "Points">Points:</p>
             {% for X in Black %}
             <li><a href = "/users/{{ X.id }}">{{ X.user_name }}</a></li>
@@ -45,7 +43,7 @@
             font-family: Monotype Corsiva, cursive;}
 
 
-    .Teams .pure-g #teamMaroon h4 {
+    .Teams .pure-g #teamMaroon h1 {
             background-color: rgba(80,18,20,1);
             color: white;
         }
@@ -58,7 +56,7 @@
         background-color: rgba(80, 18, 20,0.8);
         color: white;  }
 
-    .Teams .pure-g #teamGold h4 {
+    .Teams .pure-g #teamGold h1 {
         background-color: rgba(141, 115, 70 ,1);
         color: black;  }
     .Teams .pure-g #teamGold .Points li{
@@ -67,7 +65,7 @@
         background-color: rgba(141, 115, 70 ,.6);
         color: black;}
 
-     .Teams .pure-g #Black h4 {
+     .Teams .pure-g #Black h1 {
         background-color: rgba(0,0, 0, 1);
         color: lightskyblue;  }
     .Teams .pure-g #teamBlack .Points li{
