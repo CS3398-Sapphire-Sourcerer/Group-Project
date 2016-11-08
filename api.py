@@ -32,7 +32,6 @@ def on_disconnect():
     flask_socketio.close_room('user-{}'.format(uid))
     app.logger.info('client disconnected')
 
-
 @socketio.on('changeLocation')
 def location_change(u_loc):
     if u_loc != None:

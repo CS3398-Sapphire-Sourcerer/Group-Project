@@ -76,7 +76,19 @@
           <ul class="nav navbar-nav">
             <li class="active">
             {% if question_session %}
-                <button>Do stuff here</button>
+                <div class="question_view" style="color:#FFFFFF">
+                    <div class="question_header"><h3>Answer a Question!</h3></div>
+
+                    <div class="question_text_view">This is a question?</div>
+                    <div class="answer_text_view">
+                            <button><label>Answer 1</label></button><br>
+                            <button><label>Answer 2</label></button><br>
+                            <button><label>Answer 3</label></button><br>
+                            <button><label>Answer 4</label></button><br>
+                    </div>
+                    <div class="submit_button"><button>submit</button></div>
+
+                </div>
             {% else %}
                 <button>no question session found</button>
             {% endif %}
@@ -109,10 +121,17 @@
 </div>
 {# <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script> #}
 
+<style>
+    .question_veiw{
+        color:#FFFFFF;
+    }
+</style>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script src="../static/ui.js"></script>
 </body>
 </html>
+
 
 
 
