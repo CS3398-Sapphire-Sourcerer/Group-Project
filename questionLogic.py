@@ -169,7 +169,9 @@ class question_handler:
 
     def nextQuestionIndex(self):
         listSize = len(self.question_list)
+
         self.question_session_index = self.question_session_index + 1
+
         if self.question_session_index >= listSize:
             self.question_session_index = 0
             q_session = models.question_session.query.get(self.session.id)

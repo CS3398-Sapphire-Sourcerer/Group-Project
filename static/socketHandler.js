@@ -43,6 +43,12 @@ function writeQuestionBar(obj) {
     }
 }
 
+
+socket.on{'result', writeResult};
+function writeResult(result) {
+    alert (result);
+}
+
 function emitAnswer(buttonObj) {
     console.log("emitAnswer");
 
