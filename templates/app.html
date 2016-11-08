@@ -21,7 +21,7 @@ Quiz cats
 <!-- Socket setup -->
 <script>
     console.log(userID)
-    var socket = io.connect();
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
 
     console.log("Socket?");
 
