@@ -23,7 +23,6 @@ def setup_user():
         # save the user in `flask.g`, which is a set of globals for this request
         flask.g.user = user
 
-
 # this is the function that will show the user the home.html page
 @app.route('/', methods=['GET'])
 def splash_screen():
@@ -77,16 +76,14 @@ def signup_submission():
     # # actions while logged into this "Session"
     return flask.redirect(flask.url_for('splash_screen'))
 
-
-# Populate question forms
+#Populate question forms
 @app.route('/see_questions', methods=['GET'])
 def question_session_display():
-    building = models.Building.query.filter_by(name = "Comal").first()
+    building = models.Building.query.filter_by(name = "Derek").first()
 
     if flask.g.user and building:
         question_session = None
         question_session = questionLogic.question_handler(flask.g.user.id,building.id)
-        print (flask.jsonify(question_session.serialize()))
         return flask.render_template('temp_question_display.html', question_session = question_session)
     else:
         print("Error in building session, printing with None")
@@ -97,11 +94,10 @@ def question_session_display():
 def question_forms():
     return flask.render_template('question_submission.html')
 
-
-# Adding route for question and answer submission
+#Adding route for question and answer submission
 @app.route('/questions', methods=['POST'])
 def question_submission():
-    # Get info
+    #Get info
     question_text = flask.request.form['Question']
     question_type = int(flask.request.form['Type'])
     answer_text = flask.request.form['Answer']
@@ -119,20 +115,20 @@ def question_creation():
     query = models.Question.query.first()
     if query is None:
         q = questionLogic.q_database_manager()
-        q.addQuestionWithAnswer("Computer Science question 1", "1", "Computer Science Answer 1")
-        q.addQuestionWithAnswer("Computer Science question 2", "1", "Computer Science Answer 2")
-        q.addQuestionWithAnswer("Computer Science question 3", "1", "Computer Science Answer 3")
-        q.addQuestionWithAnswer("Computer Science question 4", "1", "Computer Science Answer 4")
-        q.addQuestionWithAnswer("Computer Science question 5", "1", "Computer Science Answer 5")
+        q.addQuestionWithAnswer("Which language requires a virtual machine enviorment to run?", "1", "Java")
+        q.addQuestionWithAnswer("Which language allows for manipulation of pointers?", "1", "C++")
+        q.addQuestionWithAnswer("Which language controlls scope by using indentation levels?", "1", "Python")
+        q.addQuestionWithAnswer("Which language is a hypertext mark-up language?", "1", "HTML")
+        q.addQuestionWithAnswer("Which language is a vitual hardware language?", "1", "VHDL")
 
-        q.addBuilding("Comal", "1")
+        q.addBuilding("Derek", "1")
     return flask.redirect(flask.url_for('question_submission'))
 
 
 @app.route('/users/', methods=['GET'])
 def users_default():
-    u = models.User.query.all()  # get all users
-    users = list(u)  # save all users in a list format, pass list to users.html
+    u = models.User.query.all()         #get all users
+    users = list(u)                     #save all users in a list format, pass list to users.html
     return flask.render_template('users.html', users=users)
 
 
@@ -141,7 +137,7 @@ def users_profile(uid):
     tempUser = models.User.query.get(uid)
 
     if tempUser is None:
-        # user does not exist at that id, go to 404 page.
+        #user does not exist at that id, go to 404 page.
         flask.abort(404)
     else:
         return flask.render_template('user_profile.html', userInfo=tempUser, uid=uid)
@@ -184,9 +180,9 @@ def handle_logout():
 
 @app.route('/cjsTest1')
 def locTest():
-    # user = models.User.query.filter_by(user_name=user_name).first()
+    #user = models.User.query.filter_by(user_name=user_name).first()
     # @@@@ here is where we will call the data base to ensure the user exists and if they have valid pass word and
-    # if user is not None:
+    #if user is not None:
     #    if pass_word == user.pass_word:
     #        flask.session['auth_user'] = user.id
     #        return flask.redirect(flask.url_for('splash_screen'))
@@ -202,9 +198,8 @@ def updatePos(uid, lat, long):
 
     return "hello the end of time"
 
-
-# @app.route('/users/<int:uid>', methods=['GET'])
-# def users_profile(uid):
+#@app.route('/users/<int:uid>', methods=['GET'])
+#def users_profile(uid):
 #    tempUser = models.User.query.get(uid)
 #
 #    if tempUser is None:
@@ -216,7 +211,6 @@ def updatePos(uid, lat, long):
 @app.route('/app', methods=['GET'])
 def appPage():
     return flask.render_template('app.html')
-
 
 @app.errorhandler(404)
 def bad_page(err):

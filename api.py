@@ -3,6 +3,7 @@ from init import socketio, SocketIO, app, datab
 import flask_socketio
 import flask
 import models
+import questionLogic
 
 
 
@@ -32,7 +33,6 @@ def on_disconnect():
     flask_socketio.close_room('user-{}'.format(uid))
     app.logger.info('client disconnected')
 
-
 @socketio.on('changeLocation')
 def location_change(u_loc):
     if u_loc != None:
@@ -55,5 +55,40 @@ def location_change(u_loc):
     # return the building and save it in the user class
     datab.session.commit()
     flask_socketio.emit('enterBuilding', {"building": user_building}, room='user-{}'.format(uid))
+
+
+@socketio.on('generateQuestions')
+def question_serv(cli):
+    uid = cli['userID']
+    bldid = cli['buildingID']
+
+    Q_handler = questionLogic.question_handler(uid, bldid) #Create question session, or pull session if it exist
+    Q_obj = flask.jsonify(Q_handler.serializeCurrentQuestion())
+
+    socketio.emit('question', Q_obj, room='user-{}'.format(uid))
+
+@socketio.on('Answer')
+def answer_question(cli):
+
+    # call the database and test the answer and question
+    userAnswer = cli['userAnswer']
+    questionID = cli['questionID']
+
+    questionObj = models.Question.query.get(questionID)
+
+    if userAnswer is questionObj.q_answer:
+        print("You got it right!")
+    else:
+        print("You got it wrong :(")
+
+    # delete database question entry from stack
+    # TODO: flask.session.get(uid)? add delete to session object
+
+    socketio.emit('Result') #result = some boolean based on if above
+
+    # if no more questions, emit end status
+
+    # TODO: get user at max test from questionLogic
+    socketio.emit('qLimit') #qLimit = some message saying "Reached max for today, try again tomorrow"
 
 

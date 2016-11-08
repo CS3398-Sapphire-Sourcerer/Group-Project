@@ -11,8 +11,8 @@ class User(datab.Model):
     q_correct = datab.Column(datab.Integer)
     q_total = datab.Column(datab.Integer)
     Score = datab.Column(datab.Integer)
-    #building = datab.Column(datab.Integer, datab.ForeignKey('team.id'))
-    building = datab.Column(datab.Integer)
+    building = datab.Column(datab.Integer, datab.ForeignKey('team.id'))
+
 
 
 class Question(datab.Model):
@@ -20,22 +20,19 @@ class Question(datab.Model):
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
     q_text = datab.Column(datab.String(5000))
     q_type = datab.Column(datab.Integer)
-    q_answer = datab.Column(datab.Integer, datab.ForeignKey('Answer.id'))   #ID (int) of correct answer for question
+    q_answer = datab.Column(datab.Integer)   #ID (int) of correct answer for question
     q_value = datab.Column(datab.Integer)    #Point value
 
     def serialize(self):
         return{
             'questionID': self.id,
-            'questionText': self.q_text,
-            'questionType': self.q_type,
-            'questionAnswer': self.q_answer,
-            'questionPointValue': self.q_value
+            'questionText': self.q_text
         }
 
 #Answers are seperated from Questions so that reals answers can populate incorrect answers by type
 class Answer(datab.Model):
     __tablename__ = 'Answer'
-    id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
+    id = datab.Column(datab.Integer, primary_key=True, autoincrement=True);
     a_text = datab.Column(datab.String(1000))
     a_type = datab.Column(datab.Integer)
 
@@ -43,7 +40,6 @@ class Answer(datab.Model):
         return{
             'answerID': self.id,
             'answerText': self.a_text,
-            'answerType': self.a_type
         }
 
 #A question session is created for specific users, q_list_entries map to a specific user session id
@@ -83,5 +79,13 @@ class Building(datab.Model):
     score = datab.Column(datab.Integer)
     type1 = datab.Column(datab.Integer) #Primary major category found in building
     type2 = datab.Column(datab.Integer) #Secondary (if any) major category found in building. Can be None.
+
+class location_area(datab.Model):
+    id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
+    building_group = datab.Column(datab.Integer, datab.ForeignKey('Building.id'))
+    long1 = datab.Column(datab.Integer)
+    lat1 = datab.Column(datab.Integer)
+    long2 = datab.Column(datab.Integer)
+    lat2 = datab.Column(datab.Integer)
 
 datab.create_all(app=app)

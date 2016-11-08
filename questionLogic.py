@@ -11,6 +11,7 @@ from sqlalchemy import and_
 from random import shuffle
 import models
 
+#This class contains easy methods for adding question-relavent database content
 class q_database_manager:
     def addQuestionWithAnswer(self, questionText, questionType, answerText):
         # TODO, add verification to fields, make sure you get good data
@@ -56,7 +57,9 @@ class question_handler:
     POTENTIAL_ANSWERS = 4  #Number of possible answers to each question, one answer is correct
 
     question_list = []     #List of questions for current building session
+    question_session_index = 0
     session = None
+
 
     type
 
@@ -161,13 +164,26 @@ class question_handler:
         return answer
 
     def setQuestionIndex(self, newIndex):
-        self.question_index = newIndex
+        self.question_session_index = newIndex
         return None
 
     def nextQuestionIndex(self):
-        self.question_index = self.question_index + 1
-        if self.question_index >= self.SESSION_LENGTH:
-            self.question_index = 0
+        listSize = len(self.question_list)
+        self.question_session_index = self.question_session_index + 1
+        if self.question_session_index >= listSize:
+            self.question_session_index = 0
+            q_session = models.question_session.query.get(self.session.id)
+            print("****Closing session****")
+            q_session.session_is_open = False
+            datab.session.commit()
+
+    def serializeCurrentQuestion(self):
+        if self.question_session_index >= len(self.question_list):
+            print("Error, index out of bounds")
+        else:
+            return{
+                'question_data': self.question_list[self.question_session_index].serialize()
+            }
 
     def serialize(self):
         return {
