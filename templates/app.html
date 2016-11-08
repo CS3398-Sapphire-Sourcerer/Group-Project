@@ -6,13 +6,18 @@ Quiz cats
 {% block content %}
 
 
-
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 
 <!-- Does the google maps api for the background -->
-<div id="map" style="width:1600px;height:900px;background:white"></div>
+<!--<div id="map" style="width:1600px;height:600px;background:white"></div>-->
+<div id="map" style="width:1600px;height:600px;background:white"></div>
+
 <script src="/static/appMap.js"></script>
+
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChk9BH1LKywmR-_dzUhR80ZFJ02X8gjME&callback=appMap"></script>
+
+
 
 <!-- User session ID data -->
 <meta id="userSessionID" data-name="uSID" data-other="{{g.user.id}}">
@@ -52,5 +57,6 @@ function geolocateUser() {
 <script>
     addTimer();
 </script>
+
 {#    this is how you end the content block #}
 {% endblock %}
