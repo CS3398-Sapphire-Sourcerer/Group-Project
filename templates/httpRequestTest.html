@@ -76,7 +76,9 @@
 
     <meta id="userSessionID" data-name="uSID" data-other="{{g.user.id}}">
 
+
     <script>var userID = $('#userSessionID').data().other;</script>
+
     <script>
         function addTimer() {
             window.setInterval(geolocateUser, 10000, userID);
@@ -88,11 +90,6 @@
         console.log("Initial read : ", userID);
         console.log("Typeof userID : ", typeof userID);
         addTimer();
-        /*
-        $.getScript("/static/httpRequestTest.js")
-            .done(function () {addTimer();})
-            .fail(function () {console.log("Failed");});
-        */
     </script>
 
     {#    this is how you end the content block #}

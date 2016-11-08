@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {# this imports the base.html in as a template #}
+{% block title %} {# this is the opening tage for adding the title #}
+Quiz cats
+{% endblock %}  {# this is the closing tag for the title #}
+
+{% block content %}
+
+
+
+<script src="/static/socket.io-client-master/socket.io.js"></script>
+
+<!-- Does the google maps api for the background -->
+<div id="map" style="width:1600px;height:900px;background:white"></div>
+<script src="/static/appMap.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChk9BH1LKywmR-_dzUhR80ZFJ02X8gjME&callback=appMap"></script>
+
+<!-- User session ID data -->
+<meta id="userSessionID" data-name="uSID" data-other="{{g.user.id}}">
+<script>var userID = $('#userSessionID').data().other;</script>
+
+<!-- Socket setup -->
+<script>
+    console.log(userID)
+    var socket = io.connect();
+
+    console.log("Socket?");
+    //socket.on('connect', function(){console.log("Connected")});
+    socket.on('connect', function() {
+        console.log("Connected2");
+        //var u = {"hello":"world"};
+        //socket.emit('test', u);
+    });
+    socket.on('disconnect', function(){console.log("Disconnected")});
+
+    //socket.on('enterBuilding', enterBuilding(userID));
+    socket.on('questions', function () {});
+    socket.on('answerReturn', function () {});
+
+    var locationObj = {};
+
+    function addTimer() {
+        window.setInterval(geolocateUser, 5000);
+    };
+
+function geolocateUser() {
+    console.log("geolocateUser");
+    console.log("userID : ", userID);
+    navigator.geolocation.getCurrentPosition(function (position) {
+        locationObj.uid = userID;
+        locationObj.latitude = position.coords.latitude;
+        locationObj.longitude = position.coords.longitude;
+        sendLocation()
+    });
+}
+
+function sendLocation(position) {
+    console.log("Do stuff");
+    console.log(locationObj.uid);
+    console.log(locationObj.latitude);
+    console.log(locationObj.longitude);
+    socket.emit("changeLocation", locationObj);
+}
+    //console.log("Getting to sendLocation");
+
+
+
+</script>
+
+<!--<script src="/static/httpRequestTest.js"></script>-->
+<script>
+    addTimer();
+</script>
+{#    this is how you end the content block #}
+{% endblock %}
