@@ -71,12 +71,24 @@ def question_serv(cli):
 def answer_question(cli):
 
     # call the database and test the answer and question
-    # delete database question entry from stack
+    userAnswer = cli['userAnswer']
+    questionID = cli['questionID']
 
-    socketio.emit('Result')
+    questionObj = models.Question.query.get(questionID)
+
+    if userAnswer is questionObj.q_answer:
+        print("You got it right!")
+    else:
+        print("You got it wrong :(")
+
+    # delete database question entry from stack
+    # TODO: flask.session.get(uid)? add delete to session object
+
+    socketio.emit('Result') #result = some boolean based on if above
 
     # if no more questions, emit end status
 
-    socketio.emit('qLimit')
+    # TODO: get user at max test from questionLogic
+    socketio.emit('qLimit') #qLimit = some message saying "Reached max for today, try again tomorrow"
 
 
