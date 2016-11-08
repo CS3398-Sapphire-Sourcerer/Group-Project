@@ -57,3 +57,29 @@ def location_change(u_loc):
     flask_socketio.emit('enterBuilding', {"building": user_building}, room='user-{}'.format(uid))
 
 
+@socketio.on('generateQuestions')
+def question_serv(cli):
+    uid = cli['userID']
+    bldid = cli['buildingID']
+
+    Q_obj=questionGen()
+    socketio.emit('question', Q_obj, room='user-{}'.format(uid))
+
+def questionGen():
+    question_obj = None
+    return question_obj
+
+
+@socketio.on('Answer')
+def answer_question(cli):
+
+    # call the database and test the answer and question
+    # delete database question entry from stack
+
+    socketio.emit('Result')
+
+    # if no more questions, emit end status
+
+    socketio.emit('qLimit')
+
+
