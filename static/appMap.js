@@ -52,7 +52,7 @@ function appMap () {
         strokeWeight: 2,
         fillColor: '#ffd700',
         fillOpacity: 0.65
-    })
+    });
 
     Derrick.setMap(map);
     Alkek.setMap(map);
