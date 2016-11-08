@@ -1,16 +1,34 @@
-<!-- This page should be used to format individual user profiles. Currently, it just displays the user's name. -->
-
 {% extends 'base.html' %}
 
 {%  block content %}
+
+<center>
 <div class = "teams">
     <h3>{{ userInfo.user_name }}'s Page</h3>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+
+<div class="w3-container w3-light-grey" style="width:75%">
+  <!-- User name should display here -->
+  <h2>Major</h2><p>Stealing!</p>
+
+  <div class="w3-card-12 w3-round" style="width:50%">
+    <!-- Simple avatar would be inserted here -->
+    <img src="http://www.pinfalls.com/Bender_mugshot.gif" alt="Bender" style="width:100%">
+
+     <div class="w3-container w3-dark-grey">
+        <!-- There profile info would be here -->
+        <h3>About me</h3><p>Bite My Shiny Metal Ass!</p>
+     </div>
+  </div>
 </div>
+</div>
+</center>
 
 <style>.teams{
     position: relative;
     margin-top: 10%;
-    margin-left: 20%;
+    margin-left: 15%;
     align-content: center;
 
 } </style>
