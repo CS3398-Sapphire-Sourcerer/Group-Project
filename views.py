@@ -11,16 +11,13 @@ from init import app, datab
 from flask import request
 
 
+
+
 @app.before_request
 def setup_user():
+    # authentication token so that we know when a user is logged in while broswing
     if 'auth_user' in flask.session:
         user = models.User.query.get(flask.session['auth_user'])
-        test = flask.session['auth_user']
-        print("AUTH_USER:", test)
-        if user is None:
-            # old bad cookie, no good
-            del flask.session['auth_user']
-        # save the user in `flask.g`, which is a set of globals for this request
         flask.g.user = user
 
 # this is the function that will show the user the home.html page
@@ -79,16 +76,8 @@ def signup_submission():
 #Populate question forms
 @app.route('/see_questions', methods=['GET'])
 def question_session_display():
-    building = models.Building.query.filter_by(name = "Derek").first()
-
-    if flask.g.user and building:
-        question_session = None
-        question_session = questionLogic.question_handler(flask.g.user.id,building.id)
-        return flask.render_template('temp_question_display.html', question_session = question_session)
-    else:
-        print("Error in building session, printing with None")
-        return flask.render_template('temp_question_display.html', question_session = None)
-
+    questions = questionLogic.question_handler(majorIDs.ENGLISH)
+    return flask.render_template('temp_question_display.html', questions = questions)
 
 @app.route('/questions', methods=['GET'])
 def question_forms():
@@ -102,35 +91,38 @@ def question_submission():
     question_type = int(flask.request.form['Type'])
     answer_text = flask.request.form['Answer']
 
-    q = questionLogic.q_database_manager
+    #TODO, verify information and error checking, check for exact duplicate questions/answers, turn into function
 
-    q.addQuestionWithAnswer(question_text, question_type, answer_text)
+
+    #Create models and fill data fields
+    question = models.Question()
+    current_answer = models.Answer()
+
+    question.q_text = question_text
+    question.q_type = question_type
+
+    current_answer.a_text = answer_text
+    current_answer.a_type = question_type
+
+    datab.session.add(current_answer)
+    datab.session.commit()                  #Save the answer and generate an ID
+
+    question.q_answer = current_answer.id   #current_answer.id   #Pulled from model that was just commited
+
+    datab.session.add(question)             #Save the question
+    datab.session.commit()
+
+    #Save values to DataBase
+
 
     #TODO, return successful state if good data, poor state if not
-    return flask.redirect(flask.url_for('question_submission'))
-
-#Added test route for quick question adding for test
-@app.route("/generate_questions", methods=['GET'])
-def question_creation():
-    query = models.Question.query.first()
-    if query is None:
-        q = questionLogic.q_database_manager()
-        q.addQuestionWithAnswer("Which language requires a virtual machine enviorment to run?", "1", "Java")
-        q.addQuestionWithAnswer("Which language allows for manipulation of pointers?", "1", "C++")
-        q.addQuestionWithAnswer("Which language controlls scope by using indentation levels?", "1", "Python")
-        q.addQuestionWithAnswer("Which language is a hypertext mark-up language?", "1", "HTML")
-        q.addQuestionWithAnswer("Which language is a vitual hardware language?", "1", "VHDL")
-
-        q.addBuilding("Derek", "1")
-    return flask.redirect(flask.url_for('question_submission'))
-
+    return flask.redirect(flask.url_for('question_submission', question_num = len(models.Question.query.all())))
 
 @app.route('/users/', methods=['GET'])
 def users_default():
     u = models.User.query.all()         #get all users
     users = list(u)                     #save all users in a list format, pass list to users.html
     return flask.render_template('users.html', users=users)
-
 
 @app.route('/users/<int:uid>', methods=['GET'])
 def users_profile(uid):
@@ -147,8 +139,14 @@ def users_profile(uid):
 
 @app.route('/teams', methods=['GET'])
 def team_page():
+
     return flask.render_template('teams.html')
 
+@app.route('/team/<int_id>', methods = ['GET'])
+def team_page(team_id):
+    tempTeam = models.Team.query.get(team_id)
+
+    return flask.render_template('team_profile.html', teamInfo = tempTeam)
 
 @app.route('/signin', methods=['GET'])
 def sign_in():
@@ -171,12 +169,10 @@ def sign_in_submit():
 
     return flask.render_template('signin.html', state='bad')
 
-
 @app.route('/logout')
 def handle_logout():
     del flask.session['auth_user']
     return flask.redirect(flask.request.args.get('url', '/'), 303)
-
 
 @app.route('/cjsTest1')
 def locTest():
@@ -188,6 +184,8 @@ def locTest():
     #        return flask.redirect(flask.url_for('splash_screen'))
 
     return flask.render_template('httpRequestTest.html', state='good')
+
+
 
 
 @app.route('/updatePos/<uid>/<lat>/<long>', methods=['POST'])
