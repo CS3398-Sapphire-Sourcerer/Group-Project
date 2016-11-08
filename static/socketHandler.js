@@ -14,15 +14,22 @@ function sendLocation(position) {
 socket.on('enterBuilding', inBuilding);
 function inBuilding(obj) {
     console.log("In inBuilding");
-    if (obj.buildingID != -1) {
+    if (obj.building != -1) {
         console.log("Good building ID");
-        socket.emit("generateQuestions", {"buildingID": obj.buildingID});
+
+        var sendObj = {};
+        sendObj.userID = userID;
+        sendObj.buildingID = obj.building;
+
+        socket.emit("generateQuestions", sendObj);
     }
 }
 
 
 socket.on('question', writeQuestionBar);
 function writeQuestionBar(obj) {
+    console.log("writeQuestionBar");
+    console.log("Received : ", obj);
 }
 
 // This will be the target of a click handler in a form or however we
