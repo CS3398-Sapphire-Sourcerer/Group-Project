@@ -42,13 +42,6 @@ function geolocateUser() {
     });
 }
 
-function sendLocation(position) {
-    console.log("Do stuff");
-    console.log(locationObj.uid);
-    console.log(locationObj.latitude);
-    console.log(locationObj.longitude);
-    socket.emit("changeLocation", locationObj);
-}
     //console.log("Getting to sendLocation");
 
 

@@ -2,18 +2,21 @@
  * Created by Casey on 10/27/2016.
  */
 
-function sendLocation(locationObj) {
-    console.log("Getting to sendLocation");
-    socket.emit('changeLocation', locationObj);
+
+
+function enterBuilding(userID, buildingID) {
+    let building = {'userID' : userID, 'buildingID' : buildingID};
+    console.log(building);
 }
-0
-function geolocateUser(userID, locationObj) {
-    console.log("geolocateUser");
-    console.log("userID : ", userID);
-    navigator.geolocation.getCurrentPosition(function (position) {
-        locationObj.uid = userID;
-        locationObj.latitude = position.coords.latitude;
-        locationObj.longitude = position.coords.longitude;
-        sendLocation(locationObj)
-    });
-}
+
+
+
+/*
+var io = require('socket.io')(80);
+
+io.on('connection', function (socket) {
+  socket.on('ferret', function (name, fn) {
+    fn('woot');
+  });
+});
+ */
