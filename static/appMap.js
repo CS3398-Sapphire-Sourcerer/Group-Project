@@ -28,16 +28,34 @@ function appMap () {
         { lat:29.889579, lng:-97.942417 }
     ];
 
+    var alkekCoordinates = [
+        { lat:29.88844371604545, lng:-97.94277459383011},
+        { lat:29.889341342614987, lng:-97.94293016195297},
+        { lat:29.889294833664863, lng:-97.9433861374855},
+        { lat:29.888397206676533, lng:-97.94323056936264},
+        {lat: 29.88844371604545,lng: -97.94277459383011}
+    ];
+
     var Derrick = new google.maps.Polygon({
         paths: derrickCoordinates,
         strokeColor: '#800000', //color: maroon
         strokeOpacity: 0.8,
         strokeWeight: 2,
-        fillColor: '#ffd700',
+        fillColor: '#800000',
         fillOpacity: 0.65
     });
 
+    var Alkek = new google.maps.Polygon({
+        paths: alkekCoordinates,
+        strokeColor: '#000000', //color: maroon
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#ffd700',
+        fillOpacity: 0.65
+    })
+
     Derrick.setMap(map);
+    Alkek.setMap(map);
 }
 
 
