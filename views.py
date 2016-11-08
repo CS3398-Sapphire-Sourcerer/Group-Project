@@ -81,8 +81,16 @@ def signup_submission():
 # Populate question forms
 @app.route('/see_questions', methods=['GET'])
 def question_session_display():
-    questions = questionLogic.question_handler(majorIDs.ENGLISH)
-    return flask.render_template('temp_question_display.html', questions=questions)
+    building = models.Building.query.filter_by(name = "Comal").first()
+
+    if flask.g.user and building:
+        question_session = None
+        question_session = questionLogic.question_handler(flask.g.user.id,building.id)
+        print (flask.jsonify(question_session.serialize()))
+        return flask.render_template('temp_question_display.html', question_session = question_session)
+    else:
+        print("Error in building session, printing with None")
+        return flask.render_template('temp_question_display.html', question_session = None)
 
 
 @app.route('/questions', methods=['GET'])
@@ -98,32 +106,27 @@ def question_submission():
     question_type = int(flask.request.form['Type'])
     answer_text = flask.request.form['Answer']
 
-    # TODO, verify information and error checking, check for exact duplicate questions/answers, turn into function
+    q = questionLogic.q_database_manager
 
+    q.addQuestionWithAnswer(question_text, question_type, answer_text)
 
-    # Create models and fill data fields
-    question = models.Question()
-    current_answer = models.Answer()
+    #TODO, return successful state if good data, poor state if not
+    return flask.redirect(flask.url_for('question_submission'))
 
-    question.q_text = question_text
-    question.q_type = question_type
+#Added test route for quick question adding for test
+@app.route("/generate_questions", methods=['GET'])
+def question_creation():
+    query = models.Question.query.first()
+    if query is None:
+        q = questionLogic.q_database_manager()
+        q.addQuestionWithAnswer("Computer Science question 1", "1", "Computer Science Answer 1")
+        q.addQuestionWithAnswer("Computer Science question 2", "1", "Computer Science Answer 2")
+        q.addQuestionWithAnswer("Computer Science question 3", "1", "Computer Science Answer 3")
+        q.addQuestionWithAnswer("Computer Science question 4", "1", "Computer Science Answer 4")
+        q.addQuestionWithAnswer("Computer Science question 5", "1", "Computer Science Answer 5")
 
-    current_answer.a_text = answer_text
-    current_answer.a_type = question_type
-
-    datab.session.add(current_answer)
-    datab.session.commit()  # Save the answer and generate an ID
-
-    question.q_answer = current_answer.id  # current_answer.id   #Pulled from model that was just commited
-
-    datab.session.add(question)  # Save the question
-    datab.session.commit()
-
-    # Save values to DataBase
-
-
-    # TODO, return successful state if good data, poor state if not
-    return flask.redirect(flask.url_for('question_submission', question_num=len(models.Question.query.all())))
+        q.addBuilding("Comal", "1")
+    return flask.redirect(flask.url_for('question_submission'))
 
 
 @app.route('/users/', methods=['GET'])

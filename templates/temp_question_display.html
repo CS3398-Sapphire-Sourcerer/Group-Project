@@ -3,20 +3,34 @@
 {% extends 'base.html' %}
 
 {%  block content %}
-    <div class = "quiz">
+    <div class = "quiz" id = "quiz_window">
         <h3>TESTING</h3>
 
-        <div class = "question_veiw" id = "question_view">
-        {% for q in questions.question_list %}
-            <hr>
-            <h3>Question {{ q.question.id }}</h3>
-            {{ q.question.q_text }} <br>
-            {% for answer in q.answers_list %}
-                <button onclick="checkAnswer({{q.question.q_answer}},{{answer.id}})">
-                {{ answer.a_text }}
-                </button>
+
+        <div class = "question_view" id = "dummy_question_1">
+
+        </div>
+
+        <div class = "question_view" id = "dummy_question_2">
+
+        </div>
+
+
+        <div class = "question_veiw" id = "question_window">
+            {% for q in question_session.question_list %}
+                <hr>
+                <h3>Question {{ q.question.id }}</h3>
+                {{ q.question.q_text }} <br>
+                {% for answer in q.answers_list %}
+                    <button onclick="checkAnswer({{q.question.q_answer}},{{answer.id}})">
+                    {{ answer.a_text }}
+                    </button>
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
+        </div>
+
+        <div class = "toggle_view" id = "quiz_window_toggle">
+            <button onclick = "quizViewToggle()">Show quiz</button>
         </div>
 
         <hr>
@@ -26,6 +40,8 @@
     </div>
 
 <script>
+    var quizWindowOpen = false;
+
     function checkAnswer (answer_key, selected_key) {
         if (answer_key == selected_key) {
             alert("You got the answer right!")
@@ -34,13 +50,38 @@
         }
     }
 
+    function openQuiz () {
+        $("#question_window").style.width = "500px";
+    }
+
+    function closeQuiz () {
+        $("#question_window").style.width = "0px";
+    }
+
+    function quizViewToggle() {
+        alert ("I am in the function!");
+        if (quizWindowOpen) {
+            alert("I am closing the window");
+            closeQuiz();
+            quizWindowOpen = false;
+        } else {
+            alert("I am opening the window");
+            openQuiz();
+            quizWindowOpen = true;
+        }
+    }
+
 </script>
 
-<style>.quiz{
+<style>
+    .quiz {
     position: relative;
     margin-top: 10%;
     margin-left: 20%;
     align-content: center;
+    }
 
-} </style>
+    .question_veiw{
+    }
+</style>
 {%  endblock %}
