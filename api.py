@@ -3,6 +3,7 @@ from init import socketio, SocketIO, app, datab
 import flask_socketio
 import flask
 import models
+import questionLogic
 
 
 
@@ -61,13 +62,10 @@ def question_serv(cli):
     uid = cli['userID']
     bldid = cli['buildingID']
 
-    Q_obj=questionGen()
+    Q_handler = questionLogic.question_handler(uid, bldid) #Create question session, or pull session if it exist
+    Q_obj = flask.jsonify(Q_handler.serializeCurrentQuestion())
+
     socketio.emit('question', Q_obj, room='user-{}'.format(uid))
-
-def questionGen():
-    question_obj = None
-    return question_obj
-
 
 @socketio.on('Answer')
 def answer_question(cli):
