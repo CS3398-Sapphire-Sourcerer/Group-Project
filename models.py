@@ -3,6 +3,7 @@
 from init import app, datab
 
 class User(datab.Model):
+    __tablename__ = 'User'
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
     user_name = datab.Column(datab.String(20))
     pass_word = datab.Column(datab.String(64))
@@ -15,6 +16,7 @@ class User(datab.Model):
 
 
 class Question(datab.Model):
+    __tablename__ = 'Question'
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
     q_text = datab.Column(datab.String(5000))
     q_type = datab.Column(datab.Integer)
@@ -29,6 +31,7 @@ class Question(datab.Model):
 
 #Answers are seperated from Questions so that reals answers can populate incorrect answers by type
 class Answer(datab.Model):
+    __tablename__ = 'Answer'
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True);
     a_text = datab.Column(datab.String(1000))
     a_type = datab.Column(datab.Integer)
