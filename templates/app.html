@@ -57,6 +57,19 @@ function geolocateUser() {
 <script>
     addTimer();
 </script>
-
+<script>
+    $(document).ready(function() {
+        var classname = document.getElementsByClassName("answer");
+        console.log(classname);
+        for (var i = 0; i < classname.length; i++) {
+            classname[i].addEventListener('click', function() {
+                //console.log("this.id : ", this.id);
+                emitAnswer(this.id)
+            })
+        }
+    });
+</script>
+    //var v = document.getElementbyId("answer0");
+    //v.addEventListener("click", emitAnswer);
 {#    this is how you end the content block #}
 {% endblock %}

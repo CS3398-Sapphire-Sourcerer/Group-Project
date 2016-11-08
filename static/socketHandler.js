@@ -52,10 +52,16 @@ function writeResult(result) {
 function emitAnswer(buttonObj) {
     console.log("emitAnswer");
 
-    var userAnswerId = buttonObj.value;
-    var questionId = document.getElementById("q_text_1").value;
+    var id = (document.getElementById(buttonObj).value).toString();
+    var quid = (document.getElementById("q_text_1").value).toString();
+    var submit = {
+        "userAnswerId" : id,
+        "questionId" : quid
+    }
+    //var userAnswerId = buttonObj.value;
+    //var questionId = document.getElementById("q_text_1").value;
 
-    socket.emit("answer", questionId, userAnswerId);
+    socket.emit("answer", submit);
 }
 
 function testButtonValue(buttonObj) {
