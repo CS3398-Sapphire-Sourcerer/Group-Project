@@ -26,6 +26,8 @@ def setup_user():
 # this is the function that will show the user the home.html page
 @app.route('/', methods=['GET'])
 def splash_screen():
+    if flask.session.get('auth_user') is not None:
+        return flask.redirect("/app", 302)
     return flask.render_template('index.html')
 
 

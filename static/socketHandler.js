@@ -44,7 +44,7 @@ function writeQuestionBar(obj) {
 }
 
 
-socket.on{'result', writeResult};
+socket.on('result', writeResult);
 function writeResult(result) {
     alert (result);
 }
