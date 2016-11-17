@@ -26,6 +26,8 @@ def setup_user():
 # this is the function that will show the user the home.html page
 @app.route('/', methods=['GET'])
 def splash_screen():
+    if flask.session.get('auth_user') is not None:
+        return flask.redirect("/app", 302)
     return flask.render_template('index.html')
 
 
@@ -84,6 +86,7 @@ def question_session_display():
     if flask.g.user and building:
         question_session = None
         question_session = questionLogic.question_handler(flask.g.user.id,building.id)
+        #print(question_session.serializeCurrentQuestion() )
         return flask.render_template('temp_question_display.html', question_session = question_session)
     else:
         print("Error in building session, printing with None")
@@ -146,9 +149,16 @@ def users_profile(uid):
 # TODO app.route('/app')
 
 @app.route('/teams', methods=['GET'])
-def team_page():
+def team():
     return flask.render_template('teams.html')
 
+@app.route('/team/<int:team_id>', methods = ['GET'])
+def team_page(team_id):
+    users = models.User.query.filter_by(team = team_id)
+    users = list(users)
+    team = models.Team.query.get(team_id)
+
+    return flask.render_template('team_page.html', rooster = users, teamInfo = team)
 
 @app.route('/signin', methods=['GET'])
 def sign_in():

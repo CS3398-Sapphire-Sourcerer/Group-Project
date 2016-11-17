@@ -11,7 +11,8 @@ class User(datab.Model):
     q_correct = datab.Column(datab.Integer)
     q_total = datab.Column(datab.Integer)
     Score = datab.Column(datab.Integer)
-    building = datab.Column(datab.Integer, datab.ForeignKey('team.id'))
+    team = datab.Column(datab.Integer, datab.ForeignKey('team.id'))
+    building = datab.Column(datab.Integer, datab.ForeignKey('Building.id'))
 
 
 

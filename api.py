@@ -5,7 +5,7 @@ import flask
 import models
 import questionLogic
 
-
+user_question_session = None;
 
 @socketio.on('connect')
 def on_connect():
@@ -49,8 +49,8 @@ def location_change(u_loc):
     print(lat, " ", long)
     user = models.User.query.get(uid)
     print(user.email)
-    user.building = 3
-    user_building = 3
+    user.building = 1
+    user_building = 1
     # send lat and long to the building function to determine which building the user is in
     # return the building and save it in the user class
     datab.session.commit()
@@ -62,37 +62,53 @@ def question_serv(cli):
     uid = cli['userID']
     bldid = cli['buildingID']
 
-    Q_handler = questionLogic.question_handler(uid, bldid) #Create question session, or pull session if it exist
-    Q_obj = flask.jsonify(Q_handler.serializeCurrentQuestion())
+    print ("****Question was called****")
+
+    print("Building ID:")
+    print (bldid)
+
+    user_question_session= questionLogic.question_handler(uid, bldid) #Create question session, or pull session if it exist
+    Q_obj = user_question_session.serializeCurrentQuestion()
+
+    #print (Q_handler.serializeCurrentQuestion())
 
     socketio.emit('question', Q_obj, room='user-{}'.format(uid))
 
 @socketio.on('answer')
 def answer_question(cli):
-
+    print("****answer****")
+    app.logger.info("****Answer****")
     # call the database and test the answer and question
-    userAnswer = cli['userAnswer']
-    questionID = cli['questionID']
+    userAnswer = cli['userAnswerId']
+    questionID = cli['questionId']
 
     questionObj = models.Question.query.get(questionID)
 
     if userAnswer is questionObj.q_answer:
         print("You got it right!")
+        result = "You got it right!"
     else:
         print("You got it wrong :(")
+        result = "You got it wrong."
 
     # delete database question entry from stack
     # TODO: flask.session.get(uid)? add delete to session object
 
-    socketio.emit('result') #result = some boolean based on if above
+    socketio.emit('result', result) #result = some boolean based on if above
 
     # if no more questions, emit end status
 
     # TODO: get user at max test from questionLogic
-    socketio.emit('qLimit') #qLimit = some message saying "Reached max for today, try again tomorrow"
+    #socketio.emit('qLimit') #qLimit = some message saying "Reached max for today, try again tomorrow"
 
     # TODO : recalculate state on the basis of a correct question.
     # updateState()
-    socketio.emit('updateState')
+
+    user_question_session.nextQuestionIndex()
+    Q_obj = user_question_session.serializeCurrentQuestion()
+
+    uid = flask.session.get('auth_user')
+
+    socketio.emit('question', Q_obj, room='user-{}'.format(uid))
 
 

@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChk9BH1LKywmR-_dzUhR80ZFJ02X8gjME&callback=appMap"></script>-->
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChk9BH1LKywmR-_dzUhR80ZFJ02X8gjME&library=drawing"></script>-->
         {# Save the CSRF token where JavaScript can get it #}
     <script>var csrfToken = '{{ session.csrf_token  }}';</script>
     <!--{# the line below is for adding our own titles on each page importing the templates#}-->
@@ -75,23 +80,17 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li class="active">
-            {% if question_session %}
                 <div class="question_view" style="color:#FFFFFF">
                     <div class="question_header"><h3>Answer a Question!</h3></div>
 
-                    <div class="question_text_view">This is a question?</div>
+                    <div class="question_text_view" id="q_text_1" value="0">This is a question?</div>
                     <div class="answer_text_view">
-                            <button><label>Answer 1</label></button><br>
-                            <button><label>Answer 2</label></button><br>
-                            <button><label>Answer 3</label></button><br>
-                            <button><label>Answer 4</label></button><br>
+                            <button class="answer" id="answer0" style="color: #000000" value="0" >Answer 1</button>
+                            <button class="answer" id="answer1" style="color: #000000" value="0" >Answer 2</button> <br>
+                            <button class="answer" id="answer2" style="color: #000000" value="0" >Answer 3</button>
+                            <button class="answer" id="answer3" style="color: #000000" value="0" >Answer 4</button>
                     </div>
-                    <div class="submit_button"><button>submit</button></div>
-
                 </div>
-            {% else %}
-                <button>no question session found</button>
-            {% endif %}
             <!--
                 <a href="#">Home</a></li>
             <li class="dropdown">
@@ -127,8 +126,6 @@
     }
 </style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-<script src="../static/ui.js"></script>
 </body>
 </html>
 
