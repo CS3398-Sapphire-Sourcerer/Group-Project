@@ -6,15 +6,14 @@ class User(datab.Model):
     __tablename__ = 'User'
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
     user_name = datab.Column(datab.String(20))
+    user_profile_text = datab.Column(datab.String(1000)) #A short "about me" section, if we use it.
     pass_word = datab.Column(datab.String(64))
     email = datab.Column(datab.String(64))
     q_correct = datab.Column(datab.Integer)
     q_total = datab.Column(datab.Integer)
     Score = datab.Column(datab.Integer)
     team = datab.Column(datab.Integer, datab.ForeignKey('team.id'))
-    building = datab.Column(datab.Integer, datab.ForeignKey('Building.id'))
-
-
+    building = datab.Column(datab.Integer, datab.ForeignKey('Building.id')) #Current building the user has entered.
 
 class Question(datab.Model):
     __tablename__ = 'Question'
@@ -36,6 +35,7 @@ class Answer(datab.Model):
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True);
     a_text = datab.Column(datab.String(1000))
     a_type = datab.Column(datab.Integer)
+    a_style = datab.Column(datab.String(20)) #A string to store the type of style for the question.
 
     def serialize(self):
         return{
@@ -68,25 +68,20 @@ class Q_List_Entry(datab.Model):
 class Team(datab.Model):
     __tablename__ = 'team'
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
-    name = datab.Column(datab.String(30))
-
 
 class Building(datab.Model):
     __tablename__ = 'Building'
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
     owner = datab.Column(datab.Integer, datab.ForeignKey('team.id')) # this holds team ID for th team owner
-    #cords = datab.Column()
     name = datab.Column(datab.String(30))
-    score = datab.Column(datab.Integer)
+    capture_value = datab.Column(datab.Integer)
     type1 = datab.Column(datab.Integer) #Primary major category found in building
     type2 = datab.Column(datab.Integer) #Secondary (if any) major category found in building. Can be None.
 
-class location_area(datab.Model):
+class coordinate_point(datab.Model):
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
     building_group = datab.Column(datab.Integer, datab.ForeignKey('Building.id'))
-    long1 = datab.Column(datab.Integer)
-    lat1 = datab.Column(datab.Integer)
-    long2 = datab.Column(datab.Integer)
-    lat2 = datab.Column(datab.Integer)
+    long = datab.Column(datab.Integer)
+    lat = datab.Column(datab.Integer)
 
 datab.create_all(app=app)
