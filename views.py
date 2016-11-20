@@ -9,6 +9,12 @@ import questionLogic
 import majorIDs
 from init import app, datab
 from flask import request
+from state import initializeGame, game
+
+
+@app.before_first_request
+def gameSetup():
+    initializeGame()
 
 
 @app.before_request
@@ -22,6 +28,8 @@ def setup_user():
             del flask.session['auth_user']
         # save the user in `flask.g`, which is a set of globals for this request
         flask.g.user = user
+    #initializeGame()
+
 
 
 # this is the function that will show the user the home.html page
