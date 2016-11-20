@@ -49,7 +49,7 @@ def location_change(u_loc):
     print(lat, " ", long)
     user = models.User.query.get(uid)
     print(user.email)
-    user.building = 1
+    user.Building = 1
     user_building = 1
     # send lat and long to the building function to determine which building the user is in
     # return the building and save it in the user class
