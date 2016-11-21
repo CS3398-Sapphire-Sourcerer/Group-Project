@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
-
+{% block title %} {{userInfo.user_name}}'s Profile {% endblock %} }
 {%  block content %}
 
 <center>
+
 <div class = "teams">
     <h3>{{ userInfo.user_name }}'s Page</h3>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +11,7 @@
 
 <div class="w3-container w3-light-grey" style="width:75%">
   <!-- User name should display here -->
-  <h2>Major</h2><p>Stealing!</p>
+  <h2>Major</h2><p>{{userInfo.major}}</p>
 
   <div class="w3-card-12 w3-round" style="width:50%">
     <!-- Simple avatar would be inserted here -->
@@ -18,9 +19,14 @@
 
      <div class="w3-container w3-dark-grey">
         <!-- There profile info would be here -->
-        <h3>About me</h3><p>Bite My Shiny Metal Ass!</p>
+        <h3>About me</h3><p>Bite My Shiny Metal Ass! {{ userInfo.user_profile_text }}</p>
      </div>
   </div>
+</div>
+    <div>
+    <form action="/users/{{ uid }}/updateInfo">
+    <button type="submit" class="pure-button" >Edit Profile</button>
+    </form>
 </div>
 </div>
 </center>
@@ -32,5 +38,7 @@
     align-content: center;
 
 } </style>
+
+
 {%  endblock %}
 

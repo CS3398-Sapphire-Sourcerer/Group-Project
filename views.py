@@ -3,6 +3,7 @@
 # these import libraries
 import base64
 import os
+import bcrypt
 import flask
 import models
 import questionLogic
@@ -29,6 +30,7 @@ def setup_user():
         # save the user in `flask.g`, which is a set of globals for this request
         flask.g.user = user
     #initializeGame()
+
 
 
 # this is the function that will show the user the home.html page
@@ -75,7 +77,8 @@ def signup_submission():
     # @@@ Starting here we know the user submission passed and we will input the variables into the database
     user = models.User()  # This line creates the database object for users
     user.user_name = user_name  # This stores the user_name into the login field in the user database object
-    user.pass_word = password1
+    #user.pass_word = password1
+    user.pass_word = bcrypt.hashpw(password1.encode('utf8'), bcrypt.gensalt(15))
     user.email = email
     # user.pass_hash =  bcrypt.hashpw(password1.encode('utf8'), bcrypt.gensalt(15)) # this encrypts and stores the hash
     datab.session.add(user)  # this adds the object to the database submit queue
@@ -86,29 +89,31 @@ def signup_submission():
     # # actions while logged into this "Session"
     return flask.redirect(flask.url_for('splash_screen'))
 
-#Populate question forms
+
+# Populate question forms
 @app.route('/see_questions', methods=['GET'])
 def question_session_display():
-    building = models.Building.query.filter_by(name = "Derek").first()
+    building = models.Building.query.filter_by(name="Derek").first()
 
     if flask.g.user and building:
         question_session = None
-        question_session = questionLogic.question_handler(flask.g.user.id,building.id)
-        #print(question_session.serializeCurrentQuestion() )
-        return flask.render_template('temp_question_display.html', question_session = question_session)
+        question_session = questionLogic.question_handler(flask.g.user.id, building.id)
+        # print(question_session.serializeCurrentQuestion() )
+        return flask.render_template('temp_question_display.html', question_session=question_session)
     else:
         print("Error in building session, printing with None")
-        return flask.render_template('temp_question_display.html', question_session = None)
+        return flask.render_template('temp_question_display.html', question_session=None)
 
 
 @app.route('/questions', methods=['GET'])
 def question_forms():
     return flask.render_template('question_submission.html')
 
-#Adding route for question and answer submission
+
+# Adding route for question and answer submission
 @app.route('/questions', methods=['POST'])
 def question_submission():
-    #Get info
+    # Get info
     question_text = flask.request.form['Question']
     question_type = int(flask.request.form['Type'])
     answer_text = flask.request.form['Answer']
@@ -117,10 +122,11 @@ def question_submission():
 
     q.addQuestionWithAnswer(question_text, question_type, answer_text)
 
-    #TODO, return successful state if good data, poor state if not
+    # TODO, return successful state if good data, poor state if not
     return flask.redirect(flask.url_for('question_submission'))
 
-#Added test route for quick question adding for test
+
+# Added test route for quick question adding for test
 @app.route("/generate_questions", methods=['GET'])
 def question_creation():
     query = models.Question.query.first()
@@ -138,8 +144,8 @@ def question_creation():
 
 @app.route('/users/', methods=['GET'])
 def users_default():
-    u = models.User.query.all()         #get all users
-    users = list(u)                     #save all users in a list format, pass list to users.html
+    u = models.User.query.all()  # get all users
+    users = list(u)  # save all users in a list format, pass list to users.html
     return flask.render_template('users.html', users=users)
 
 
@@ -148,25 +154,52 @@ def users_profile(uid):
     tempUser = models.User.query.get(uid)
 
     if tempUser is None:
-        #user does not exist at that id, go to 404 page.
+        # user does not exist at that id, go to 404 page.
         flask.abort(404)
-    else:
-        return flask.render_template('user_profile.html', userInfo=tempUser, uid=uid)
+
+    return flask.render_template('user_profile.html', userInfo=tempUser, uid=uid)
 
 
-# TODO app.route('/app')
+# this function display the user edit fields
+# TODO: query what is already present in the fields if they exist
+@app.route('/users/<int:uid>/updateInfo', methods=['GET'])
+def user_edit(uid):
+    tempUser = models.User.query.get(uid)
+    if tempUser is None:
+        # user does not exist at that id, go to 404 page.
+        flask.abort(404)
+
+    return flask.render_template('edit_user_profile.html', userInfo=tempUser, uid=uid)
+
+
+@app.route('/users/<int:uid>/updateInfo', methods=['POST'])
+def update_user_profile(uid):
+    # query user
+    user = models.User.query.get(uid)
+    # scrape form data
+    bio = flask.request.form['bio']
+    major = flask.request.form['major']
+
+    user.user_profile_text = bio
+    user.major = major
+    datab.session.add(user)
+    datab.session.commit()
+    return flask.redirect(flask.url_for('users_profile',uid=uid))
+
 
 @app.route('/teams', methods=['GET'])
 def team():
     return flask.render_template('teams.html')
 
-@app.route('/team/<int:team_id>', methods = ['GET'])
+
+@app.route('/team/<int:team_id>', methods=['GET'])
 def team_page(team_id):
-    users = models.User.query.filter_by(team = team_id)
+    users = models.User.query.filter_by(team=team_id)
     users = list(users)
     team = models.Team.query.get(team_id)
 
-    return flask.render_template('team_page.html', rooster = users, teamInfo = team)
+    return flask.render_template('team_page.html', rooster=users, teamInfo=team)
+
 
 @app.route('/signin', methods=['GET'])
 def sign_in():
@@ -183,6 +216,7 @@ def sign_in_submit():
     user = models.User.query.filter_by(user_name=user_name).first()
     # @@@@ here is where we will call the data base to ensure the user exists and if they have valid pass word and
     if user is not None:
+        pass_word = bcrypt.hashpw(pass_word.encode('utf8'), user.pass_word)
         if pass_word == user.pass_word:
             flask.session['auth_user'] = user.id
             return flask.redirect(flask.url_for('splash_screen'))
@@ -198,9 +232,9 @@ def handle_logout():
 
 @app.route('/cjsTest1')
 def locTest():
-    #user = models.User.query.filter_by(user_name=user_name).first()
+    # user = models.User.query.filter_by(user_name=user_name).first()
     # @@@@ here is where we will call the data base to ensure the user exists and if they have valid pass word and
-    #if user is not None:
+    # if user is not None:
     #    if pass_word == user.pass_word:
     #        flask.session['auth_user'] = user.id
     #        return flask.redirect(flask.url_for('splash_screen'))
@@ -216,8 +250,9 @@ def updatePos(uid, lat, long):
 
     return "hello the end of time"
 
-#@app.route('/users/<int:uid>', methods=['GET'])
-#def users_profile(uid):
+
+# @app.route('/users/<int:uid>', methods=['GET'])
+# def users_profile(uid):
 #    tempUser = models.User.query.get(uid)
 #
 #    if tempUser is None:
@@ -228,7 +263,12 @@ def updatePos(uid, lat, long):
 
 @app.route('/app', methods=['GET'])
 def appPage():
+
+    if flask.session.get('auth_user') is None:
+        return flask.redirect("/", 302)
+
     return flask.render_template('app.html')
+
 
 @app.errorhandler(404)
 def bad_page(err):
