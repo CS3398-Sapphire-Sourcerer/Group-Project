@@ -2,10 +2,17 @@
  * Created by Casey on 10/27/2016.
  */
 
-socket.on('connect', function() {console.log("Connected")});
+socket.on('connect', function() {
+    console.log("Connected")
+});
 
 
 socket.on('disconnect', function(){console.log("Disconnected")});
+
+function requestState() {
+    console.log(" === requestState === ")
+    socket.emit("ready", {});
+}
 
 function sendLocation(position) {
     socket.emit("changeLocation", locationObj);
@@ -76,4 +83,13 @@ function sendAnswer(ans) {
 
 socket.on('result', function () {});
 socket.on('qLimit', function () {});
+
+socket.on('stateFullUpdate', stateFullUpdate);
+function stateFullUpdate(obj) {
+    console.log("Received state update");
+    console.log(obj);
+    addTimer();
+    updateMap(obj.buildings);
+}
+
 socket.on('stateUpdate', function () {});

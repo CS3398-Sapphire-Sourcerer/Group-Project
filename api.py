@@ -4,6 +4,7 @@ import flask_socketio
 import flask
 import models
 import questionLogic
+from state import requestState, updateState
 
 user_question_session = None;
 
@@ -20,8 +21,8 @@ def on_connect():
 
     # add this connection to the user's 'room', so we can send to all
     # the user's open browser tabs
-    #socketio.join_room('user-{}'.format(uid))
     flask_socketio.join_room('user-{}'.format(uid))
+
 
 @socketio.on('disconnect')
 def on_disconnect():
@@ -32,6 +33,14 @@ def on_disconnect():
 
     flask_socketio.close_room('user-{}'.format(uid))
     app.logger.info('client disconnected')
+
+
+@socketio.on('ready')
+def readyState(obj):
+    uid = flask.session.get('auth_user', None)
+    response = requestState({"type": "new"})
+    flask_socketio.emit('stateFullUpdate', response, room='user-{}'.format(uid))
+
 
 @socketio.on('changeLocation')
 def location_change(u_loc):
@@ -73,6 +82,7 @@ def question_serv(cli):
     #print (Q_handler.serializeCurrentQuestion())
 
     socketio.emit('question', Q_obj, room='user-{}'.format(uid))
+
 
 @socketio.on('answer')
 def answer_question(cli):

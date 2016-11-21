@@ -1,7 +1,7 @@
 from init import app
 def gameState():
     req = None
-    state = dict(buildings=["Derrick", "Comal"])
+    state = dict(buildings=["derrick", "alkek"])
 
     # add all of the buildings from the DB to the state object
     app.logger.info("Made it into the function")
@@ -24,7 +24,7 @@ def initializeGame():
     next(game)
 
 def requestState(req):
-    pass
+    return game.send(req)
 
 def updateState(req):
     pass

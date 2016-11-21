@@ -8,6 +8,8 @@
 // //maroon: #800000
 //
 
+var map;
+
 function appMap () {
     var mapOptions = {
         center: new google.maps.LatLng(29.8893, -97.9402),
@@ -16,8 +18,11 @@ function appMap () {
         disableDoubleClickZoom: true,
         mapTypeId: google.maps.MapTypeId.roadmap
     };
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+    /*
+
+    .toLowerCase()
     var derrickCoordinates = [
         { lat:29.889579, lng:-97.942417 },
         { lat:29.888962, lng:-97.942326 },
@@ -56,6 +61,19 @@ function appMap () {
 
     Derrick.setMap(map);
     Alkek.setMap(map);
+
+    */
+}
+
+function updateMap(obj) {
+    for (let i = 0; i < obj.length; i++) {
+        /*
+        let bldg = new google.maps.Polygon({
+            paths :
+        })
+        */
+
+    }
 }
 
 
