@@ -3,6 +3,7 @@
 # these import libraries
 import base64
 import os
+import bcrypt
 import flask
 import models
 import questionLogic
@@ -76,7 +77,8 @@ def signup_submission():
     # @@@ Starting here we know the user submission passed and we will input the variables into the database
     user = models.User()  # This line creates the database object for users
     user.user_name = user_name  # This stores the user_name into the login field in the user database object
-    user.pass_word = password1
+    #user.pass_word = password1
+    user.pass_word = bcrypt.hashpw(password1.encode('utf8'), bcrypt.gensalt(15))
     user.email = email
     # user.pass_hash =  bcrypt.hashpw(password1.encode('utf8'), bcrypt.gensalt(15)) # this encrypts and stores the hash
     datab.session.add(user)  # this adds the object to the database submit queue
@@ -214,6 +216,7 @@ def sign_in_submit():
     user = models.User.query.filter_by(user_name=user_name).first()
     # @@@@ here is where we will call the data base to ensure the user exists and if they have valid pass word and
     if user is not None:
+        pass_word = bcrypt.hashpw(pass_word.encode('utf8'), user.pass_word)
         if pass_word == user.pass_word:
             flask.session['auth_user'] = user.id
             return flask.redirect(flask.url_for('splash_screen'))
