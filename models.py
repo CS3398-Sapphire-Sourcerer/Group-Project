@@ -74,6 +74,7 @@ class Q_List_Entry(datab.Model):
 
 class Team(datab.Model):
     __tablename__ = 'team'
+    score = datab.Column(datab.Integer)
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
 
 
