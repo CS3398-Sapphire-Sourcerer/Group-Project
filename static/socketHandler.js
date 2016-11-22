@@ -38,8 +38,6 @@ function writeQuestionBar(obj) {
     console.log("writeQuestionBar");
     console.log("Received : ", obj);
 
-    var sendObj = obj;
-
     document.getElementById("q_text_1").textContent = obj.question_data.question.questionText;
     document.getElementById("q_text_1").value = obj.question_data.question.questionID;
 
@@ -48,6 +46,18 @@ function writeQuestionBar(obj) {
         document.getElementById("answer" + i).textContent = obj.question_data.answer_list[i].answerText;
         document.getElementById("answer" + i).value = obj.question_data.answer_list[i].answerID;
     }
+}
+
+socket.on('noMoreQuestions', alertQuestionBar);
+function alertQuestionBar(obj) {
+    console.log("Alert User:")
+    console.log("Received : ", obj);
+
+    document.getElementById("q_text_1").textContent = obj.result;
+    document.getElementById("q_text_1").value = 0;
+
+
+
 }
 
 
@@ -75,13 +85,6 @@ function testButtonValue(buttonObj) {
     alert(buttonObj.value);
 }
 
-// This will be the target of a click handler in a form or however we
-// decide to do it for submitting your answer
-function sendAnswer(ans) {
-    socket.emit("answer", ans);
-}
-
-socket.on('result', function () {});
 socket.on('qLimit', function () {});
 
 socket.on('stateFullUpdate', stateFullUpdate);

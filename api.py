@@ -6,8 +6,6 @@ import models
 import questionLogic
 from state import requestState, updateState
 
-user_question_session = None;
-
 @socketio.on('connect')
 def on_connect():
     # get the connecting user's user ID
@@ -77,11 +75,12 @@ def question_serv(cli):
     print (bldid)
 
     user_question_session= questionLogic.question_handler(uid, bldid) #Create question session, or pull session if it exist
-    Q_obj = user_question_session.serializeCurrentQuestion()
+    if user_question_session.session_is_closed:
+        socketio.emit('noMoreQuestions', {'result': "You are out of questions"}, room='user-{}'.format(uid))
+    else:
+        Q_obj = user_question_session.serializeCurrentQuestion()
+        socketio.emit('question', Q_obj, room='user-{}'.format(uid))
 
-    #print (Q_handler.serializeCurrentQuestion())
-
-    socketio.emit('question', Q_obj, room='user-{}'.format(uid))
 
 
 @socketio.on('answer')
@@ -114,10 +113,15 @@ def answer_question(cli):
     # TODO : recalculate state on the basis of a correct question.
     # updateState()
 
-    user_question_session.nextQuestionIndex()
+    uid = flask.session.get('auth_user')
+    user = models.User.query.get(uid)
+    user_question_session = questionLogic.question_handler(user.id, user.building)
+    user_question_session.removeAnsweredQuestion()
     Q_obj = user_question_session.serializeCurrentQuestion()
 
-    uid = flask.session.get('auth_user')
+    print("Sending next question")
+    print(Q_obj)
+
 
     socketio.emit('question', Q_obj, room='user-{}'.format(uid))
 
