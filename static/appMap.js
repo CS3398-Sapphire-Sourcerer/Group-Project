@@ -3,14 +3,16 @@
  */
 //this holds the home page map that is is found in index.html
 //colors (hex):
-//black:  #000000
-//gold:   #ffd700
-// //maroon: #800000
+// black:  #000000
+// gold:   #ffd700
+// maroon: #800000
 //
 
 var map;
 
 function appMap () {
+    console.group("appMap() [appMap.js]");
+
     var mapOptions = {
         center: new google.maps.LatLng(29.8893, -97.9402),
         zoom: 17,
@@ -20,6 +22,8 @@ function appMap () {
     };
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+    console.groupEnd();
+}
     /*
 
     .toLowerCase()
@@ -63,7 +67,6 @@ function appMap () {
     Alkek.setMap(map);
 
     */
-}
 
 function updateMap(obj) {
     for (let i = 0; i < obj.length; i++) {

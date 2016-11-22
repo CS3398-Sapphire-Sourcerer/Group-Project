@@ -13,8 +13,19 @@ Quiz cats
 <div id="map" style="width:1600px;height:600px;background:white"></div>
 
 <script src="/static/appMap.js"></script>
+<script>
+    var buildings;
+    console.log("Getting buildings.json");
 
-
+    $.getJSON("/static/buildings.json", function(obj) {
+        console.group("jQuery : getJSON /static/buildings.json [app.html]");
+        console.log("obj : ", obj);
+        buildings = obj;
+        coordsLoaded();
+        console.groupEnd();
+    });
+    console.log("Ever worked?");
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChk9BH1LKywmR-_dzUhR80ZFJ02X8gjME&callback=appMap"></script>
 
 
@@ -23,51 +34,52 @@ Quiz cats
 <meta id="userSessionID" data-name="uSID" data-other="{{g.user.id}}">
 <script>var userID = $('#userSessionID').data().other;</script>
 
+
 <!-- Socket setup -->
 <script>
-    console.log(userID)
     var socket = io.connect('http://' + document.domain + ':' + location.port);
-
-    console.log("Socket?");
 
     var locationObj = {};
 
     function addTimer() {
-        window.setInterval(geolocateUser, 5000);
+        window.setInterval(geolocateUser, 30000);
     };
 
-function geolocateUser() {
-    console.log("geolocateUser");
-    console.log("userID : ", userID);
-    navigator.geolocation.getCurrentPosition(function (position) {
-        locationObj.uid = userID;
-        locationObj.latitude = position.coords.latitude;
-        locationObj.longitude = position.coords.longitude;
-        sendLocation()
-    });
-}
+    function geolocateUser() {
+        console.log(" === geolocateUser ===");
+        navigator.geolocation.getCurrentPosition(function (position) {
+            locationObj.uid = userID;
+            locationObj.latitude = position.coords.latitude;
+            locationObj.longitude = position.coords.longitude;
+            sendLocation()
+        });
+    }
 
-    //console.log("Getting to sendLocation");
-
-
+    function coordsLoaded() {
+        console.group("coordsLoaded [app.html]");
+        requestState();
+        console.groupEnd();
+    };
 
 </script>
 
 <script src="/static/socketHandler.js"></script>
+
 <script>
-    addTimer();
+
 </script>
+
+<!-- Sets up the listener for click events on the answer objects to emit to the server -->
 <script>
     $(document).ready(function() {
         var classname = document.getElementsByClassName("answer");
-        console.log(classname);
         for (var i = 0; i < classname.length; i++) {
             classname[i].addEventListener('click', function() {
-                //console.log("this.id : ", this.id);
                 emitAnswer(this.id)
             })
         }
     });
 </script>
+
 {#    this is how you end the content block #}
 {% endblock %}
