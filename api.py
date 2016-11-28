@@ -36,8 +36,15 @@ def on_disconnect():
 @socketio.on('ready')
 def readyState(obj):
     uid = flask.session.get('auth_user', None)
-    response = requestState({"type": "new"})
+    if (not obj):
+        response = requestState({"type": "new"})
     flask_socketio.emit('stateFullUpdate', response, room='user-{}'.format(uid))
+
+
+def check_location(user_location):
+    latitude = user_location['latitude']
+    longitude = user_location['longitude']
+
 
 
 @socketio.on('changeLocation')
@@ -50,14 +57,19 @@ def location_change(u_loc):
         return
 
     uid = u_loc['uid']
-    lat = u_loc['latitude']
-    long = u_loc['longitude']
+    latitude = u_loc['latitude']
+    longitude = u_loc['longitude']
 
-    print(lat, " ", long)
+    print(latitude, " ", longitude)
     user = models.User.query.get(uid)
     print(user.email)
+
+    user_building = 1;
+
+    user_building = check_location(u_loc)
+
     user.Building = 1
-    user_building = 1
+    
     # send lat and long to the building function to determine which building the user is in
     # return the building and save it in the user class
     datab.session.commit()
