@@ -46,14 +46,33 @@ function appMap () {
 // bounds of the desired area
 
 function addBuildings(obj) {
+    console.group("addBuildings(obj) [appMap.js]");
     for (let i = 0; i < obj["buildings"].length; i++) {
         buildings.push({"buildingName":obj["buildings"][i].buildingName, "coords":obj["buildings"][i].coordinates});
     }
     renderAllTheBuildings();
+    console.groupEnd();
 }
 
 function renderAllTheBuildings() {
-    var a = null;
+    console.group("renderAllTheBuildings() [appMap.js]");
+    for (let i = 0; i < buildings.length; i++) {
+        let buildingCoords = buildings[i].coords;
+        var currentBuilding = new google.maps.Polygon({
+            paths: buildingCoords,
+            strokeColor: '#ffffff', //color: maroon
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#add8e6',
+            fillOpacity: 0.55
+        });
+        currentBuilding.setMap(map);
+
+        google.maps.event.addListener(currentBuilding, 'click', function (event) {
+            alert(buildings[i].buildingName);
+        });  
+    }
+    console.groupEnd();
 }
 
 function findVisiblePolygons(loc) {
