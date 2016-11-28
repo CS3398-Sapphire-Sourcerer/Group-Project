@@ -8,22 +8,74 @@
 // maroon: #800000
 //
 
-var map;
+
 
 function appMap () {
     console.group("appMap() [appMap.js]");
 
     var mapOptions = {
         center: new google.maps.LatLng(29.8893, -97.9402),
-        zoom: 17,
+        disableDefaultUI : true,
+        zoom: 18,
         scrollwheel: true,
         disableDoubleClickZoom: true,
         mapTypeId: google.maps.MapTypeId.roadmap
     };
+    
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    google.maps.event.addListener(map, 'center_changed', function() {
+        if (allowedBounds.contains(map.getCenter())) {
+        // still within valid bounds, so save the last valid position
+            lastValidCenter = map.getCenter();
+            return; 
+        }
+        else {
+            map.panTo(lastValidCenter);
+        }
+    });
+
+    // not valid anymore => return to last valid position
+
+    lastValidCenter = map.getCenter();
+    console.log(lastValidCenter)
 
     console.groupEnd();
 }
+
+// bounds of the desired area
+
+function addBuildings(obj) {
+    for (let i = 0; i < obj["buildings"].length; i++) {
+        buildings.push({"buildingName":obj["buildings"][i].buildingName, "coords":obj["buildings"][i].coordinates});
+    }
+    renderAllTheBuildings();
+}
+
+function renderAllTheBuildings() {
+    var a = null;
+}
+
+function findVisiblePolygons(loc) {
+    for (let i = 0; i < buildings.length; i++) {
+    }
+}
+
+function updateMap(obj) {
+    for (let i = 0; i < obj.length; i++) {
+        /*
+        let bldg = new google.maps.Polygon({
+            paths :
+        })
+        */
+
+    }
+}
+
+
+
+
+
     /*
 
     .toLowerCase()
@@ -67,19 +119,3 @@ function appMap () {
     Alkek.setMap(map);
 
     */
-
-function updateMap(obj) {
-    for (let i = 0; i < obj.length; i++) {
-        /*
-        let bldg = new google.maps.Polygon({
-            paths :
-        })
-        */
-
-    }
-}
-
-
-
-
-

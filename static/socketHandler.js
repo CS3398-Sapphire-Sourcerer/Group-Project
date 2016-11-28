@@ -14,9 +14,12 @@ function requestState() {
     console.groupEnd();
 }
 
-function sendLocation(position) {
+function updateLocation(position) {
     console.group("sendLocation(position) [socketHandler.js]");
-    socket.emit("changeLocation", locationObj);
+    if (lastLocation == locationObj) return 
+    else if (lastLocation != locationObj)
+        lastLocation = locationObj;
+        socket.emit("changeLocation", locationObj);
     console.groupEnd();
 }
 
