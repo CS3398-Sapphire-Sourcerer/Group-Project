@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+{% block title %}
+Leaderboards
+{% endblock %}
+
+{%  block content %}
+<div class = "Leaders">
+
+    <h3>Leader Board</h3>
+    <ol>
+    {%for X in winnerCircle%}
+            <li>{{ X.user_name}}--{{ X.Score }}</li>
+            {% endfor %}
+    </ol>
+</div>
+
+    <style>
+    .Leaders {
+        position: relative;
+        margin-top: 10%;
+        margin-left: 20%;
+        align-content: center;
+        }
+    }</style>
+
+{%  endblock %}
+
