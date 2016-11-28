@@ -14,19 +14,29 @@ Quiz cats
 
 <script src="/static/appMap.js"></script>
 <script>
-    var buildings;
+    var buildings = [];
+    console.log("type of buildings : ", Array.isArray(buildings));
     console.log("Getting buildings.json");
 
     $.getJSON("/static/buildings.json", function(obj) {
         console.group("jQuery : getJSON /static/buildings.json [app.html]");
         console.log("obj : ", obj);
-        buildings = obj;
-        coordsLoaded();
+        coordsLoaded(obj);
         console.groupEnd();
     });
     console.log("Ever worked?");
 </script>
+
+<script>
+    var map, lastValidCenter, allowedBounds;
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChk9BH1LKywmR-_dzUhR80ZFJ02X8gjME&callback=appMap"></script>
+<script>
+    allowedBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(29, -99), 
+        new google.maps.LatLng(31, -97)
+    );
+</script>
 
 
 
@@ -40,9 +50,10 @@ Quiz cats
     var socket = io.connect('http://' + document.domain + ':' + location.port);
 
     var locationObj = {};
+    var lastLocation = null;
 
     function addTimer() {
-        window.setInterval(geolocateUser, 30000);
+        window.setInterval(geolocateUser, 45000);
     };
 
     function geolocateUser() {
@@ -51,12 +62,15 @@ Quiz cats
             locationObj.uid = userID;
             locationObj.latitude = position.coords.latitude;
             locationObj.longitude = position.coords.longitude;
-            sendLocation()
+            map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+            //locationObj.building = getBuilding(position)<------------------------------------------------
+            updateLocation()
         });
     }
 
-    function coordsLoaded() {
+    function coordsLoaded(obj) {
         console.group("coordsLoaded [app.html]");
+        addBuildings(obj);
         requestState();
         console.groupEnd();
     };
