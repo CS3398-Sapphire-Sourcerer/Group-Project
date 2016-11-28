@@ -11,6 +11,7 @@ import majorIDs
 from init import app, datab
 from flask import request
 from state import initializeGame, game
+from sqlalchemy import desc
 
 
 @app.before_first_request
@@ -206,6 +207,13 @@ def sign_in():
     # this is the page displaying the sign in forms, which is accessed from the nav bar. This will connect to the POST
     # method of the signin.html page.
     return flask.render_template('signin.html', state='good')
+
+@app.route('/leaderBoard', methods = ['GET'])
+def leader_board():
+    #this is the page for displaying the leaderboard for the top 10 players for everyteam. It will have access
+    #through the navi bar and filter the players with the highest scores
+    leaders = models.User.query.order_by(desc(models.User.Score)).limit(10).all()
+    return flask.render_template('leaderBoard.html', winnerCircle = leaders)
 
 
 @app.route('/signin', methods=['POST'])
