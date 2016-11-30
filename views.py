@@ -151,27 +151,32 @@ def populate_buildings():
     query = models.Building.query.first()
     if query is None:
         obj = None #create an object to store json data
-        new_building = models.Building() #create object for individual building
-        new_coordinate = models.coordinate_point() #create object for coordinates
+        #new_building = models.Building() #create object for individual building
+        #new_coordinate = models.coordinate_point() #create object for coordinates
 
         #open json file as read only
         with open('static\\buildings.json', 'r') as building_list:
             obj = json.load(building_list)
+
         for build_count in obj["buildings"]:
+            new_building = models.Building()
             new_building.name = build_count["buildingName"]
             print("name: ", new_building.name)
             datab.session.add(new_building)
-            datab.session.commit() #commit the building so we have an ID associated to store with coordinates
+        datab.session.commit() #commit the building so we have an ID associated to store with coordinates
 
+        for build_count in obj["buildings"]:
             for coord_count in build_count["coordinates"]:
+                new_coordinate = models.coordinate_point()
                 print("In coord loop")
                 new_coordinate.long = coord_count["lng"]
                 print("lng: ", new_coordinate.long)
                 new_coordinate.lat = coord_count["lat"]
                 print("lat: ", new_coordinate.lat)
-                new_coordinate.building_group = new_building.id
-                datab.session.add(new_coordinate)
 
+                b = models.Building.query.filter_by(name = build_count["buildingName"]).first()
+                new_coordinate.building_group = b.id
+                datab.session.add(new_coordinate)
             datab.session.commit()#commit all the coordinates at once
 
 

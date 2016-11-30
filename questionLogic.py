@@ -71,6 +71,7 @@ class question_handler:
 
         if self.session is None: #If query session does not exist, build a new session
             b = models.Building.query.get(building_id)
+            print(b)
             self.type = b.type1                     #If you get errors, verify that this is a building object and not a standard query.
             self.question_index = 0
             self.buildNewQuestionSession(user_id, building_id)

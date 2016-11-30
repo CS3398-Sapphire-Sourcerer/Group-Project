@@ -2,43 +2,34 @@
   "questionList" :
   [
     {
-      "question_text" : "",
-      "question_type" : "",
-      "question_ans" : "",
-      "question_value" : "",
-      "ans_text" : "",
-      "ans_type" : "",
+      "question_text" : "What does VHDL stand for?",
+      "question_type" : "8",
+      "question_value" : "1",
+      "ans_text" : "Virtual Hardware Language",
       "ans_style" : ""
     },
 
     {
       "question_text" : "",
       "question_type" : "",
-      "question_ans" : "",
       "question_value" : "",
       "ans_text" : "",
-      "ans_type" : "",
       "ans_style" : ""
     },
 
     {
       "question_text" : "",
       "question_type" : "",
-      "question_ans" : "",
       "question_value" : "",
       "ans_text" : "",
-      "ans_type" : "",
       "ans_style" : ""
     },
-
     {
-      "question_text" : "",
-      "question_type" : "",
-      "question_ans" : "",
-      "question_value" : "",
-      "ans_text" : "",
-      "ans_type" : "",
-      "ans_style" : ""
-    },
+      "question_text": "",
+      "question_type": "",
+      "question_value": "",
+      "ans_text": "",
+      "ans_style": ""
+    }
   ]
 }
