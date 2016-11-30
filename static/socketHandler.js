@@ -26,12 +26,18 @@ function updateLocation() {
     else {
         lastLocation = locationObj;
         let locObj = checkLocation();
-        if (locObj.building != "") {
+           
+        let emitObject = locationObj;
+        emitObject.building = locObj.building;
+        console.log("emitObject : ", emitObject);
+        socket.emit("changeLocation", emitObject);
+        
+        /*if (locObj.building != "") {
             let emitObject = locationObj;
             emitObject.building = locObj.building;
             console.log("emitObject : ", emitObject);
             socket.emit("changeLocation", emitObject);
-        }
+        }*/
         
     }
     console.groupEnd();
