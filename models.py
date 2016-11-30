@@ -82,8 +82,6 @@ class Team(datab.Model):
     # Team 2 - Black
     # Team 3 - Gold
 
-
-
 class Building(datab.Model):
     __tablename__ = 'Building'
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
@@ -92,6 +90,7 @@ class Building(datab.Model):
     capture_value = datab.Column(datab.Integer)
     type1 = datab.Column(datab.Integer)  # Primary major category found in building
     type2 = datab.Column(datab.Integer)  # Secondary (if any) major category found in building. Can be None.
+    building_shortcode = datab.Column(datab.String(10))
 
     # add method to jump capture value up 10 points for team that captures it.
 
