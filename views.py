@@ -152,11 +152,11 @@ def question_creation():
     query = models.Question.query.first()
     if query is None:
         q = questionLogic.q_database_manager()
-        q.addQuestionWithAnswer("Which language requires a virtual machine enviorment to run?", "1", "Java")
-        q.addQuestionWithAnswer("Which language allows for manipulation of pointers?", "1", "C++")
-        q.addQuestionWithAnswer("Which language controlls scope by using indentation levels?", "1", "Python")
-        q.addQuestionWithAnswer("Which language is a hypertext mark-up language?", "1", "HTML")
-        q.addQuestionWithAnswer("Which language is a vitual hardware language?", "1", "VHDL")
+        q.addQuestionWithAnswer("Which language requires a virtual machine enviorment to run?", "8", "Java")
+        q.addQuestionWithAnswer("Which language allows for manipulation of pointers?", "8", "C++")
+        q.addQuestionWithAnswer("Which language controlls scope by using indentation levels?", "8", "Python")
+        q.addQuestionWithAnswer("Which language is a hypertext mark-up language?", "8", "HTML")
+        q.addQuestionWithAnswer("Which language is a vitual hardware language?", "8", "VHDL")
 
     return flask.redirect(flask.url_for('question_submission'))
 
@@ -186,6 +186,7 @@ def populate_buildings():
             new_building.owner = 0
             new_building.type1 = build_count["major1"]
             new_building.type2 = build_count["major2"]
+            new_building.building_shortcode = build_count["buildingTag"]
             print("name: ", new_building.name)
             datab.session.add(new_building)
         datab.session.commit()  # commit the building so we have an ID associated to store with coordinates

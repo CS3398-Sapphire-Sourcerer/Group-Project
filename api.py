@@ -37,7 +37,10 @@ def on_disconnect():
 def readyState(obj):
     uid = flask.session.get('auth_user', None)
     if (not obj):
-        response = requestState({"type": "new"})
+        print ("Setting response:")
+        response = requestState({"type": "new"}) #TODO, Fix Error, response is being set to NULL!
+        print("Response is:")
+        print (response)
         flask_socketio.emit('stateFullUpdate', response, room='user-{}'.format(uid))
 
 #TODO FIX CHECK LOCATION using building short codes
@@ -49,12 +52,21 @@ def check_location(user_location):
 
 @socketio.on('changeLocation')
 def location_change(u_loc):
+    #TODO: u_loc has building short code and "continuous" int, 0 send question, 1 do nto send question
+
     if u_loc != None:
         app.logger.info('received user location')
 
     else:
         app.logger.info('did not receive user location')
         return
+
+    # TODO, pull out building
+    # TODO, if building is not empty, pull out via shortcode
+    b_shortcode = u_loc['building']
+    print ("In location change, building code is:")
+    print (b_shortcode)
+    b = models.Building.query.filter_by(building_shortcode = b_shortcode)
 
     uid = u_loc['uid']
     latitude = u_loc['latitude']
@@ -65,21 +77,36 @@ def location_change(u_loc):
     print(user.email)
 
     # TODO KILL ME V
-    user_building = 1;
-    user_building = check_location(u_loc)
-    user.Building = 1
+    user_building = b.id
+    user.Building = b.id
     
     # send lat and long to the building function to determine which building the user is in
     # return the building and save it in the user class
     datab.session.commit()
+
+    #TODO, if structure to verify building data from client, check against expected building code
+        #TODO, if not in building, update location and aquknowldege
+        #TODO, if in building, then question_serv()
+
     flask_socketio.emit('enterBuilding', {"building": user_building}, room='user-{}'.format(uid))
 
+#This method works with the change location function to determine if a long/lat coordinate is actually inside the expect
+#building. Buildings are given by the building shortcode.
+def pointWithinBuilding(longitude, latitude, b_code):
+    building = models.Building.query.filter_by(building_shortcode = b_code).first()
+    coordinate_list = models.coordinate_point.query.filter_by(building.id)
+    coordinate_list = list(coordinate_list)
 
-@socketio.on('generateQuestions')
-def question_serv(cli):
+
+
+
+#@socketio.on('generateQuestions')
+def question_serv(uid, bldid):
     # TODO make sure we are using building short codes
-    uid = cli['userID']
-    bldid = cli['buildingID']
+    #uid = cli['userID']
+
+    #TODO, bldID is coming back null. Check sender.
+    #bldid = cli['buildingID']
 
     print ("****Question was called****")
 
@@ -92,8 +119,6 @@ def question_serv(cli):
     else:
         Q_obj = user_question_session.serializeCurrentQuestion()
         socketio.emit('question', Q_obj, room='user-{}'.format(uid))
-
-
 
 @socketio.on('answer')
 def answer_question(cli):
