@@ -94,10 +94,8 @@ function checkBuildingBounds(position) {
             console.log(buildingPolygons[i].buildingTag);
             return buildingPolygons[i].buildingTag;
         }
-//        console.log(google.maps.geometry.containsLocation
-//            ({lat: position.latitude, lng: position.longitude}, buildingPolygons[i]));
-//        console.log(buildingPolygons[i].containsLocation({lat: position.latitude, lng: position.longitude}));
     }
+    return "";
     console.groupEnd();
 }
 

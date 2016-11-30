@@ -16,8 +16,6 @@ function requestState() {
 
 function updateLocation() {
     console.group("sendLocation(position) [socketHandler.js]");
-    // TODO : Establish what an appropriate amount of rouding would be and round the 
-    //        points so we can smooth out the error
     let locDifference = {};
     if (lastLocation) {
         locDifference.latitude = locationObj.latitude - lastLocation.latitude;
@@ -27,16 +25,20 @@ function updateLocation() {
     if (locDifference.latitude < .00001 && locDifference.longitude < .00001) return 
     else {
         lastLocation = locationObj;
-        checkLocation();
+        let locObj = checkLocation();
+        if (locObj.building != "") {
+            let emitObject = locationObj;
+            emitObject.building = locObj.building;
+            console.log("emitObject : ", emitObject);
+            socket.emit("changeLocation", emitObject);
+        }
+        
     }
-        //lastLocation = locationObj;
-        // checkLocation(position)
-        //socket.emit("changeLocation", locationObj);
     console.groupEnd();
 }
 
 function checkLocation() {
-     checkBuildingBounds(locationObj);
+    return {"building":checkBuildingBounds(locationObj)};
 }
 
 socket.on('enterBuilding', inBuilding);
