@@ -67,9 +67,12 @@ def location_change(u_loc):
     print ("In location change, building code is:")
     print (b_shortcode)
 
+    continuous = u_loc['continuous']  #A true or false value that marks if the user is in the same building they were in previously
+
     if b_shortcode is "":
-        print("building code is blank, do not care")
+            print("building code is blank, do not care")
     else:
+
         b = models.Building.query.filter_by(building_shortcode = b_shortcode).first()
         b_id = b.id
 
@@ -81,23 +84,26 @@ def location_change(u_loc):
         user = models.User.query.get(uid)
         print(user.email)
 
-        #TODO, if structure to verify building data from client, check against expected building code
-            #TODO, if not in building, update location and aquknowldege
-            #TODO, if in building, then question_serv()
+        if continuous is 1: #Continous is true, the user has move significantly but has not left their building.
+            u_session = models.question_session.query.filter(models.question_session.user_id == user.id, models.question_session.building_id == b_id).first()
+            if u_session is None:
+                print("User is still in building, but no previous session found, this is weird and should not happen")
 
-        if True: #If the user location is in a building
-            if user.building != b_id: #And that building is not stored on the user's record
-                user.building = b_id  #store the building id to the user's record
-                datab.session.commit()
-            question_serv(uid, b_id)
+        else: #continuous is false, could be building is first entered or rentered. Time to generate question data
 
-        else: #The user is not in a building
-            if user.building != "": #If they have existing building data, clear it.
-                user.building = ""
-                datab.session.commit()
-            print("User position updated outside of valid building")
-            blankObj = None
-            flask_socketio.emit('noChangeEvent', blankObj, room='user-{}'.format(uid))
+            if True: #If the user location is in a building, TODO, add verification that client data is correct
+                if user.building != b_id: #And that building is not stored on the user's record
+                    user.building = b_id  #store the building id to the user's record
+                    datab.session.commit()
+                question_serv(uid, b_id)
+
+            else: #The user is not in a building
+                if user.building != "": #If they have existing building data, clear it.
+                    user.building = ""
+                    datab.session.commit()
+                print("User position updated outside of valid building")
+                blankObj = None
+                flask_socketio.emit('noChangeEvent', blankObj, room='user-{}'.format(uid))
 
     #flask_socketio.emit('enterBuilding', {"building": user_building}, room='user-{}'.format(uid))
     #EnterBuilding event is being bypassed by going straight to the generateQuestions function.
@@ -112,15 +118,10 @@ def pointWithinBuilding(longitude, latitude, b_code):
     #TODO, finish function. Should return false if point is not in building. Currently assuming the point is correctly in the building.
     return True
 
-
-
-
 #@socketio.on('generateQuestions')
 def question_serv(uid, bldid):
-    # TODO make sure we are using building short codes
     #uid = cli['userID']
 
-    #TODO, bldID is coming back null. Check sender.
     #bldid = cli['buildingID']
 
     print ("****Question was called****")
