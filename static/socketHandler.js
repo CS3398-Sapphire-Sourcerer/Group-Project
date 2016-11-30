@@ -22,16 +22,18 @@ function updateLocation() {
         locDifference.longitude = locationObj.longitude - lastLocation.longitude;
     }
 
-    if (locDifference.latitude < .00001 && locDifference.longitude < .00001) return 
+    if (locDifference.latitude < .00001 && locDifference.longitude < .00001) {
+        console.log("Casey made a boo boo");
+        return;
+    }
     else {
+        console.log("Else statement running");
         lastLocation = locationObj;
         let locObj = checkLocation();
-        if (locObj.building != "") {
-            let emitObject = locationObj;
-            emitObject.building = locObj.building;
-            console.log("emitObject : ", emitObject);
-            socket.emit("changeLocation", emitObject);
-        }
+        let emitObject = locationObj;
+        emitObject.building = locObj.building;
+        console.log("emitObject : ", emitObject);
+        socket.emit("changeLocation", emitObject);
         
     }
     console.groupEnd();
@@ -42,8 +44,10 @@ function checkLocation() {
 }
 
 socket.on('enterBuilding', inBuilding);
+//This socket should not be used, but has not yet been removed.
 function inBuilding(obj) {
     console.group("inBuilding(obj) [socketHandler.js][listener]");
+    console.log("This message should not be playing, find out what is emitting \'enterBuilding\'.")
     if (obj.building != -1) {
         console.log("Good building ID");
 
@@ -84,6 +88,11 @@ function alertQuestionBar(obj) {
     document.getElementById("q_text_1").value = 0;
 
     console.groupEnd();
+}
+
+socket.on('noChangeEvent', noChange);
+function noChange(obj) {
+    console.log("User is not in building, no change event playing")
 }
 
 

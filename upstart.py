@@ -3,7 +3,6 @@
 import models
 from init import datab
 
-
 def populate_teams():
     teams = models.Team()
     teams1 = models.Team()
