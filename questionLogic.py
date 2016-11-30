@@ -7,7 +7,6 @@
 
 
 from init import app, datab
-from sqlalchemy import and_
 from random import shuffle
 import models
 
@@ -33,12 +32,12 @@ class q_database_manager:
         datab.session.add(question)  # Save the question
         datab.session.commit()
 
-    def addBuilding(self, new_name, new_type1):
+    def addBuilding(self, new_name, new_type1,):
         #TODO add support for type2, owner and coordinates
         new_building = models.Building()
         new_building.name = new_name
         new_building.type1 = new_type1
-
+        new_building.type2 = new_type2
         datab.session.add(new_building)
         datab.session.commit()
 

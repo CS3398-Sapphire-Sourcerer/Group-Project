@@ -1,6 +1,7 @@
 from init import app
 def gameState():
     req = None
+
     state = dict(buildings=["derrick", "alkek"])
 
     # add all of the buildings from the DB to the state object

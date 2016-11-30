@@ -17,6 +17,9 @@
 <form action="/signup" class="pure-form pure-form-aligned" method="POST">
 {#    <input type="hidden" name="url" value="{{ request.args.url }}">#}
     <fieldset>
+         <div class="pure-control-group">
+
+         </div>
         <div class="pure-control-group">
             <label for="username">Username</label>
             <input id="username" type="text" placeholder="Username" name="username">
@@ -33,10 +36,19 @@
             <label for="email">Email Address</label>
             <input id="email" type="email" placeholder="Email Address" name="email">
         </div>
+{#            TODO add team selection #}
+        <div>
+            <h4>Optional Information</h4>
+            <label for="bio">Bio</label>
+                <textarea type="text" id="bio" name="bio" placeholder="Tell The World about YOU!"></textarea>
+            <label for="major">Major</label>
+                <textarea type="text" id="major" name="major" placeholder="What do you study>"></textarea>
+        </div>
         <div class="pure-controls">
             <label for="cb" class="pure-checkbox">
                 <input id="cb" type="checkbox"> I've read the terms and conditions
             </label>
+
         </div>
         <button type="submit" class="pure-button pure-button-primary">Submit</button>
     </fieldset>

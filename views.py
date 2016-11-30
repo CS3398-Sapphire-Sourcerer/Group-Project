@@ -32,8 +32,7 @@ def setup_user():
             del flask.session['auth_user']
         # save the user in `flask.g`, which is a set of globals for this request
         flask.g.user = user
-    #initializeGame()
-
+        # initializeGame()
 
 
 # this is the function that will show the user the home.html page
@@ -62,6 +61,9 @@ def signup_submission():
     password1 = flask.request.form['password1']  # 'password1 refers to the form input with the label password1
     password2 = flask.request.form['password2']  # This makes sure the two password form inputs are the same
     email = flask.request.form['email']
+    bio = flask.request.form['bio']
+    major = flask.request.form['major']
+
     # These next few lines are for checking passwords and making sure user name is long enough, if any of the conditions
     # fail they will route the user back to the signup page with the forms cleared with a failure message, The state
     # variable that is included in the flask.render is to inform the user why the signup failed
@@ -80,10 +82,12 @@ def signup_submission():
     # @@@ Starting here we know the user submission passed and we will input the variables into the database
     user = models.User()  # This line creates the database object for users
     user.user_name = user_name  # This stores the user_name into the login field in the user database object
-    #user.pass_word = password1
+    # user.pass_word = password1
     user.pass_word = bcrypt.hashpw(password1.encode('utf8'), bcrypt.gensalt(15))
     user.email = email
     # user.pass_hash =  bcrypt.hashpw(password1.encode('utf8'), bcrypt.gensalt(15)) # this encrypts and stores the hash
+    user.user_profile_text = bio
+    user.major = major
     datab.session.add(user)  # this adds the object to the database submit queue
     datab.session.commit()  # this is the actual storing of the database object into database, similar to git operations
     flask.session['auth_user'] = user.id  # this stores the session key information for the user into the database,
@@ -199,33 +203,6 @@ def users_profile(uid):
     return flask.render_template('user_profile.html', userInfo=tempUser, uid=uid)
 
 
-# this function display the user edit fields
-# TODO: query what is already present in the fields if they exist
-@app.route('/users/<int:uid>/updateInfo', methods=['GET'])
-def user_edit(uid):
-    tempUser = models.User.query.get(uid)
-    if tempUser is None:
-        # user does not exist at that id, go to 404 page.
-        flask.abort(404)
-
-    return flask.render_template('edit_user_profile.html', userInfo=tempUser, uid=uid)
-
-
-@app.route('/users/<int:uid>/updateInfo', methods=['POST'])
-def update_user_profile(uid):
-    # query user
-    user = models.User.query.get(uid)
-    # scrape form data
-    bio = flask.request.form['bio']
-    major = flask.request.form['major']
-
-    user.user_profile_text = bio
-    user.major = major
-    datab.session.add(user)
-    datab.session.commit()
-    return flask.redirect(flask.url_for('users_profile',uid=uid))
-
-
 @app.route('/teams', methods=['GET'])
 def team():
     return flask.render_template('teams.html')
@@ -246,12 +223,14 @@ def sign_in():
     # method of the signin.html page.
     return flask.render_template('signin.html', state='good')
 
-@app.route('/leaderBoard', methods = ['GET'])
+
+@app.route('/leaderBoard', methods=['GET'])
 def leader_board():
-    #this is the page for displaying the leaderboard for the top 10 players for everyteam. It will have access
-    #through the navi bar and filter the players with the highest scores
+    # this is the page for displaying the leaderboard for the top 10 players for everyteam. It will have access
+    # through the navi bar and filter the players with the highest scores
+    # TODO: fix me should not use DESC
     leaders = models.User.query.order_by(desc(models.User.Score)).limit(10).all()
-    return flask.render_template('leaderBoard.html', winnerCircle = leaders)
+    return flask.render_template('leaderBoard.html', winnerCircle=leaders)
 
 
 @app.route('/signin', methods=['POST'])
@@ -276,18 +255,6 @@ def handle_logout():
     return flask.redirect(flask.request.args.get('url', '/'), 303)
 
 
-@app.route('/cjsTest1')
-def locTest():
-    # user = models.User.query.filter_by(user_name=user_name).first()
-    # @@@@ here is where we will call the data base to ensure the user exists and if they have valid pass word and
-    # if user is not None:
-    #    if pass_word == user.pass_word:
-    #        flask.session['auth_user'] = user.id
-    #        return flask.redirect(flask.url_for('splash_screen'))
-
-    return flask.render_template('httpRequestTest.html', state='good')
-
-
 @app.route('/updatePos/<uid>/<lat>/<long>', methods=['POST'])
 def updatePos(uid, lat, long):
     uid = int(uid)
@@ -297,19 +264,8 @@ def updatePos(uid, lat, long):
     return "hello the end of time"
 
 
-# @app.route('/users/<int:uid>', methods=['GET'])
-# def users_profile(uid):
-#    tempUser = models.User.query.get(uid)
-#
-#    if tempUser is None:
-#        #user does not exist at that id, go to 404 page.
-#        flask.abort(404)
-#    else:
-#        return flask.render_template('user_profile.html', userInfo=tempUser, uid=uid)
-
 @app.route('/app', methods=['GET'])
 def appPage():
-
     if flask.session.get('auth_user') is None:
         return flask.redirect("/", 302)
 
@@ -319,3 +275,36 @@ def appPage():
 @app.errorhandler(404)
 def bad_page(err):
     return flask.render_template('404.html'), 404
+
+
+
+    # this function display the user edit fields
+    # # TODO: query what is already present in the fields if they exist
+    # @app.route('/users/<int:uid>/updateInfo', methods=['GET'])
+    # def user_edit(uid):
+    #     tempUser = models.User.query.get(uid)
+    #     if tempUser is None:
+    #         # user does not exist at that id, go to 404 page.
+    #         flask.abort(404)
+    #     # this may need to be logically switched.
+    #     tempAuth = flask.session['auth_user']
+    #     # if tempAuth != tempUser:
+    #         # return flask.redirect(flask.url_for('users_profile', uid=uid))
+    #
+    #     return flask.render_template('edit_user_profile.html', userInfo=tempUser, uid=uid)
+    #
+    #
+    # @app.route('/users/<int:uid>/updateInfo', methods=['POST'])
+    # def update_user_profile(uid):
+    #     # query user
+    #     user = models.User.query.get(uid)
+    #
+    #     # scrape form data
+    #     bio = flask.request.form['bio']
+    #     major = flask.request.form['major']
+    #
+    #     user.user_profile_text = bio
+    #     user.major = major
+    #     datab.session.add(user)
+    #     datab.session.commit()
+    #     return flask.redirect(flask.url_for('users_profile', uid=uid))

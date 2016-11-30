@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %} Edit Profile {% endblock %}
+
+{# add a edit user name field#}
+{# do not allow email edit#}
+{# edit user profile text#}
+{% block content %}
+<h1>Edit Profile Info</h1>
+<div>
+    <div>
+        <h2>Bio</h2>
+        <form action="/users/{{uid}}/updateInfo" method="POST" class="pure-form pure-form-stacked">
+
+
+            <button type="submit" class="pure-button pure-button" id="submitButton">Update Information</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

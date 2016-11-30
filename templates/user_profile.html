@@ -2,42 +2,26 @@
 {% block title %} {{userInfo.user_name}}'s Profile {% endblock %} }
 {%  block content %}
 
-<center>
+<div style="text-align: center;">
 
-<div class = "teams">
-    <h3>{{ userInfo.user_name }}'s Page</h3>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-
-<div class="w3-container w3-light-grey" style="width:75%">
-  <!-- User name should display here -->
-  <h2>Major</h2><p>{{userInfo.major}}</p>
-
-  <div class="w3-card-12 w3-round" style="width:50%">
-    <!-- Simple avatar would be inserted here -->
-    <img src="http://www.pinfalls.com/Bender_mugshot.gif" alt="Bender" style="width:100%">
-
-     <div class="w3-container w3-dark-grey">
-        <!-- There profile info would be here -->
-        <h3>About me</h3><p>Bite My Shiny Metal Ass! {{ userInfo.user_profile_text }}</p>
-     </div>
-  </div>
+    <div class = "teams">
+        <h1>{{ userInfo.user_name }}'s Profile</h1>
+        <h2>Team {{ userInfo.team }}</h2>
+        <h4>Points:{{ userInfo.Score }}</h4>
+        <h4>Questions Correct:{{ userInfo.q_correct }}</h4>
+        <h4>Total Questions Seen: {{ userInfo.q_total }}</h4>
+        <h2>About me</h2>
+        <h4>Major</h4><p>{{userInfo.major}}</p>
+        <p>{{ userInfo.user_profile_text }}</p>
+    </div>
 </div>
-    <div>
-    <form action="/users/{{ uid }}/updateInfo">
-    <button type="submit" class="pure-button" >Edit Profile</button>
-    </form>
-</div>
-</div>
-</center>
 
 <style>.teams{
     position: relative;
     margin-top: 10%;
     margin-left: 15%;
-    align-content: center;
-
-} </style>
+    align-content: center;  }
+</style>
 
 
 {%  endblock %}
