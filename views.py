@@ -226,11 +226,13 @@ def sign_in():
 
 @app.route('/leaderBoard', methods=['GET'])
 def leader_board():
-    # this is the page for displaying the leaderboard for the top 10 players for everyteam. It will have access
-    # through the navi bar and filter the players with the highest scores
-    # TODO: fix me should not use DESC
-    leaders = models.User.query.order_by(desc(models.User.Score)).limit(10).all()
-    return flask.render_template('leaderBoard.html', winnerCircle=leaders)
+    #this is the page for displaying the leaderboard for the top 10 players for everyteam. It will have access
+    #through the navi bar and filter the players with the highest scores
+    l = models.User.query.all()
+    leaders = list(l)
+    leaders = sorted(leaders, key=lambda user: user.Score, reverse=True)
+    del leaders [10:]
+    return flask.render_template('leaderBoard.html', winnerCircle = leaders)
 
 
 @app.route('/signin', methods=['POST'])
