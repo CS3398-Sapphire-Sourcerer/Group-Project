@@ -12,10 +12,12 @@ from init import app, datab
 from flask import request
 from state import initializeGame, game
 from sqlalchemy import desc
+import json
 
 
 @app.before_first_request
 def gameSetup():
+    populate_buildings()
     initializeGame()
 
 
@@ -141,6 +143,37 @@ def question_creation():
 
         q.addBuilding("Derek", "1")
     return flask.redirect(flask.url_for('question_submission'))
+
+#add route to populate the DB
+#TODO add the building types into buildings.json then add sunctionallity into populate_buildings()
+#TODO function so that it stores the building type
+def populate_buildings():
+    query = models.Building.query.first()
+    if query is None:
+        obj = None #create an object to store json data
+        new_building = models.Building() #create object for individual building
+        new_coordinate = models.coordinate_point() #create object for coordinates
+
+        #open json file as read only
+        with open('static\\buildings.json', 'r') as building_list:
+            obj = json.load(building_list)
+        for build_count in obj["buildings"]:
+            new_building.name = build_count["buildingName"]
+            print("name: ", new_building.name)
+            datab.session.add(new_building)
+            datab.session.commit() #commit the building so we have an ID associated to store with coordinates
+
+            for coord_count in build_count["coordinates"]:
+                print("In coord loop")
+                new_coordinate.long = coord_count["lng"]
+                print("lng: ", new_coordinate.long)
+                new_coordinate.lat = coord_count["lat"]
+                print("lat: ", new_coordinate.lat)
+                new_coordinate.building_group = new_building.id
+                datab.session.add(new_coordinate)
+
+            datab.session.commit()#commit all the coordinates at once
+
 
 
 @app.route('/users/', methods=['GET'])
