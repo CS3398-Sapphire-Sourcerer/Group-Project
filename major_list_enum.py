@@ -2,6 +2,7 @@ from enum import Enum
 #list of majors at Texas State associated with a number
 #This Enum will be used to classify the buildings ans question to respective majors
 class Majors(Enum):
+    NEUTRAL = 0
     ACCOUNTING = 1
     AGRICULTURE = 2
     ANTHROPOLOGY = 3
