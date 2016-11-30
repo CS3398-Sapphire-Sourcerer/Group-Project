@@ -67,7 +67,7 @@ def location_change(u_loc):
     print ("In location change, building code is:")
     print (b_shortcode)
 
-    continuous = u_loc['continuous']  #A true or false value that marks if the user is in the same building they were in previously
+    continuous = u_loc["continuous"]  #A true or false value that marks if the user is in the same building they were in previously
 
     if b_shortcode is "":
             print("building code is blank, do not care")

@@ -36,7 +36,9 @@ def initializeGame():
 
 
 def requestState(req):
-    return game.send(req)
+    response = game.send(req)
+    print(response)
+    return response
 
 
 def updateState(req):
