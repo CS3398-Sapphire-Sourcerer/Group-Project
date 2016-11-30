@@ -14,13 +14,29 @@ function requestState() {
     console.groupEnd();
 }
 
-function updateLocation(position) {
+function updateLocation() {
     console.group("sendLocation(position) [socketHandler.js]");
-    if (lastLocation == locationObj) return 
-    else if (lastLocation != locationObj)
+    // TODO : Establish what an appropriate amount of rouding would be and round the 
+    //        points so we can smooth out the error
+    let locDifference = {};
+    if (lastLocation) {
+        locDifference.latitude = locationObj.latitude - lastLocation.latitude;
+        locDifference.longitude = locationObj.longitude - lastLocation.longitude;
+    }
+
+    if (locDifference.latitude < .00001 && locDifference.longitude < .00001) return 
+    else {
         lastLocation = locationObj;
-        socket.emit("changeLocation", locationObj);
+        checkLocation();
+    }
+        //lastLocation = locationObj;
+        // checkLocation(position)
+        //socket.emit("changeLocation", locationObj);
     console.groupEnd();
+}
+
+function checkLocation() {
+     checkBuildingBounds(locationObj);
 }
 
 socket.on('enterBuilding', inBuilding);

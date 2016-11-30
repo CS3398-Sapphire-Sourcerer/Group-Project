@@ -15,6 +15,7 @@ Quiz cats
 <script src="/static/appMap.js"></script>
 <script>
     var buildings = [];
+    var buildingPolygons = [];
     console.log("type of buildings : ", Array.isArray(buildings));
     console.log("Getting buildings.json");
 
@@ -30,7 +31,7 @@ Quiz cats
 <script>
     var map, lastValidCenter, allowedBounds;
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChk9BH1LKywmR-_dzUhR80ZFJ02X8gjME&callback=appMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChk9BH1LKywmR-_dzUhR80ZFJ02X8gjME&libraries=geometry&callback=appMap"></script>
 <script>
     allowedBounds = new google.maps.LatLngBounds(
         new google.maps.LatLng(29, -99), 
@@ -53,16 +54,18 @@ Quiz cats
     var lastLocation = null;
 
     function addTimer() {
-        window.setInterval(geolocateUser, 45000);
+        window.setInterval(geolocateUser, 15000);
     };
 
     function geolocateUser() {
         console.log(" === geolocateUser ===");
         navigator.geolocation.getCurrentPosition(function (position) {
+            map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+
             locationObj.uid = userID;
             locationObj.latitude = position.coords.latitude;
             locationObj.longitude = position.coords.longitude;
-            map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+
             //locationObj.building = getBuilding(position)<------------------------------------------------
             updateLocation()
         });

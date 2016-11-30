@@ -9,7 +9,7 @@ def gameState():
     # bldgShort-
     # bldgScore
     # bldgOwner
-    state = dict(buildings=["derrick", "alkek"])
+    state = {'buildings':["derrick", "alkek"]}
 
     # add all of the buildings from the DB to the state object
     app.logger.info("Made it into the function")
