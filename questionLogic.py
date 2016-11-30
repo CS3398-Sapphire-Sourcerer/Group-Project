@@ -33,16 +33,6 @@ class q_database_manager:
         datab.session.add(question)  # Save the question
         datab.session.commit()
 
-    def addBuilding(self, new_name, new_type1, ):
-        # TODO add support for type2, owner and coordinates
-        new_building = models.Building()
-        new_building.name = new_name
-        new_building.type1 = new_type1
-        new_building.type2 = new_type2
-        datab.session.add(new_building)
-        datab.session.commit()
-
-
 class q_data:  # Used to group questions with a specifc answers list
     question = None
     answers_list = []

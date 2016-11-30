@@ -183,7 +183,7 @@ def populate_buildings():
             new_building = models.Building()
             new_building.name = build_count["buildingName"]
             new_building.capture_value = 0
-            new_building.owner = None
+            new_building.owner = 0
             new_building.type1 = build_count["major1"]
             new_building.type2 = build_count["major2"]
             print("name: ", new_building.name)
