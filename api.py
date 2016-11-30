@@ -38,9 +38,9 @@ def readyState(obj):
     uid = flask.session.get('auth_user', None)
     if (not obj):
         response = requestState({"type": "new"})
-    flask_socketio.emit('stateFullUpdate', response, room='user-{}'.format(uid))
+        flask_socketio.emit('stateFullUpdate', response, room='user-{}'.format(uid))
 
-
+#TODO FIX CHECK LOCATION using building short codes
 def check_location(user_location):
     latitude = user_location['latitude']
     longitude = user_location['longitude']
@@ -64,10 +64,9 @@ def location_change(u_loc):
     user = models.User.query.get(uid)
     print(user.email)
 
+    # TODO KILL ME V
     user_building = 1;
-
     user_building = check_location(u_loc)
-
     user.Building = 1
     
     # send lat and long to the building function to determine which building the user is in
@@ -78,13 +77,14 @@ def location_change(u_loc):
 
 @socketio.on('generateQuestions')
 def question_serv(cli):
+    # TODO make sure we are using building short codes
     uid = cli['userID']
     bldid = cli['buildingID']
 
     print ("****Question was called****")
 
     print("Building ID:")
-    print (bldid)
+    print(bldid)
 
     user_question_session= questionLogic.question_handler(uid, bldid) #Create question session, or pull session if it exist
     if user_question_session.session_is_closed:

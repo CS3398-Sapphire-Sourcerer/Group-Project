@@ -87,6 +87,7 @@ class Building(datab.Model):
     type1 = datab.Column(datab.Integer)  # Primary major category found in building
     type2 = datab.Column(datab.Integer)  # Secondary (if any) major category found in building. Can be None.
 
+    #add method to jump capture value up 10 points for team that captures it.
 
 class coordinate_point(datab.Model):
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)

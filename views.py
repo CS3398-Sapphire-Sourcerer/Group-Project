@@ -150,6 +150,9 @@ def question_creation():
 #TODO add the building types into buildings.json then add sunctionallity into populate_buildings()
 #TODO function so that it stores the building type
 #TODO refactor and remove this function from veiws, make DB manager file and call that function
+#TODO ********************************************
+#TODO THIS NEEDS TO HAVE SCORE AND TEAMS SET TO 0 AND NULL
+#
 def populate_buildings():
     query = models.Building.query.first()
     if query is None:

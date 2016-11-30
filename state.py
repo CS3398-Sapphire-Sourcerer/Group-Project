@@ -1,7 +1,14 @@
 from init import app
+
+
 def gameState():
     req = None
 
+    # state needs to have:
+    # bldgName-
+    # bldgShort-
+    # bldgScore
+    # bldgOwner
     state = dict(buildings=["derrick", "alkek"])
 
     # add all of the buildings from the DB to the state object
@@ -19,15 +26,18 @@ def gameState():
             yield state
             req = yield
 
+
+# generators are fucking
 game = gameState()
+
 
 def initializeGame():
     next(game)
 
+
 def requestState(req):
     return game.send(req)
 
+
 def updateState(req):
     pass
-
-
