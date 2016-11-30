@@ -7,7 +7,6 @@ import bcrypt
 import flask
 import models
 import questionLogic
-import majorIDs
 from init import app, datab
 from flask import request
 from state import initializeGame, game
@@ -145,12 +144,12 @@ def question_creation():
         q.addQuestionWithAnswer("Which language is a hypertext mark-up language?", "1", "HTML")
         q.addQuestionWithAnswer("Which language is a vitual hardware language?", "1", "VHDL")
 
-        q.addBuilding("Derek", "1")
     return flask.redirect(flask.url_for('question_submission'))
 
 #add route to populate the DB
 #TODO add the building types into buildings.json then add sunctionallity into populate_buildings()
 #TODO function so that it stores the building type
+#TODO refactor and remove this function from veiws, make DB manager file and call that function
 def populate_buildings():
     query = models.Building.query.first()
     if query is None:
@@ -165,6 +164,10 @@ def populate_buildings():
         for build_count in obj["buildings"]:
             new_building = models.Building()
             new_building.name = build_count["buildingName"]
+            new_building.capture_value = 0
+            new_building.owner = None
+            new_building.type1 = build_count["major1"]
+            new_building.type2 = build_count["major2"]
             print("name: ", new_building.name)
             datab.session.add(new_building)
         datab.session.commit() #commit the building so we have an ID associated to store with coordinates
