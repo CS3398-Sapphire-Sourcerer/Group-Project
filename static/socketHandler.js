@@ -22,23 +22,41 @@ function updateLocation() {
         locDifference.longitude = locationObj.longitude - lastLocation.longitude;
     }
 
-    if (locDifference.latitude < .00001 && locDifference.longitude < .00001) return 
+    if (locDifference.latitude < .00001 && locDifference.longitude < .00001) {
+        console.log("Difference miniscule.");
+        return;
     else {
-        lastLocation = locationObj;
+        console.log("Delta significant");
         let locObj = checkLocation();
-           
+        /*
+            locObj = {
+                building : "ALK" || ""
+            }
+        */
+
+        if (locObj.building == "") {
+            console.log("Not in a building");
+            locationObj.continuous == false;
+            locationObj.lastBuilding == null;
+        }
+        else if (locObj.building == locationObj.lastBuilding) {
+            console.log("In the same building");
+            locationObj.continuous == 1;
+        }
+        else {
+            console.log("Entered a building");
+            locationObj.continuous == 0;
+            locationObj.lastBuilding == locObj.building;
+        }
+        
+        lastLocation = locationObj;
+
         let emitObject = locationObj;
         emitObject.building = locObj.building;
+
         console.log("emitObject : ", emitObject);
+        
         socket.emit("changeLocation", emitObject);
-        
-        /*if (locObj.building != "") {
-            let emitObject = locationObj;
-            emitObject.building = locObj.building;
-            console.log("emitObject : ", emitObject);
-            socket.emit("changeLocation", emitObject);
-        }*/
-        
     }
     console.groupEnd();
 }
