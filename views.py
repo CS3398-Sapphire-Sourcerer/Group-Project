@@ -12,10 +12,11 @@ from flask import request
 from state import initializeGame, game
 from sqlalchemy import desc
 import json
-
+from upstart import populate_teams
 
 @app.before_first_request
 def gameSetup():
+    populate_teams()
     populate_buildings()
     initializeGame()
 
@@ -62,6 +63,18 @@ def signup_submission():
     email = flask.request.form['email']
     bio = flask.request.form['bio']
     major = flask.request.form['major']
+    team_select = flask.request.form['team_ops']
+
+    team_selection = models.Team.query.filter_by(name=team_select).first()
+
+
+    # if team_select == 'Maroon':
+    #     team_select = 0
+    # if team_select == 'Black':
+    #     team_select = 1
+    # if team_select == 'Gold':
+    #     team_select = 2
+
 
     # These next few lines are for checking passwords and making sure user name is long enough, if any of the conditions
     # fail they will route the user back to the signup page with the forms cleared with a failure message, The state
@@ -87,6 +100,7 @@ def signup_submission():
     # user.pass_hash =  bcrypt.hashpw(password1.encode('utf8'), bcrypt.gensalt(15)) # this encrypts and stores the hash
     user.user_profile_text = bio
     user.major = major
+    user.team = team_selection.id
     datab.session.add(user)  # this adds the object to the database submit queue
     datab.session.commit()  # this is the actual storing of the database object into database, similar to git operations
     flask.session['auth_user'] = user.id  # this stores the session key information for the user into the database,
@@ -146,21 +160,22 @@ def question_creation():
 
     return flask.redirect(flask.url_for('question_submission'))
 
-#add route to populate the DB
-#TODO add the building types into buildings.json then add sunctionallity into populate_buildings()
-#TODO function so that it stores the building type
-#TODO refactor and remove this function from veiws, make DB manager file and call that function
-#TODO ********************************************
-#TODO THIS NEEDS TO HAVE SCORE AND TEAMS SET TO 0 AND NULL
+
+# add route to populate the DB
+# TODO add the building types into buildings.json then add sunctionallity into populate_buildings()
+# TODO function so that it stores the building type
+# TODO refactor and remove this function from veiws, make DB manager file and call that function
+# TODO ********************************************
+# TODO THIS NEEDS TO HAVE SCORE AND TEAMS SET TO 0 AND NULL
 #
 def populate_buildings():
     query = models.Building.query.first()
     if query is None:
-        obj = None #create an object to store json data
-        #new_building = models.Building() #create object for individual building
-        #new_coordinate = models.coordinate_point() #create object for coordinates
+        obj = None  # create an object to store json data
+        # new_building = models.Building() #create object for individual building
+        # new_coordinate = models.coordinate_point() #create object for coordinates
 
-        #open json file as read only
+        # open json file as read only
         with open('static\\buildings.json', 'r') as building_list:
             obj = json.load(building_list)
 
@@ -173,7 +188,7 @@ def populate_buildings():
             new_building.type2 = build_count["major2"]
             print("name: ", new_building.name)
             datab.session.add(new_building)
-        datab.session.commit() #commit the building so we have an ID associated to store with coordinates
+        datab.session.commit()  # commit the building so we have an ID associated to store with coordinates
 
         for build_count in obj["buildings"]:
             for coord_count in build_count["coordinates"]:
@@ -184,11 +199,10 @@ def populate_buildings():
                 new_coordinate.lat = coord_count["lat"]
                 print("lat: ", new_coordinate.lat)
 
-                b = models.Building.query.filter_by(name = build_count["buildingName"]).first()
+                b = models.Building.query.filter_by(name=build_count["buildingName"]).first()
                 new_coordinate.building_group = b.id
                 datab.session.add(new_coordinate)
-            datab.session.commit()#commit all the coordinates at once
-
+            datab.session.commit()  # commit all the coordinates at once
 
 
 @app.route('/users/', methods=['GET'])
@@ -232,13 +246,13 @@ def sign_in():
 
 @app.route('/leaderBoard', methods=['GET'])
 def leader_board():
-    #this is the page for displaying the leaderboard for the top 10 players for everyteam. It will have access
-    #through the navi bar and filter the players with the highest scores
+    # this is the page for displaying the leaderboard for the top 10 players for everyteam. It will have access
+    # through the navi bar and filter the players with the highest scores
     l = models.User.query.all()
     leaders = list(l)
     leaders = sorted(leaders, key=lambda user: user.Score, reverse=True)
-    del leaders [10:]
-    return flask.render_template('leaderBoard.html', winnerCircle = leaders)
+    del leaders[10:]
+    return flask.render_template('leaderBoard.html', winnerCircle=leaders)
 
 
 @app.route('/signin', methods=['POST'])
@@ -287,7 +301,6 @@ def bad_page(err):
 
 
     # this function display the user edit fields
-    # # TODO: query what is already present in the fields if they exist
     # @app.route('/users/<int:uid>/updateInfo', methods=['GET'])
     # def user_edit(uid):
     #     tempUser = models.User.query.get(uid)
