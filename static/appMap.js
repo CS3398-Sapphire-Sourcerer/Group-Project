@@ -102,8 +102,10 @@ function checkBuildingBounds(position) {
 // black:  #000000
 // gold:   #ffd700
 function getAssociatedColor(teamID) {
-    console.group("getAssociatedColor(teamID) [appMap.js]");
-    console.groupEnd();
+    // This prints a hundred billion times. No. Not right now. Uncomment if 
+    // you are worried about this function
+    //console.group("getAssociatedColor(teamID) [appMap.js]");
+    //console.groupEnd();
     return ( teamID == 1 ? '#800000' : 
         teamID == 2 ? '#000000' :
         teamID == 3 ? '#ffd700' : 
@@ -116,12 +118,12 @@ function updateMap(obj) {
         let index = buildingPolygons.findIndex(function (element) {
             return (element.buildingTag == obj.buildings[i].buildingTag)
         });
-        console.log(index);
-        console.log(obj.buildings[i]);
-        console.log(obj.buildings[i].buildingOwner);
-        console.log(typeof (obj.buildings[i].buildingOwner));
+        //console.log(index);
+        //console.log(obj.buildings[i]);
+        //console.log(obj.buildings[i].buildingOwner);
+        //console.log(typeof (obj.buildings[i].buildingOwner));
         let color = getAssociatedColor(obj.buildings[i].buildingOwner);
-        console.log("color : ", color);
+        //console.log("color : ", color);
         buildingPolygons[index].strokeColor = color;
         buildingPolygons[index].fillColor = color;
         buildingPolygons[index].fillOpacity = color == '#add8e6' ? 0.55 : 80;
