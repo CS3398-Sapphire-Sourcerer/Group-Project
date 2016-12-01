@@ -54,6 +54,8 @@ def initializeGame():
 
 
 def requestState(req):
+    print("Game is sending:")
+
     response = game.send(req)
     return response
 

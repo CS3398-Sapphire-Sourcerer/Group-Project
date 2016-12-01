@@ -1,67 +1,137 @@
 {
-  "questionList" :
+  "questionList":
   [
     {
-      "question_text" : "What is VHDL an acronym for?",
-      "question_type" : "8",
-      "question_value" : "1",
-      "ans_text" : "Virtual Hardware Language",
-      "ans_style" : ""
-    },
-    {
-      "question_text" : "What is AES an acronym for? ",
-      "question_type" : "8",
-      "question_value" : "1",
-      "ans_text" : "Advanced Encryption Software",
-      "ans_style" : ""
-    },
-    {
-      "question_text" : "What is ARP an acronym for? ",
-      "question_type" : "8",
-      "question_value" : "1",
-      "ans_text" : "Address Resolution Protocol",
-      "ans_style" : ""
-    },
-    {
-      "question_text" : "What is DNS an acronym for? ",
-      "question_type" : "8",
-      "question_value" : "1",
-      "ans_text" : "Domain Name System",
-      "ans_style" : ""
-    },
-    {
-      "question_text" : "What is HTTPS an acronym for? ",
-      "question_type" : "8",
-      "question_value" : "1",
-      "ans_text" : "HyperText Transfer Protocol Secure",
-      "ans_style" : ""
-    },
-    {
-      "question_text" : "What is SSH an acronym for? ",
-      "question_type" : "8",
-      "question_value" : "1",
-      "ans_text" : "Secure shell",
-      "ans_style" : ""
-    },
-    {
-      "question_text" : "What scientist founded the idea of Natural Selection?",
-      "question_type" : "6",
-      "question_value" : "1",
-      "ans_text" : "Charles Darwin",
-      "ans_style" : ""
-    },
-    {
-      "question_text" : "How many systems (cardio, nerve, etc) does the human body have?",
-      "question_type" : "6",
-      "question_value" : "1",
-      "ans_text" : "12",
-      "ans_style" : ""
-    },
-    {
-      "question_text": "How many blood types, for humans are there?",
-      "question_type": "6",
+      "question_text": "The costs associated with a company's main operating activities and are reported on its income statement are known as?",
+      "question_type": "1",
       "question_value": "1",
-      "ans_text": "4",
+      "ans_text": "Operating expenses",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A general ledger account in which a company records its debt, obligations, customer deposits and customer prepayments is a?",
+      "question_type": "1",
+      "question_value": "1",
+      "ans_text": "liability account",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What method reports revenues on the income statement when they are earned even if the customer will pay 30 days later?",
+      "question_type": "1",
+      "question_value": "1",
+      "ans_text": "accrual method",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The amounts a company earned and recorded from the sales of its products is known as?",
+      "question_type": "1",
+      "question_value": "1",
+      "ans_text": "Gross sales",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is is also known as the cash conversion cycle",
+      "question_type": "1",
+      "question_value": "1",
+      "ans_text": "The operating cycle",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A man holding and cultivating a small landed estate is known as?",
+      "question_type": "2",
+      "question_value": "1",
+      "ans_text": "Yeoman",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Why are food chains rarely longer than 4 or 5 links?",
+      "question_type": "2",
+      "question_value": "1",
+      "ans_text": "energy is lost at each level",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is soil made of?",
+      "question_type": "2",
+      "question_value": "1",
+      "ans_text": "dead decayed organisms and rock",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The fertile, upper part of the soil is referred to as ",
+      "question_type": "2",
+      "question_value": "1",
+      "ans_text": "Top soil",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is used to kill insects, weeds, and the crop pests?",
+      "question_type": "2",
+      "question_value": "1",
+      "ans_text": "Pesticides",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is the study of humankind known as?",
+      "question_type": "3",
+      "question_value": "1",
+      "ans_text": "Anthropology",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which of the following best describe how anthropologists primarily learn new information about humans?",
+      "question_type": "3",
+      "question_value": "1",
+      "ans_text": "Field work",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In science, a hypothesis that has been confirmed through numerous tests is known as:",
+      "question_type": "3",
+      "question_value": "1",
+      "ans_text": "A theory",
+      "ans_style": ""
+    },
+    {
+      "question_text": "To study all aspects of a culture in order to understand the whole culture is",
+      "question_type": "3",
+      "question_value": "1",
+      "ans_text": "Holism",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is learned, and shared behaviors and beliefs ?",
+      "question_type": "3",
+      "question_value": "1",
+      "ans_text": "Culture",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Term saying that culture is similar to biological organisms, in which parts work to support the operation and maintenance of the whole",
+      "question_type": "3",
+      "question_value": "1",
+      "ans_text": "Functionalism",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The perspective that each culture must be understood in terms of the values and ideas of that culture and should not be judge by the standards of another...",
+      "question_type": "3",
+      "question_value": "1",
+      "ans_text": "Cultural relativism ",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Feelings of uneasiness, loneliness, and anxiety that occurs when a person has shifted from one culture to another..",
+      "question_type": "3",
+      "question_value": "1",
+      "ans_text": "Culture shock",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The belief that ones ethnic or cultural back group is centrally is centrally important, and all others are measured in relation to one's own...",
+      "question_type": "3",
+      "question_value": "1",
+      "ans_text": "Ethnocentrism",
       "ans_style": ""
     },
     {
@@ -93,103 +163,1243 @@
       "ans_style": ""
     },
     {
-      "question_text": "What Law or Act gives the public the right to request access to federal agency records or information except to the extent the records are protected from disclosure by any of nine exemptions contained in the law or by one of three special law enforcement record exclusions? ",
-      "question_type": "32",
+      "question_text": "In what country did the renaissance mainly occur?",
+      "question_type": "4",
       "question_value": "1",
-      "ans_text": "Freedom of Information Act",
+      "ans_text": "Italy.",
       "ans_style": ""
     },
     {
-      "question_text": "What Law or Act outlawed discrimination based on race, color, religion, sex, or national origin",
-      "question_type": "32",
+      "question_text": "What was the legacy of the Renaissance period?",
+      "question_type": "4",
       "question_value": "1",
-      "ans_text": "Civil Rights Act",
+      "ans_text": "Naturalism.",
       "ans_style": ""
     },
     {
-      "question_text": "What Law or Act protects people from discrimination when they are renting, buying, or securing financing for any housing",
-      "question_type": "32",
+      "question_text": "Define the word 'Renaissance'.",
+      "question_type": "4",
       "question_value": "1",
-      "ans_text": "Fair Housing Act ",
+      "ans_text": "Rebirth.",
       "ans_style": ""
     },
     {
-      "question_text": "Who composed 'William Tell Overture'?",
-      "question_type": "26",
+      "question_text": "What scientist founded the idea of Natural Selection?",
+      "question_type": "5",
       "question_value": "1",
-      "ans_text": "Gioachino Rossini",
+      "ans_text": "Charles Darwin",
       "ans_style": ""
     },
     {
-      "question_text": "Who composed 'Minuet in G Major'?",
-      "question_type": "26",
+      "question_text": "How many systems (cardio, nerve, etc) does the human body have?",
+      "question_type": "5",
       "question_value": "1",
-      "ans_text": "Christian Petzold",
+      "ans_text": "12",
       "ans_style": ""
     },
     {
-      "question_text": "Who composed 'Dawn From Thus Spake Zarathustra'?",
-      "question_type": "26",
+      "question_text": "How many blood types, for humans are there?",
+      "question_type": "5",
       "question_value": "1",
-      "ans_text": "Richard Strauss",
+      "ans_text": "4",
       "ans_style": ""
     },
     {
-      "question_text": "What philosopher stated 'There are no facts, only interpretations'?",
-      "question_type": "29",
+      "question_text": "archaebacteria and bacteria are the two classifications of?",
+      "question_type": "5",
       "question_value": "1",
-      "ans_text": "Friedrich Nietzsche",
+      "ans_text": "Prokaryotic organisms",
       "ans_style": ""
     },
     {
-      "question_text": "What philosopher stated 'I think, therefore I am'?",
-      "question_type": "29",
+      "question_text": "What are halophilic, thermoacidophilic and methanogen are the three types of?",
+      "question_type": "5",
       "question_value": "1",
-      "ans_text": "René Descartes",
+      "ans_text": "archaebacteria",
       "ans_style": ""
     },
     {
-      "question_text": "What philosopher stated 'Choose a job you love, and you will never have to work a day in your life.'?",
-      "question_type": "29",
+      "question_text": "What is responsible for the decomposition process at the end of food chains and food webs?",
+      "question_type": "5",
       "question_value": "1",
-      "ans_text": "Confucius",
+      "ans_text": "Bacteria",
       "ans_style": ""
     },
     {
-      "question_text": "What philosopher stated 'The only fence against the world is a thorough knowledge of it.'?",
-      "question_type": "29",
+      "question_text": "All fungi are?",
+      "question_type": "5",
       "question_value": "1",
-      "ans_text": "John Locke",
+      "ans_text": "heterotrophs",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What word is used to describe an organism that does not perform photosynthesis",
+      "question_type": "5",
+      "question_value": "1",
+      "ans_text": "heterotroph",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is the first element on the periodic table?",
+      "question_type": "6",
+      "question_value": "1",
+      "ans_text": "Hydrogen",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is the centre of an atom called?",
+      "question_type": "6",
+      "question_value": "1",
+      "ans_text": "A nucleus",
+      "ans_style": ""
+    },
+    {
+      "question_text": "K is the chemical symbol for which element?",
+      "question_type": "6",
+      "question_value": "1",
+      "ans_text": "Potassium",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is the main gas found in the air we breathe?",
+      "question_type": "6",
+      "question_value": "1",
+      "ans_text": "Nitrogen",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is the chemical symbol for gold?",
+      "question_type": "6",
+      "question_value": "1",
+      "ans_text": "Au",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What orbits the nucleus of an atom?",
+      "question_type": "6",
+      "question_value": "1",
+      "ans_text": "Electrons",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is VHDL an acronym for?",
+      "question_type": "7",
+      "question_value": "1",
+      "ans_text": "Virtual Hardware Language",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is AES an acronym for?",
+      "question_type": "7",
+      "question_value": "1",
+      "ans_text": "Advanced Encryption Software",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is ARP an acronym for? ",
+      "question_type": "7",
+      "question_value": "1",
+      "ans_text": "Address Resolution Protocol",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is DNS an acronym for? ",
+      "question_type": "7",
+      "question_value": "1",
+      "ans_text": "Domain Name System",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is HTTPS an acronym for? ",
+      "question_type": "7",
+      "question_value": "1",
+      "ans_text": "HyperText Transfer Protocol Secure",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is SSH an acronym for? ",
+      "question_type": "7",
+      "question_value": "1",
+      "ans_text": "Secure shell",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A fromal written accustation Submitted to the court by a grand jury, alleging that a specified person has committed a specified offense, Usually a felony",
+      "question_type": "8",
+      "question_value": "1",
+      "ans_text": "Indictment",
+      "ans_style": ""
+    },
+    {
+      "question_text": "One who seeks to protect personal freedoms within the process of criminal justice",
+      "question_type": "8",
+      "question_value": "1",
+      "ans_text": "Individual order advocate",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A criminal justice perspectice that emphasizes the efficient arrest and conviction of criminal offenders is known as?",
+      "question_type": "8",
+      "question_value": "1",
+      "ans_text": "Crime-control model",
+      "ans_style": ""
+    },
+    {
+      "question_text": "One who believes that under certain circumstances involving a criminal threat to public safety, the interest of society shoul take precedence over individual rights",
+      "question_type": "8",
+      "question_value": "1",
+      "ans_text": "Public-order advocate",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In criminal proceedings, the exmination in court of the issues of fact and relevant law in a case for the purpose of convicting or acqutting the defendant",
+      "question_type": "8",
+      "question_value": "1",
+      "ans_text": "Trial",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A group of jurors who have been selected according to law and have been sworn to hear the ecidence and to determine whether there is suffiicient evidence to bring the accused person to trial",
+      "question_type": "8",
+      "question_value": "1",
+      "ans_text": "Grand Jury",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A law enforcement or correctional adminstratice process offically recording an entrey into detention after arrest and identifying the person, the place, the time, ther reason for the arrest, and the arresting authority",
+      "question_type": "8",
+      "question_value": "1",
+      "ans_text": "Booking",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In 1958, who was the Cha-Cha champion of Hong Kong?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Bruce Lee",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In what Tchaikovsky ballet does Odele and Odette appear?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Swan Lake",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What do Sword, Square, Floral and Barn have in common?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Types of Dance",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Gene Kelly's his favorite dancing partner, according to Gene, was who?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Fred Astaire",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Doris Day was a dancer and only began singing when she what?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Broke her leg",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In the classical Ballet format there are strictly only how many positions?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Five",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In the paso doble what is the female dancer supposed to be?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "A bullfighters cloak",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Bees communicate by touch, smell and what?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Dance",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What kind of dancing represents fertility through death and rebirth?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Morris",
+      "ans_style": ""
+    },
+    {
+      "question_text": "At the Sydney Olympics, ballroom dancing was one of the what kind of sports?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Demonstration",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What type of dancing did Mister Bojangles perform?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Tap Dancing",
+      "ans_style": ""
+    },
+    {
+      "question_text": "There are two categories of ballroom dance are used in competition, Latin and what?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Smooth",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What artist composed the two ballets Sleeping Beauty and The Nutcracker?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Tchaikovsky",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In the Bolshoi ballet, what does the word Bolshoi mean?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Big",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What type of recreational activity causes the most bone fractures?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Aerobic Dancing",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The ballets The Firebird and The Rite of Spring were composed by what composer?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Igor Stravinsky",
+      "ans_style": ""
+    },
+    {
+      "question_text": "rench artist Edward Degas was noted for what subject?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Ballet Dancers",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Who was it that founded the Ballet Russe Sergei?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Pavlovich Diaghilev",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which French artist designed ballet sets for Diaghilev?",
+      "question_type": "9",
+      "question_value": "1",
+      "ans_text": "Henri Matisse",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Economics is the study of?",
+      "question_type": "10",
+      "question_value": "1",
+      "ans_text": "how society decides what, how, and for whom to produce",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The opportunity cost of a good is?",
+      "question_type": "10",
+      "question_value": "1",
+      "ans_text": "The quantity of other goods sacrificed to get another unit of that good",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The process by which prices adjust to reconcile the allocation of resources describes a?",
+      "question_type": "10",
+      "question_value": "1",
+      "ans_text": "Market",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Prices adjust to reconcile scarcity and desires in a:",
+      "question_type": "10",
+      "question_value": "1",
+      "ans_text": "free market",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Economic problems are solved by the government and market in a ___________:",
+      "question_type": "10",
+      "question_value": "1",
+      "ans_text": "mixed economy",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Normative economics forms opinions based on _____________",
+      "question_type": "10",
+      "question_value": "1",
+      "ans_text": "personal values",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The study of individual economic behaviour is known as?",
+      "question_type": "10",
+      "question_value": "1",
+      "ans_text": "Macroeconomics",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What kind of data shows information about different points in time over the same variable?",
+      "question_type": "10",
+      "question_value": "1",
+      "ans_text": "Time series ",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The retail price index is used to measure changes in?",
+      "question_type": "10",
+      "question_value": "1",
+      "ans_text": "the cost of living",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A real value can be derived from a nominal value by",
+      "question_type": "10",
+      "question_value": "1",
+      "ans_text": "adjusting for changes in prices",
+      "ans_style": ""
+    },
+    {
+      "question_text": "If your income during one year is £10,000 and the following year it is £12,000, then it has grown by",
+      "question_type": "10",
+      "question_value": "1",
+      "ans_text": "20%",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The number of microamperes in 2 milliamperes is",
+      "question_type": "11",
+      "question_value": "1",
+      "ans_text": "2000",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Resistance is measured in",
+      "question_type": "11",
+      "question_value": "1",
+      "ans_text": "ohms",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A sine wave voltage is applied across an inductor. When the frequency of the voltage is decreased, the current",
+      "question_type": "11",
+      "question_value": "1",
+      "ans_text": "increased",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The number of millivolts in 0.06 kilovolts is",
+      "question_type": "11",
+      "question_value": "1",
+      "ans_text": "60000",
+      "ans_style": ""
+    },
+    {
+      "question_text": "An ohmmeter is connected across an inductor and the pointer indicates zero ohms. The inductor is",
+      "question_type": "11",
+      "question_value": "1",
+      "ans_text": "shorted",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The current through a 120 mH coil is changing at a rate of 150 mA/s. The voltage induced across the coil is",
+      "question_type": "11",
+      "question_value": "1",
+      "ans_text": "0.018",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Current is measured in",
+      "question_type": "11",
+      "question_value": "1",
+      "ans_text": "amperes",
+      "ans_style": ""
+    },
+    {
+      "question_text": "If you wish to increase the amount of current in a resistor from 120 mA to 160 mA by changing the 24 V source, what should the new voltage setting be?",
+      "question_type": "11",
+      "question_value": "1",
+      "ans_text": "32",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which of the following is not an electrical quantity?",
+      "question_type": "11",
+      "question_value": "1",
+      "ans_text": "distance",
+      "ans_style": ""
+    },
+    {
+      "question_text": "When converting 0.16 mA to microamperes, the result is:",
+      "question_type": "11",
+      "question_value": "1",
+      "ans_text": "160 µA",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A 2 mH, a 3.3 mH, and a 0.2 mH inductor are connected in series. The total inductance is",
+      "question_type": "11",
+      "question_value": "1",
+      "ans_text": "5.5mH",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Fourteen milliamperes can be expressed as",
+      "question_type": "11",
+      "question_value": "1",
+      "ans_text": "14 mA",
       "ans_style": ""
     },
     {
       "question_text": "Who is the author of the book 'Pride of Prejudice'? ",
-      "question_type": "13",
+      "question_type": "12",
       "question_value": "1",
       "ans_text": "Jane Austen",
       "ans_style": ""
     },
     {
       "question_text": "Who is the author of the book 'A Tale of Two Cities'?",
-      "question_type": "13",
+      "question_type": "12",
       "question_value": "1",
       "ans_text": "Charles Dickens",
       "ans_style": ""
     },
     {
       "question_text": "Who is the author of the book 'The Canterbury Tales'?",
-      "question_type": "13",
+      "question_type": "12",
       "question_value": "1",
       "ans_text": "Geoffrey Chaucer",
       "ans_style": ""
     },
     {
       "question_text": "Who is the author of the book 'Animal Farm'?",
-      "question_type": "13",
+      "question_type": "12",
       "question_value": "1",
       "ans_text": "George Orwell",
       "ans_style": ""
+    },
+    {
+      "question_text": "(of an argument or reaction) directed against a person rather than the position they are maintaining.",
+      "question_type": "12",
+      "question_value": "1",
+      "ans_text": "Ad hominem",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A person, place, or thing?",
+      "question_type": "12",
+      "question_value": "1",
+      "ans_text": "Noun",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is the attribution of a personal nature or human characteristics to something nonhuman",
+      "question_type": "12",
+      "question_value": "1",
+      "ans_text": "Personification",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A word used to describe an action, state, or occurrence",
+      "question_type": "12",
+      "question_value": "1",
+      "ans_text": "Verb",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which decelerates faster, a badminton shuttlecock or a baseball?",
+      "question_type": "13",
+      "question_value": "1",
+      "ans_text": "Shuttlecock",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In the Winter Olympic sport of curling, what type of rock are the curling stones made from?",
+      "question_type": "13",
+      "question_value": "1",
+      "ans_text": "Granite",
+      "ans_style": ""
+    },
+    {
+      "question_text": "How high is a regulation sized basketball hoop in feet?",
+      "question_type": "13",
+      "question_value": "1",
+      "ans_text": "10",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is typically the slowest swimming stroke?",
+      "question_type": "13",
+      "question_value": "1",
+      "ans_text": "Breaststroke",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What does an injury to your anterior cruciate ligament affect?",
+      "question_type": "13",
+      "question_value": "1",
+      "ans_text": "Leg",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The diameter of a regulation basketball hoop is how many times wider than the diameter a regulation basketball?",
+      "question_type": "13",
+      "question_value": "1",
+      "ans_text": "2",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Ventilation control during exercise is fine tuned by?",
+      "question_type": "13",
+      "question_value": "1",
+      "ans_text": "Neural feedback from muscle",
+      "ans_style": ""
+    },
+     {
+      "question_text": "Apart from water, what runs through the mouth of the River Amazon and Lake Victoria?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "The Equator",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which country had the world's tallest habitable building as at 2006?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Taiwan",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which country was previously called Abyssinia?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Ethiopia",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In which country is the Blarney Stone?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Ireland",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is the world's third largest sea?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Mediterranean",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The largest policeman's beat (territory) in Europe is in which country?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Scotland",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The cities of Cairo in Egypt and Fez in Morroco are generally accepted to have the oldest of what type of institution in the world?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "University",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Where would you find the Queen Alexandra, Queen Elizabeth and Queen Maud mountain ranges?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Antarctica",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The tenge is the basic monetary unit of which country?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Kazakhstan",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which country at the southern tip of the Arabian Peninsula was previously known as Aden? ",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Yemen",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What language do the locals speak in Bogota?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Spanish",
+      "ans_style": ""
+    },
+    {
+      "question_text": "LAR is the international vehicle registration of which country?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Libya",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Where are the North Yolla Bolly mountains?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "California",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In which South American country is the Atacama desert?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Chile",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What is the capital of Qatar?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Doha",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Where can you find the first iron bridge ever built?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Ironbridge",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which is the least populated state in the USA?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Wyoming",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which country has the internet domain .me?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Montenegro",
+      "ans_style": ""
+    },{
+      "question_text": "What Central American country's name means 'many fish'?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Panama",
+      "ans_style": ""
+    },{
+      "question_text": "Which capital city has the highest population (as at 2006)?",
+      "question_type": "15",
+      "question_value": "1",
+      "ans_text": "Tokyo",
+      "ans_style": ""
+    },
+    {
+      "question_text": "World War I began in which year?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "1914",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Adolf Hitler was born in which country?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "Austria",
+      "ans_style": ""
+    },
+    {
+      "question_text": "ohn F. Kennedy was assassinated in?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "Dallas",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Who fought in the war of 1812?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "Andrew Jackson",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which general famously stated 'I shall return'?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "Douglas MacArthur",
+      "ans_style": ""
+    },
+    {
+      "question_text": "American involvement in the Korean War took place in which decade?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "1950",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The Battle of Hastings in 1066 was fought in which country?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "England",
+      "ans_style": ""
+    },{
+      "question_text": "The Magna Carta was published by the King of which country?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "England",
+      "ans_style": ""
+    },{
+      "question_text": "The first successful printing press was developed by this man.",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "Johannes Gutenburg",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The disease that ravaged and killed a third of Europe's population in the 14th century is known as?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "The Bubonic Plague",
+      "ans_style": ""
+    },{
+      "question_text": "The Hundred Years War was fought between what two countries?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "France and England",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which Roman Emperor built a massive wall across Northern Britain in 122 A.D.?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "Hadrian",
+      "ans_style": ""
+    },
+    {
+      "question_text": "This man wrote a document known as the 95 Theses.",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "Martin Luther",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In 1594 William Shakespeare joined the company of this London theatre.",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "The Globe",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The Khmer Rouge was a regime ruling this nation in the 20th century.",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "Cambodia",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What famous 5th century A.D conqueror was known as 'The Scourge of God'?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "Atilla the Hun",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What famous rifle is known in America as 'The Gun that Won the West'?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "Winchester Model 1873",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Who was the first Western explorer to reach China?",
+      "question_type": "16",
+      "question_value": "1",
+      "ans_text": "Marco Polo",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A diagram showing the path followed by men and materials while performing a task is known as?",
+      "question_type": "17",
+      "question_value": "1",
+      "ans_text": "flow diagram",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In value engineering, the term value refers to?",
+      "question_type": "17",
+      "question_value": "1",
+      "ans_text": "utility of the product",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Bar chart is suitable for",
+      "question_type": "17",
+      "question_value": "1",
+      "ans_text": "minor work",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Production cost refers to prime cost plus?",
+      "question_type": "17",
+      "question_value": "1",
+      "ans_text": "factory overheads",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Gantt chart is used for?",
+      "question_type": "17",
+      "question_value": "1",
+      "ans_text": "production schedule",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which one of the following chart gives simultaneously information about the progress of work and machine loading?",
+      "question_type": "17",
+      "question_value": "1",
+      "ans_text": "Man-machine chart",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Military type of organisation is known as",
+      "question_type": "17",
+      "question_value": "1",
+      "ans_text": "line organisation",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A systematic job improvement sequence will consist of?",
+      "question_type": "17",
+      "question_value": "1",
+      "ans_text": "motion study",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Fixed position layout is also known as?",
+      "question_type": "17",
+      "question_value": "1",
+      "ans_text": "static product layout",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Minimising the cost without change in quality of the product is the aim of?",
+      "question_type": "17",
+      "question_value": "1",
+      "ans_text": "value engineering",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In inventory control theory, the economic order quantity is?",
+      "question_type": "17",
+      "question_value": "1",
+      "ans_text": "optimum lot size",
+      "ans_style": ""
+    },{
+      "question_text": "The type of organisation preferred for a steel industry, is?",
+      "question_type": "17",
+      "question_value": "1",
+      "ans_text": "line, staff and functional",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The _____________ is an example of an application of behavioralism.",
+      "question_type": "18",
+      "question_value": "1",
+      "ans_text": "Correlates of War Project",
+      "ans_style": ""
+    },
+    {
+      "question_text": "___________ is the author of The Peloponnesian War.",
+      "question_type": "18",
+      "question_value": "1",
+      "ans_text": "Thucydides",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The study of the interactions among the various actors that participate in international politics is _____________.",
+      "question_type": "18",
+      "question_value": "1",
+      "ans_text": "international relations",
+      "ans_style": ""
+    },
+    {
+      "question_text": "International relations is a _____________ discipline.",
+      "question_type": "18",
+      "question_value": "1",
+      "ans_text": "pluralistic",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Aristotle was the first known author to use which of the following methodologies?",
+      "question_type": "18",
+      "question_value": "1",
+      "ans_text": "the comparative method",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Aristotle concluded that states rise and fall largely due to ________.",
+      "question_type": "18",
+      "question_value": "1",
+      "ans_text": "internal factors",
+      "ans_style": ""
+    },
+    {
+      "question_text": "About how many states exist in the world today?",
+      "question_type": "18",
+      "question_value": "1",
+      "ans_text": "194",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In The Republic, Plato argues that the ideal ruler is _____________.",
+      "question_type": "18",
+      "question_value": "1",
+      "ans_text": "a philosopher-king",
+      "ans_style": ""
+    },{
+      "question_text": "Of the more prominent theoretical approaches, __________ is most concerned with economic class.",
+      "question_type": "18",
+      "question_value": "1",
+      "ans_text": "radicalism",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which approach is the absolute best way to study international relations?",
+      "question_type": "18",
+      "question_value": "1",
+      "ans_text": "There is no one absolute best way",
+      "ans_style": ""
+    },
+    {
+      "question_text": "International relations was part of which discipline until the early twentieth century?",
+      "question_type": "18",
+      "question_value": "1",
+      "ans_text": "history",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Kant’s solution to international conflict is _______.",
+      "question_type": "18",
+      "question_value": "1",
+      "ans_text": "an international federation of states",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Mass communication traditionally tends to be",
+      "question_type": "19",
+      "question_value": "1",
+      "ans_text": "Anonymous",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which of the following is part of the Shannon and Weaver Mathematical Theory?",
+      "question_type": "19",
+      "question_value": "1",
+      "ans_text": "Source",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The Daily Me is an example of a",
+      "question_type": "19",
+      "question_value": "1",
+      "ans_text": "Highly personalized news feed that includes only what the audience wants to see, read or hear.",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Which of the following is an example of cultural convergence?",
+      "question_type": "19",
+      "question_value": "1",
+      "ans_text": "A Mexican soap opera gets high ratings among audiences in Russia.",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The process in which media is made into computer readable form is called?",
+      "question_type": "19",
+      "question_value": "1",
+      "ans_text": "Digitization",
+      "ans_style": ""
+    },
+    {
+      "question_text": "what type of media requires the audience to be assembled simultaneously with the broadcast, transmission or event.",
+      "question_type": "19",
+      "question_value": "1",
+      "ans_text": "Synchronous",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In mass communication, ___________ is important because it helps the media maintain social stability.",
+      "question_type": "19",
+      "question_value": "1",
+      "ans_text": "correlation function",
+      "ans_style": ""
+    },
+    {
+      "question_text": "How many notes are in an octive?",
+      "question_type": "25",
+      "question_value": "1",
+      "ans_text": "8",
+      "ans_style": ""
+    },
+    {
+      "question_text": "how many half steps is a major 3rd?",
+      "question_type": "25",
+      "question_value": "1",
+      "ans_text": "4",
+      "ans_style": ""
+    },
+    {
+      "question_text": "How many notes make up a triad chord?",
+      "question_type": "25",
+      "question_value": "1",
+      "ans_text": "3",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Who composed 'William Tell Overture'?",
+      "question_type": "25",
+      "question_value": "1",
+      "ans_text": "Gioachino Rossini",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Who composed 'Minuet in G Major'?",
+      "question_type": "25",
+      "question_value": "1",
+      "ans_text": "Christian Petzold",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Who composed 'Dawn From Thus Spake Zarathustra'?",
+      "question_type": "25",
+      "question_value": "1",
+      "ans_text": "Richard Strauss",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Something that is independent of, and unconditioned by, anything external to itself (non-contingent) is?",
+      "question_type": "28",
+      "question_value": "1",
+      "ans_text": "Absolute",
+      "ans_style": ""
+    },
+    {
+      "question_text": "In logic, that which is irrational or contradictory. ",
+      "question_type": "28",
+      "question_value": "1",
+      "ans_text": "Absurd",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Going on forever (without end). ",
+      "question_type": "28",
+      "question_value": "1",
+      "ans_text": "Ad Infinitum",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What philosopher stated 'There are no facts, only interpretations'?",
+      "question_type": "28",
+      "question_value": "1",
+      "ans_text": "Friedrich Nietzsche",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What philosopher stated 'I think, therefore I am'?",
+      "question_type": "28",
+      "question_value": "1",
+      "ans_text": "René Descartes",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What philosopher stated 'Choose a job you love, and you will never have to work a day in your life.'?",
+      "question_type": "28",
+      "question_value": "1",
+      "ans_text": "Confucius",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What philosopher stated 'The only fence against the world is a thorough knowledge of it.'?",
+      "question_type": "28",
+      "question_value": "1",
+      "ans_text": "John Locke",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The branch of philosophy concerned with the study of beauty and art. ",
+      "question_type": "28",
+      "question_value": "1",
+      "ans_text": "Aesthetics",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Literally, with greater force; in logic, all the more reason. ",
+      "question_type": "28",
+      "question_value": "1",
+      "ans_text": "A Fortiori",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The belief that one does not, or cannot, know ultimate reality (especially God). ",
+      "question_type": "28",
+      "question_value": "1",
+      "ans_text": "Agnosticism",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What Law or Act gives the public the right to request access to federal agency records or information except to the extent the records are protected from disclosure by any of nine exemptions contained in the law or by one of three special law enforcement record exclusions? ",
+      "question_type": "31",
+      "question_value": "1",
+      "ans_text": "Freedom of Information Act",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What Law or Act outlawed discrimination based on race, color, religion, sex, or national origin",
+      "question_type": "31",
+      "question_value": "1",
+      "ans_text": "Civil Rights Act",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What Law or Act protects people from discrimination when they are renting, buying, or securing financing for any housing",
+      "question_type": "31",
+      "question_value": "1",
+      "ans_text": "Fair Housing Act ",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Independent voters claim to have ___________ party affiliation",
+      "question_type": "31",
+      "question_value": "1",
+      "ans_text": "No specific",
+      "ans_style": ""
+    },
+    {
+      "question_text": "A monarchy is:",
+      "question_type": "31",
+      "question_value": "1",
+      "ans_text": "Rule by a king",
+      "ans_style": ""
+    },
+    {
+      "question_text": "The United States is a _______ government.",
+      "question_type": "31",
+      "question_value": "1",
+      "ans_text": "Federal",
+      "ans_style": ""
     }
-
   ]
 }
