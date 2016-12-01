@@ -77,6 +77,7 @@ class Team(datab.Model):
     name = datab.Column(datab.String(20))
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
     score = datab.Column(datab.Integer)
+    # add method that calculates score
     # Team 0 - Neutral
     # Team 1 - Maroon
     # Team 2 - Black
