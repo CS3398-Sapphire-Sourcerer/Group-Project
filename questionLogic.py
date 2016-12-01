@@ -1,7 +1,7 @@
-#This class is meant to handle the database queries for questions and answers, as well as store the questions for one
-#building session consisting of N questions.
+# This class is meant to handle the database queries for questions and answers, as well as store the questions for one
+# building session consisting of N questions.
 
-#Usage note: After connecting session the the database, it is possible for a user to leave a session midway through and
+# Usage note: After connecting session the the database, it is possible for a user to leave a session midway through and
 #            return later. The question list only builds questions are are still valid and answerable, meaning the list
 #            can potentially be shorter than the session length. TODO Revisit this logic if this begins causing errors.
 
@@ -10,7 +10,8 @@ from init import app, datab
 from random import shuffle
 import models
 
-#This class contains easy methods for adding question-relavent database content
+
+# This class contains easy methods for adding question-relavent database content
 class q_database_manager:
     def addQuestionWithAnswer(self, questionText, questionType, answerText):
         # TODO, add verification to fields, make sure you get good data
@@ -32,16 +33,7 @@ class q_database_manager:
         datab.session.add(question)  # Save the question
         datab.session.commit()
 
-    def addBuilding(self, new_name, new_type1,):
-        #TODO add support for type2, owner and coordinates
-        new_building = models.Building()
-        new_building.name = new_name
-        new_building.type1 = new_type1
-        new_building.type2 = new_type2
-        datab.session.add(new_building)
-        datab.session.commit()
-
-class q_data:               # Used to group questions with a specifc answers list
+class q_data:  # Used to group questions with a specifc answers list
     question = None
     answers_list = []
 
@@ -51,45 +43,46 @@ class q_data:               # Used to group questions with a specifc answers lis
             'answer_list': [answer.serialize() for answer in self.answers_list]
         }
 
-class question_handler:
-    SESSION_LENGTH = 5     #Max number of questions a user can answer at one building
-    POTENTIAL_ANSWERS = 4  #Number of possible answers to each question, one answer is correct
 
-    #question_list = []     #List of questions for current building session
+class question_handler:
+    SESSION_LENGTH = 5  # Max number of questions a user can answer at one building
+    POTENTIAL_ANSWERS = 4  # Number of possible answers to each question, one answer is correct
+
+    # question_list = []     #List of questions for current building session
     question_session_index = 0
     session = None
     current_question_data = None
     session_is_closed = False
 
-
     type
 
-    def __init__ (self, user_id, building_id):
+    def __init__(self, user_id, building_id):
 
-        self.session = models.question_session.query.filter(models.question_session.user_id==user_id, models.question_session.building_id==building_id).first()
+        self.session = models.question_session.query.filter(models.question_session.user_id == user_id,
+                                                            models.question_session.building_id == building_id).first()
 
-        if self.session is None: #If query session does not exist, build a new session
+        if self.session is None:  # If query session does not exist, build a new session
             b = models.Building.query.get(building_id)
-            print(b)
-            self.type = b.type1                     #If you get errors, verify that this is a building object and not a standard query.
+            print("creating new quesion for building: ", building_id, " user: ", user_id)
+            self.type = b.type1  # If you get errors, verify that this is a building object and not a standard query.
             self.question_index = 0
             self.buildNewQuestionSession(user_id, building_id)
-        elif self.session.session_is_open: #If query session does exist, reopen where the user left off.
-            q_entry = models.Q_List_Entry.query.filter_by(session_key = self.session.id).first()
+        elif self.session.session_is_open:  # If query session does exist, reopen where the user left off.
+            q_entry = models.Q_List_Entry.query.filter_by(session_key=self.session.id).first()
 
-            if q_entry is None: #No entires remain, close the session
+            if q_entry is None:  # No entires remain, close the session
                 self.session.session_is_open = False
                 self.session_is_closed = True
                 datab.session.commit()
             else:
-                #for q_entry in workingList:
-                question = models.Question.query.filter_by(id = q_entry.question_key).first()
+                # for q_entry in workingList:
+                question = models.Question.query.filter_by(id=q_entry.question_key).first()
                 self.current_question_data = q_data()
                 self.current_question_data.question = question
                 self.current_question_data.answers_list = self.getPotentialtAnswers(question)
         else:
-            #The user's question session exist and is closed. Print some message saying they reached their max
-            print ("Question Session is closed")
+            # The user's question session exist and is closed. Print some message saying they reached their max
+            print("Question Session is closed")
             self.session_is_closed = True
 
     def buildNewQuestionSession(self, user_id, building_id):
@@ -97,10 +90,11 @@ class question_handler:
         workingList = self.getQuestions()
 
         if len(workingList) < self.SESSION_LENGTH:
-            print("***ERROR, not enough questions in category. Enter more questions for testing or handle case with too few entries.***")
+            print(
+                "***ERROR, not enough questions in category. Enter more questions for testing or handle case with too few entries.***")
             return False
         else:
-            #Build session object in database
+            # Build session object in database
             self.session = models.question_session()
             self.session.building_id = building_id
             self.session.user_id = user_id
@@ -110,7 +104,7 @@ class question_handler:
             datab.session.commit()
 
             for question in workingList:
-                #Build one q_entry for each question and point them at the current session
+                # Build one q_entry for each question and point them at the current session
                 q_entry = models.Q_List_Entry()
                 q_entry.question_key = question.id
                 q_entry.session_key = self.session.id
@@ -118,76 +112,74 @@ class question_handler:
                 datab.session.add(q_entry)
             datab.session.commit()
 
-            #Set current question
+            # Set current question
             self.current_question_data = q_data()
             self.current_question_data.question = workingList[0]
             self.current_question_data.answers_list = self.getPotentialtAnswers(self.current_question_data.question)
 
-
-    #Query database for N random questions, return list
+    # Query database for N random questions, return list
     def getQuestions(self):
-        #Get all possible questions
-        q = models.Question.query.filter_by(q_type = self.type)
-        questionsByType = list(q)                   #Get full list
-        shuffle(questionsByType)                    #Shuffle list
+        # Get all possible questions
+        q = models.Question.query.filter_by(q_type=self.type)
+        questionsByType = list(q)  # Get full list
+        shuffle(questionsByType)  # Shuffle list
 
-        #TODO: verify size of list here, check for errors
-        del questionsByType[self.SESSION_LENGTH:]   #Trim list to desired number of elements
+        # TODO: verify size of list here, check for errors
+        del questionsByType[self.SESSION_LENGTH:]  # Trim list to desired number of elements
 
         return questionsByType
 
-    #Query database for list of answers, including one correct answer
+    # Query database for list of answers, including one correct answer
     def getPotentialtAnswers(self, question):
         correctAnswer = self.getCorrectAnswer(question)
 
-        #Get all answers that are of a specific type and NOT the correct answer
+        # Get all answers that are of a specific type and NOT the correct answer
         a = models.Answer.query.filter(models.Answer.a_type == question.q_type, models.Answer.id != correctAnswer.id)
-        potentialAnswers = list(a)                          #Turn into list format
+        potentialAnswers = list(a)  # Turn into list format
 
         shuffle(potentialAnswers)
-        del potentialAnswers[self.POTENTIAL_ANSWERS-1:]     #Save only 3 shuffled answers
-        potentialAnswers.append(correctAnswer)              #Append correct answer
-        shuffle(potentialAnswers)                           #Shuffle the N possible answers
+        del potentialAnswers[self.POTENTIAL_ANSWERS - 1:]  # Save only 3 shuffled answers
+        potentialAnswers.append(correctAnswer)  # Append correct answer
+        shuffle(potentialAnswers)  # Shuffle the N possible answers
 
         return potentialAnswers
 
-    #Change question type, may not be needed if we simple create a new handler each time
+    # Change question type, may not be needed if we simple create a new handler each time
     def setQuestionType(self, question_type):
         self.type = question_type
 
-    #Query database for correct answer based on question
-    #TODO: Update this to use forgin keys over ints
+    # Query database for correct answer based on question
+    # TODO: Update this to use forgin keys over ints
     def getCorrectAnswer(self, question):
         key = question.q_answer
-        answer = models.Answer.query.filter_by(id = key).first()
+        answer = models.Answer.query.filter_by(id=key).first()
         return answer
 
-    #def setQuestionIndex(self, newIndex):
+    # def setQuestionIndex(self, newIndex):
     #    self.question_session_index = newIndex
     #    return None
 
     def removeAnsweredQuestion(self):
         q_entry = models.Q_List_Entry.query.filter_by(session_key=self.session.id).first()
-        print (q_entry.question_key)
+        print(q_entry.question_key)
 
         datab.session.delete(q_entry)
         datab.session.commit()
 
         q_entry = models.Q_List_Entry.query.filter_by(session_key=self.session.id).first()
-        print (q_entry.question_key)
+        print(q_entry.question_key)
         self.current_question_data.question = models.Question.query.get(q_entry.question_key)
         self.current_question_data.answers_list = self.getPotentialtAnswers(self.current_question_data.question)
 
         print(self.current_question_data.question)
 
     def serializeCurrentQuestion(self):
-            return{
-                'question_data': self.current_question_data.serialize()
-            }
+        return {
+            'question_data': self.current_question_data.serialize()
+        }
 
     def serialize(self):
         return {
             'sessionLength': self.SESSION_LENGTH,
             'question_data_entries': [q_data.serialize() for q_data in self.question_list]
         }
-

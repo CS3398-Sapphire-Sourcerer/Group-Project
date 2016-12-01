@@ -1,0 +1,390 @@
+{
+    "buildings" :
+    [
+        {
+            "buildingName" : "Arnold Hall",
+            "buildingShort" : "AA",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Adamson ROTC",
+            "buildingTag" : "ADAM",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+
+        {
+            "buildingName" : "Agriculture Building",
+            "buildingTag" : "AG",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Albert B. Alkek Library",
+            "buildingTag" : "ALK",
+            "buildingScore" : 50,
+            "buildingOwner" : "gold"
+        },
+
+        {
+            "buildingName" : "Aqua Sports Center",
+            "buildingTag" : "ASC",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Beretta Hall",
+            "buildingTag" : "BER",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Bexter Hall",
+                "buildingTag" : "BEX",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Blanco Hall",
+            "buildingTag" : "BLN",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Brazos",
+            "buildingTag" : "BRAZ",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Brogdon Hall",
+            "buildingTag" : "BRG",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Burleson Hall",
+            "buildingTag" : "BUR",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Butler Hall",
+            "buildingTag" : "BULT",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Centennial Hall",
+            "buildingTag" : "CENT",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Chemistry",
+            "buildingTag" : "CHEM",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Child Development Center",
+            "buildingTag" : "CDC",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "College of Education",
+            "buildingTag" : "ED",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Colorado",
+            "buildingTag" : "COLO",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Comal",
+            "buildingTag" : "CMAL",
+            "buildingScore" : 75,
+            "buildingOwner" : "black"
+        },
+
+        {
+            "buildingName" : "Commons Dinning Hall",
+            "buildingTag" : "COM",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Derrick Hall",
+            "buildingTag" : "DERR",
+            "buildingScore" : 20,
+            "buildingOwner" : "maroon"
+        },
+
+        {
+            "buildingName" : "Elliot Hall A",
+            "buildingTag" : "EA/EB",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Evans Liberal Arts",
+            "buildingTag" : "ELA",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Flowers Hall",
+            "buildingTag" : "FH",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Freeman Aquatic Biology",
+            "buildingTag" : "FAB",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Harris Dining Hall",
+            "buildingTag" : "HDH",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Health Professions Building",
+            "buildingTag" : "HPB",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Hines Academic Center",
+            "buildingTag" : "HINE",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Hornsby Hall",
+            "buildingTag" : "HORN",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Jackson Hall",
+            "buildingTag" : "JAK",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Joann Cole Mitte",
+            "buildingTag" : "JCM",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Jones Dining Center",
+            "buildingTag" : "JON",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Lampasas",
+            "buildingTag" : "LAMP",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Lantana Hall",
+            "buildingTag" : "LNA",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Laurel Hall",
+            "buildingTag" : "LAU",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "LBJ Stucent Center",
+            "buildingTag" : "LBJ",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Math Computer Science",
+            "buildingTag" : "MCS",
+            "buildingScore" : 17,
+            "buildingOwner" : "black"
+        },
+
+        {
+            "buildingName" : "McCoy Hall",
+            "buildingTag" : "MCOY",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Medina",
+            "buildingTag" : "MED",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Music Building",
+            "buildingTag" : "MUS",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "North Housing Community Building",
+            "buildingTag" : "NHCB",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Old Main",
+            "buildingTag" : "OM",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Performing Arts Center",
+            "buildingTag" : "PERF",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Roy F Mitte",
+            "buildingTag" : "RFM",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "San Jacinto Hall",
+            "buildingTag" : "SJH",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "San Marcos Hall",
+            "buildingTag" : "SMH",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Smith Hall 1",
+            "buildingTag" : "SM1",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Smith Hall 2",
+            "buildingTag" : "SM2",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Smith Hall 3",
+            "buildingTag" : "SM3",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Sterry Hall",
+            "buildingTag" : "STY",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Student Health Center",
+            "buildingTag" : "SHC",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Student Recreation Center",
+            "buildingTag" : "SRC",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Supple Science Building",
+            "buildingTag" : "SUPP",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Taylor-Murphy History",
+            "buildingTag" : "TMH",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "The Tower",
+            "buildingTag" : "TOWR",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        },
+
+        {
+            "buildingName" : "Undergrad Academic Center",
+            "buildingTag" : "UAC",
+            "buildingScore" : 0,
+            "buildingOwner" : 0
+        }
+    ]
+}

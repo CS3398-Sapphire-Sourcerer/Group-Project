@@ -1,8 +1,21 @@
 from init import app
+import json
+
+
 def gameState():
     req = None
 
-    state = dict(buildings=["derrick", "alkek"])
+    # state needs to have:
+    # bldgName-
+    # bldgShort-
+    # bldgScore
+    # bldgOwner
+
+    state = {}
+    with open('static\\state.json', 'r') as stateFile:
+        state = json.load(stateFile)
+
+    #state = obj
 
     # add all of the buildings from the DB to the state object
     app.logger.info("Made it into the function")
@@ -16,18 +29,23 @@ def gameState():
         if req['type'] == "new":
             app.logger.info("type is new")
             app.logger.info(state)
-            yield state
-            req = yield
+            #yield state
+            req = yield state
 
+
+# generators are fucking
 game = gameState()
+
 
 def initializeGame():
     next(game)
 
+
 def requestState(req):
-    return game.send(req)
+    response = game.send(req)
+    print(response)
+    return response
+
 
 def updateState(req):
     pass
-
-

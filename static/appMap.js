@@ -48,7 +48,10 @@ function appMap () {
 function addBuildings(obj) {
     console.group("addBuildings(obj) [appMap.js]");
     for (let i = 0; i < obj["buildings"].length; i++) {
-        buildings.push({"buildingName":obj["buildings"][i].buildingName, "coords":obj["buildings"][i].coordinates});
+        buildings.push({
+            "buildingName":obj["buildings"][i].buildingName,
+            "buildingTag":obj["buildings"][i].buildingTag,
+            "coords":obj["buildings"][i].coordinates});
     }
     renderAllTheBuildings();
     console.groupEnd();
@@ -67,11 +70,32 @@ function renderAllTheBuildings() {
             fillOpacity: 0.55
         });
         currentBuilding.setMap(map);
+        currentBuilding.buildingTag = buildings[i].buildingTag;
+        buildingPolygons.push(currentBuilding);
 
         google.maps.event.addListener(currentBuilding, 'click', function (event) {
             alert(buildings[i].buildingName);
         });  
     }
+    console.groupEnd();
+}
+
+function checkBuildingBounds(position) {
+    console.group("checkBuildingBounds(position) [appMap.js]");
+    for (let i = 0; i < buildingPolygons.length; i++) {
+        console.log("position : ", position);
+        console.log(".latitude : ", position.latitude);
+        console.log(".longitude : ", position.longitude);
+        console.log("buildingPolygons[i] : ", buildingPolygons[i]);
+        console.log(google.maps.geometry.poly.containsLocation(
+            new google.maps.LatLng(position.latitude, position.longitude), buildingPolygons[i]));
+        if (google.maps.geometry.poly.containsLocation(
+            new google.maps.LatLng(position.latitude, position.longitude), buildingPolygons[i])) {
+            console.log(buildingPolygons[i].buildingTag);
+            return buildingPolygons[i].buildingTag;
+        }
+    }
+    return "";
     console.groupEnd();
 }
 
@@ -82,12 +106,6 @@ function findVisiblePolygons(loc) {
 
 function updateMap(obj) {
     for (let i = 0; i < obj.length; i++) {
-        /*
-        let bldg = new google.maps.Polygon({
-            paths :
-        })
-        */
-
     }
 }
 
