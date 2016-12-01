@@ -12,10 +12,12 @@ from flask import request
 from state import initializeGame, game
 from sqlalchemy import desc
 import json
+from major_list_enum import Majors
 from upstart import populate_teams
 
 @app.before_first_request
 def gameSetup():
+    populate_questions()
     populate_teams()
     populate_buildings()
     initializeGame()
@@ -156,15 +158,15 @@ def question_creation():
     query = models.Question.query.first()
     if query is None:
         q = questionLogic.q_database_manager()
-        q.addQuestionWithAnswer("Which language requires a virtual machine enviorment to run?", "8", "Java")
-        q.addQuestionWithAnswer("Which language allows for manipulation of pointers?", "8", "C++")
-        q.addQuestionWithAnswer("Which language controlls scope by using indentation levels?", "8", "Python")
-        q.addQuestionWithAnswer("Which language is a hypertext mark-up language?", "8", "HTML")
-        q.addQuestionWithAnswer("Which language is a vitual hardware language?", "8", "VHDL")
+        q.addQuestionWithAnswer("Which language requires a virtual machine enviorment to run?", Majors.COMPUTER_SCIENCE, "Java")
+        q.addQuestionWithAnswer("Which language allows for manipulation of pointers?", Majors.COMPUTER_SCIENCE, "C++")
+        q.addQuestionWithAnswer("Which language controlls scope by using indentation levels?", Majors.COMPUTER_SCIENCE, "Python")
+        q.addQuestionWithAnswer("Which language is a hypertext mark-up language?", Majors.COMPUTER_SCIENCE, "HTML")
+        q.addQuestionWithAnswer("Which language is a vitual hardware language?", Majors.COMPUTER_SCIENCE, "VHDL")
 
     return flask.redirect(flask.url_for('question_submission'))
 
-
+# need to eventually refactor the populate functions to move them into their own db file and not in views
 # add route to populate the DB
 # TODO add the building types into buildings.json then add sunctionallity into populate_buildings()
 # TODO function so that it stores the building type
@@ -208,6 +210,37 @@ def populate_buildings():
                 new_coordinate.building_group = b.id
                 datab.session.add(new_coordinate)
             datab.session.commit()  # commit all the coordinates at once
+
+
+def populate_questions():
+    query = models.Question.query.first()
+    if query is None:
+        obj = None  # create an object to store json data
+        with open('static\\questions.json', 'r') as question_list:
+            obj = json.load(question_list)
+
+        for answer_count in obj["questionList"]:
+            new_answer = models.Answer()
+            new_answer.a_text = answer_count["ans_text"]
+            new_answer.a_style = answer_count["ans_style"]
+            new_answer.a_type = answer_count["question_type"]
+            datab.session.add(new_answer)
+
+        datab.session.commit()#commit all the answers so we have id's
+
+        for question_count in obj["questionList"]:
+            new_question = models.Question()
+            new_question.q_text = question_count["question_text"]
+            new_question.q_type = question_count["question_type"]
+            new_question.q_value = question_count["question_value"]
+
+            # query the db to get the specific answer based on text. returns the answer obj so we can store the id in the question
+            ans = models.Answer.query.filter_by(a_text=question_count["ans_text"]).first()
+            new_question.q_answer = ans.id
+
+            datab.session.add(new_question)
+
+        datab.session.commit() #commit all the questions
 
 
 @app.route('/users/', methods=['GET'])
