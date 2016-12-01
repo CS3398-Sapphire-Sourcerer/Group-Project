@@ -101,6 +101,10 @@ def signup_submission():
     user.user_profile_text = bio
     user.major = major
     user.team = team_selection.id
+    user.q_total = 0
+    user.q_correct = 0
+    user.Score = 0
+
     datab.session.add(user)  # this adds the object to the database submit queue
     datab.session.commit()  # this is the actual storing of the database object into database, similar to git operations
     flask.session['auth_user'] = user.id  # this stores the session key information for the user into the database,
