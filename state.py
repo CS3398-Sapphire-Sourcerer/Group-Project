@@ -1,7 +1,6 @@
 from init import app
 import json
 
-
 def gameState():
     req = None
 
@@ -43,7 +42,6 @@ def initializeGame():
 
 def requestState(req):
     response = game.send(req)
-    print(response)
     return response
 
 

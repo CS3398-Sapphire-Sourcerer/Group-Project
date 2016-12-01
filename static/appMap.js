@@ -4,6 +4,7 @@
 //this holds the home page map that is is found in index.html
 //colors (hex):
 
+/* DATABASE ORDER : 1, 2, 3 */
 // maroon: #800000
 // black:  #000000
 // gold:   #ffd700
@@ -101,6 +102,8 @@ function checkBuildingBounds(position) {
 // black:  #000000
 // gold:   #ffd700
 function getAssociatedColor(teamID) {
+    console.group("getAssociatedColor(teamID) [appMap.js]");
+    console.groupEnd();
     return ( teamID == 1 ? '#800000' : 
         teamID == 2 ? '#000000' :
         teamID == 3 ? '#ffd700' : 
@@ -108,6 +111,7 @@ function getAssociatedColor(teamID) {
 }
 
 function updateMap(obj) {
+    console.group("updateMap(obj) [appMap.js]");
     for (let i = 0; i < obj.buildings.length; i++) {
         let index = buildingPolygons.findIndex(function (element) {
             return (element.buildingTag == obj.buildings[i].buildingTag)
@@ -123,6 +127,7 @@ function updateMap(obj) {
         buildingPolygons[index].fillOpacity = color == '#add8e6' ? 0.55 : 80;
         buildingPolygons[index].setMap(map);
     }
+    console.groupEnd();
 }
 
 /*
