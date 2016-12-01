@@ -57,9 +57,9 @@ def initdb():
 def socketserver(debug=True, reload=True):
     if hasattr(app_module, 'socketio'):
         sio = app_module.socketio
-        sio.run(app, debug=debug, use_reloader=reload)
+        #sio.run(app, debug=debug, use_reloader=reload)
         # Use this for broadcasting on the wifi from your system
-        #sio.run(app, debug=debug, use_reloader=reload, host='0.0.0.0', port=8080)
+        sio.run(app, debug=debug, use_reloader=reload, host='0.0.0.0', port=8080)
     else:
         print('app does not define socketio, cannot run', file=sys.stderr)
         sys.exit(1)

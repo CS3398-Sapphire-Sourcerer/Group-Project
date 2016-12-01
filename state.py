@@ -4,6 +4,7 @@ import json
 def gameState():
     req = None
 
+
     # state needs to have:
     # bldgName-
     # bldgShort-

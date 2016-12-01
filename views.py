@@ -187,18 +187,18 @@ def populate_buildings():
             new_building.type1 = build_count["major1"]
             new_building.type2 = build_count["major2"]
             new_building.building_shortcode = build_count["buildingTag"]
-            print("name: ", new_building.name)
+            #print("name: ", new_building.name)
             datab.session.add(new_building)
         datab.session.commit()  # commit the building so we have an ID associated to store with coordinates
 
         for build_count in obj["buildings"]:
             for coord_count in build_count["coordinates"]:
                 new_coordinate = models.coordinate_point()
-                print("In coord loop")
+                #print("In coord loop")
                 new_coordinate.long = coord_count["lng"]
-                print("lng: ", new_coordinate.long)
+                #print("lng: ", new_coordinate.long)
                 new_coordinate.lat = coord_count["lat"]
-                print("lat: ", new_coordinate.lat)
+                #print("lat: ", new_coordinate.lat)
 
                 b = models.Building.query.filter_by(name=build_count["buildingName"]).first()
                 new_coordinate.building_group = b.id
@@ -216,12 +216,12 @@ def users_default():
 @app.route('/users/<int:uid>', methods=['GET'])
 def users_profile(uid):
     tempUser = models.User.query.get(uid)
-
+    teamObj = models.Team.query.get(tempUser.team)
     if tempUser is None:
         # user does not exist at that id, go to 404 page.
         flask.abort(404)
 
-    return flask.render_template('user_profile.html', userInfo=tempUser, uid=uid)
+    return flask.render_template('user_profile.html', userInfo=tempUser, teamobj=teamObj, uid=uid)
 
 
 @app.route('/teams', methods=['GET'])

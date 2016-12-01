@@ -146,8 +146,8 @@ function emitAnswer(buttonObj) {
     var quid = (document.getElementById("q_text_1").value).toString();
     var submit = {
         "userAnswerId" : id,
-        "questionId" : quid,
-        "building" : locationObj.lastBuilding
+       "questionId" : quid,
+       "building" : locationObj.lastBuilding
     };
     //var userAnswerId = buttonObj.value;
     //var questionId = document.getElementById("q_text_1").value;
