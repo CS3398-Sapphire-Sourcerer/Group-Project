@@ -146,7 +146,12 @@ def answer_question(cli):
 
     questionObj = models.Question.query.get(questionID)
 
-    if userAnswer is questionObj.q_answer:
+    print ("your answer:")
+    print (userAnswer)
+    print ("correct answer:")
+    print (questionObj.q_answer)
+
+    if int(userAnswer) == int(questionObj.q_answer):
         print("You got it right!")
         result = "You got it right!"
     else:
@@ -179,3 +184,5 @@ def answer_question(cli):
     socketio.emit('question', Q_obj, room='user-{}'.format(uid))
 
 
+def updateUserStats(uid, answerIsCorrect): #Uid is the id of the user, result is a bool for question
+    return
