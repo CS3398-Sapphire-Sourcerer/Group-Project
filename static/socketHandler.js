@@ -111,6 +111,7 @@ function writeQuestionBar(obj) {
 
 socket.on('noMoreQuestions', alertQuestionBar);
 function alertQuestionBar(obj) {
+    //I am a comment!
     console.group("alertQuestionBar(obj) [socketHandler.js][listener]");
 
     console.log("Alert User:");
