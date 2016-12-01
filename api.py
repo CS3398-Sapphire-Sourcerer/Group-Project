@@ -204,13 +204,6 @@ def answer_question(cli):
 
 def updateUserStats(uid, result):  # Uid is the id of the user, result is a bool for question
     user = models.User.query.get(uid)
-    app.logger.info(user)
-    app.logger.info(user.Score)
-    app.logger.info(user.q_total)
-    app.logger.info(user.user_name)
-    app.logger.info(uid)
-    app.logger.info()
-    app.logger.info()
     result_return = 1
     if result == "You got it right!":
         user.Score += 1
