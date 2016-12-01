@@ -1,32 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <!DOCTYPE HTML>
-<html>
-  <head>
-    <style>
-      body {
-        margin: 0px;
-        padding: 0px;
-      }
-    </style>
-  </head>
-  <body>
-    <canvas id="myCanvas" width="450" height="900"></canvas>
-    <script>
-      var canvas = document.getElementById('myCanvas');
-      var context = canvas.getContext('2d');
-      context.rect(5, 5, canvas.width, canvas.height);
 
-      // add linear gradient
-      var grd = context.createLinearGradient(0, 0, canvas.width, canvas.height);
-      // light blue
-      grd.addColorStop(0, '#8ED6FF');
-      // dark blue
-      grd.addColorStop(1, '#004CB3');
-      context.fillStyle = grd;
-      context.fill();
-    </script>
+
+
+
+
+
   <div class = "Team">
     <h1>Team{{teamInfo.name}}</h1>
     <h2>Roster</h2>
@@ -35,17 +15,38 @@
         <li><a href = "/users/{{ X.id }}">{{ X.user_name }}</a></li>
         {% endfor %}
     </ul>
-    </div>
-  </body>
-</html>
+  </div>
+
+
+
 
     <style>
-    .Team  {
-        position: relative;
-        margin-top: 10%;
-        margin-left: 20%;
-        align-content: center;
 
-    }</style>
+        body{
+
+            background-attachment: fixed;
+            background-position: center;
+            background: aqua; /* For browsers that do not support gradients */
+            background: -webkit-radial-gradient(black 5%, gold 15%, maroon 60%); /* Safari 5.1-6.0 */
+            background: -o-radial-gradient(black 5%, gold 15%, maroon 60%); /* For Opera 11.6 to 12.0 */
+            background: -moz-radial-gradient(black 5%, gold 15%, maroon 60%); /* For Firefox 3.6 to 15 */
+            background: radial-gradient(black 5%, gold 15%, maroon 60%); /* Standard syntax (must be last) */
+        }
+
+        .Team {
+            margin-top: 10%;
+            margin-left: 20%;
+            padding-left: 150px;
+            align-content: center;
+        }
+        u1{
+            font-size: medium;
+        }
+        @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+        }</style>
 
 {% endblock %}

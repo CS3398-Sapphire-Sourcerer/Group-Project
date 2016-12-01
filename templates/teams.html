@@ -39,6 +39,13 @@
         margin-left: 20%;
         align-content: center;
         }
+    body {
+        background: red; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(left, rgba(80, 18, 20, 0), rgba(80, 18, 20, 1)); /*Safari 5.1-6*/
+        background: -o-linear-gradient(right, rgba(80, 18, 20, 0), rgba(80, 18, 20, 1)); /*Opera 11.1-12*/
+        background: -moz-linear-gradient(right, rgba(80, 18, 20, 0), rgba(80, 18, 20, 1)); /*Fx 3.6-15*/
+        background: linear-gradient(to right, rgba(80, 18, 20, 0), rgba(80, 18, 20, 1)); /*Standard*/
+     }
     h4 {
             font-family: Monotype Corsiva, cursive;}
 
