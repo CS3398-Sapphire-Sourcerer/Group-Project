@@ -2,34 +2,194 @@
   "questionList" :
   [
     {
-      "question_text" : "What does VHDL stand for?",
+      "question_text" : "What is VHDL an acronym for?",
       "question_type" : "8",
       "question_value" : "1",
       "ans_text" : "Virtual Hardware Language",
       "ans_style" : ""
     },
-
     {
-      "question_text" : "",
-      "question_type" : "",
-      "question_value" : "",
-      "ans_text" : "",
-      "ans_style" : ""
-    },
-
-    {
-      "question_text" : "",
-      "question_type" : "",
-      "question_value" : "",
-      "ans_text" : "",
+      "question_text" : "What is AES an acronym for? ",
+      "question_type" : "8",
+      "question_value" : "1",
+      "ans_text" : "Advanced Encryption Software",
       "ans_style" : ""
     },
     {
-      "question_text": "",
-      "question_type": "",
-      "question_value": "",
-      "ans_text": "",
+      "question_text" : "What is ARP an acronym for? ",
+      "question_type" : "8",
+      "question_value" : "1",
+      "ans_text" : "Address Resolution Protocol",
+      "ans_style" : ""
+    },
+    {
+      "question_text" : "What is DNS an acronym for? ",
+      "question_type" : "8",
+      "question_value" : "1",
+      "ans_text" : "Domain Name System",
+      "ans_style" : ""
+    },
+    {
+      "question_text" : "What is HTTPS an acronym for? ",
+      "question_type" : "8",
+      "question_value" : "1",
+      "ans_text" : "HyperText Transfer Protocol Secure",
+      "ans_style" : ""
+    },
+    {
+      "question_text" : "What is SSH an acronym for? ",
+      "question_type" : "8",
+      "question_value" : "1",
+      "ans_text" : "Secure shell",
+      "ans_style" : ""
+    },
+    {
+      "question_text" : "What scientist founded the idea of Natural Selection?",
+      "question_type" : "6",
+      "question_value" : "1",
+      "ans_text" : "Charles Darwin",
+      "ans_style" : ""
+    },
+    {
+      "question_text" : "How many systems (cardio, nerve, etc) does the human body have?",
+      "question_type" : "6",
+      "question_value" : "1",
+      "ans_text" : "12",
+      "ans_style" : ""
+    },
+    {
+      "question_text": "How many blood types, for humans are there?",
+      "question_type": "6",
+      "question_value": "1",
+      "ans_text": "4",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What famous artist painted/sculpted 'The Scream'?",
+      "question_type": "4",
+      "question_value": "1",
+      "ans_text": "Edvard Munch",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What famous artist painted/sculpted 'The Last Supper'?",
+      "question_type": "4",
+      "question_value": "1",
+      "ans_text": "Leonardo da Vinci",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What famous artist painted/sculpted 'The Starry Night'? ",
+      "question_type": "4",
+      "question_value": "1",
+      "ans_text": "Vincent van Gogh",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What famous artist painted/sculpted 'David'? ",
+      "question_type": "4",
+      "question_value": "1",
+      "ans_text": "Michel Angelo",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What Law or Act gives the public the right to request access to federal agency records or information except to the extent the records are protected from disclosure by any of nine exemptions contained in the law or by one of three special law enforcement record exclusions? ",
+      "question_type": "32",
+      "question_value": "1",
+      "ans_text": "Freedom of Information Act",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What Law or Act outlawed discrimination based on race, color, religion, sex, or national origin",
+      "question_type": "32",
+      "question_value": "1",
+      "ans_text": "Civil Rights Act",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What Law or Act protects people from discrimination when they are renting, buying, or securing financing for any housing",
+      "question_type": "32",
+      "question_value": "1",
+      "ans_text": "Fair Housing Act ",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Who composed 'William Tell Overture'?",
+      "question_type": "26",
+      "question_value": "1",
+      "ans_text": "Gioachino Rossini",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Who composed 'Minuet in G Major'?",
+      "question_type": "26",
+      "question_value": "1",
+      "ans_text": "Christian Petzold",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Who composed 'Dawn From Thus Spake Zarathustra'?",
+      "question_type": "26",
+      "question_value": "1",
+      "ans_text": "Richard Strauss",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What philosopher stated 'There are no facts, only interpretations'?",
+      "question_type": "29",
+      "question_value": "1",
+      "ans_text": "Friedrich Nietzsche",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What philosopher stated 'I think, therefore I am'?",
+      "question_type": "29",
+      "question_value": "1",
+      "ans_text": "René Descartes",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What philosopher stated 'Choose a job you love, and you will never have to work a day in your life.'?",
+      "question_type": "29",
+      "question_value": "1",
+      "ans_text": "Confucius",
+      "ans_style": ""
+    },
+    {
+      "question_text": "What philosopher stated 'The only fence against the world is a thorough knowledge of it.'?",
+      "question_type": "29",
+      "question_value": "1",
+      "ans_text": "John Locke",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Who is the author of the book 'Pride of Prejudice'? ",
+      "question_type": "13",
+      "question_value": "1",
+      "ans_text": "Jane Austen",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Who is the author of the book 'A Tale of Two Cities'?",
+      "question_type": "13",
+      "question_value": "1",
+      "ans_text": "Charles Dickens",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Who is the author of the book 'The Canterbury Tales'?",
+      "question_type": "13",
+      "question_value": "1",
+      "ans_text": "Geoffrey Chaucer",
+      "ans_style": ""
+    },
+    {
+      "question_text": "Who is the author of the book 'Animal Farm'?",
+      "question_type": "13",
+      "question_value": "1",
+      "ans_text": "George Orwell",
       "ans_style": ""
     }
+
   ]
 }
