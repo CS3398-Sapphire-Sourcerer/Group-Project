@@ -1,9 +1,9 @@
 from init import app
 import json
 
-
 def gameState():
     req = None
+
 
     # state needs to have:
     # bldgName-
@@ -15,7 +15,7 @@ def gameState():
     with open('static\\state.json', 'r') as stateFile:
         state = json.load(stateFile)
 
-    # state = obj
+    #state = obj
 
     # add all of the buildings from the DB to the state object
     app.logger.info("Made it into the function")
@@ -32,16 +32,17 @@ def gameState():
         if req['type'] == "delta":
             app.logger.info("type of request is delta")
             index = 0
-            for i, v in enumerate(state["buildings"]):  # in state["buildings"]:
+            for i, v in enumerate(state["buildings"]): # in state["buildings"]:
                 if v["buildingTag"] == req["buildingTag"]:
                     state["buildings"][i]["buildingScore"] += req["q_result"]
                     if v["buildingOwner"] != req["owner"]:
                         state["buildings"][i]["buildingScore"] = req["owner"]
                     break
             req = yield state["buildings"][i]
-            # if v["buildingTag"] == req["buildingTag"]:
-            #    index =
-            # if (state['buildings'].index)
+                #if v["buildingTag"] == req["buildingTag"]:
+                #    index = 
+                #if (state['buildings'].index)
+            
 
 
 # generators are fucking
