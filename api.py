@@ -153,7 +153,7 @@ def answer_question(cli):
     userAnswer = cli['userAnswerId']
     questionID = cli['questionId']
     buildingTag = cli['building']
-    uid = flask.session.get(['auth_user'])
+    uid = flask.session.get('auth_user')
 
     questionObj = models.Question.query.get(questionID)
 
@@ -204,6 +204,13 @@ def answer_question(cli):
 
 def updateUserStats(uid, result):  # Uid is the id of the user, result is a bool for question
     user = models.User.query.get(uid)
+    app.logger.info(user)
+    app.logger.info(user.Score)
+    app.logger.info(user.q_total)
+    app.logger.info(user.user_name)
+    app.logger.info(uid)
+    app.logger.info()
+    app.logger.info()
     result_return = 1
     if result == "You got it right!":
         user.Score += 1
@@ -244,4 +251,7 @@ def updateBuildingScore(uid, q_result, buildingTag):
     datab.session.commit()
     
     socketio.emit('updateState', 
-                  updateState({'buildingTag': buildingTag, 'owner': bld.owner, 'q_result': q_result}))
+                  updateState({'type':'delta', 'buildingTag': buildingTag, 'owner': bld.owner, 'q_result': q_result}))
+
+
+#force save
