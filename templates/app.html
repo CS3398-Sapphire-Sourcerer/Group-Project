@@ -16,16 +16,14 @@ Quiz cats
 <script>
     var buildings = [];
     var buildingPolygons = [];
-    console.log("type of buildings : ", Array.isArray(buildings));
-    console.log("Getting buildings.json");
 
+    console.log("Getting buildings.json");
     $.getJSON("/static/buildings.json", function(obj) {
         console.group("jQuery : getJSON /static/buildings.json [app.html]");
         console.log("obj : ", obj);
         coordsLoaded(obj);
         console.groupEnd();
     });
-    console.log("Ever worked?");
 </script>
 
 <script>

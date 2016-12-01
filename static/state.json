@@ -3,7 +3,7 @@
     [
         {
             "buildingName" : "Arnold Hall",
-            "buildingShort" : "AA",
+            "buildingTag" : "AA",
             "buildingScore" : 0,
             "buildingOwner" : 0
         },
@@ -27,7 +27,7 @@
             "buildingName" : "Albert B. Alkek Library",
             "buildingTag" : "ALK",
             "buildingScore" : 50,
-            "buildingOwner" : "gold"
+            "buildingOwner" : 3
         },
 
         {
@@ -125,7 +125,7 @@
             "buildingName" : "Comal",
             "buildingTag" : "CMAL",
             "buildingScore" : 75,
-            "buildingOwner" : "black"
+            "buildingOwner" : 2
         },
 
         {
@@ -139,7 +139,7 @@
             "buildingName" : "Derrick Hall",
             "buildingTag" : "DERR",
             "buildingScore" : 20,
-            "buildingOwner" : "maroon"
+            "buildingOwner" : 1
         },
 
         {
@@ -251,7 +251,7 @@
             "buildingName" : "Math Computer Science",
             "buildingTag" : "MCS",
             "buildingScore" : 17,
-            "buildingOwner" : "black"
+            "buildingOwner" : 2
         },
 
         {

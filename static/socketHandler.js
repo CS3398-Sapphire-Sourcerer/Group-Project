@@ -146,7 +146,8 @@ function emitAnswer(buttonObj) {
     var quid = (document.getElementById("q_text_1").value).toString();
     var submit = {
         "userAnswerId" : id,
-        "questionId" : quid
+        "questionId" : quid,
+        "building" : locationObj.lastBuilding
     };
     //var userAnswerId = buttonObj.value;
     //var questionId = document.getElementById("q_text_1").value;
@@ -166,7 +167,7 @@ function stateFullUpdate(obj) {
     console.log("Received state update");
     console.log(obj);
     addTimer();
-    updateMap(obj.buildings);
+    updateMap(obj);
     console.groupEnd();
 }
 

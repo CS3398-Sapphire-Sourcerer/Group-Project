@@ -3,11 +3,10 @@
  */
 //this holds the home page map that is is found in index.html
 //colors (hex):
+
+// maroon: #800000
 // black:  #000000
 // gold:   #ffd700
-// maroon: #800000
-//
-
 
 
 function appMap () {
@@ -42,8 +41,6 @@ function appMap () {
 
     console.groupEnd();
 }
-
-// bounds of the desired area
 
 function addBuildings(obj) {
     console.group("addBuildings(obj) [appMap.js]");
@@ -99,60 +96,40 @@ function checkBuildingBounds(position) {
     console.groupEnd();
 }
 
-function findVisiblePolygons(loc) {
-    for (let i = 0; i < buildings.length; i++) {
-    }
+
+// maroon: #800000
+// black:  #000000
+// gold:   #ffd700
+function getAssociatedColor(teamID) {
+    return ( teamID == 1 ? '#800000' : 
+        teamID == 2 ? '#000000' :
+        teamID == 3 ? '#ffd700' : 
+        '#add8e6' );
 }
 
 function updateMap(obj) {
-    for (let i = 0; i < obj.length; i++) {
+    for (let i = 0; i < obj.buildings.length; i++) {
+        let index = buildingPolygons.findIndex(function (element) {
+            return (element.buildingTag == obj.buildings[i].buildingTag)
+        });
+        console.log(index);
+        console.log(obj.buildings[i]);
+        console.log(obj.buildings[i].buildingOwner);
+        console.log(typeof (obj.buildings[i].buildingOwner));
+        let color = getAssociatedColor(obj.buildings[i].buildingOwner);
+        console.log("color : ", color);
+        buildingPolygons[index].strokeColor = color;
+        buildingPolygons[index].fillColor = color;
+        buildingPolygons[index].fillOpacity = color == '#add8e6' ? 0.55 : 80;
+        buildingPolygons[index].setMap(map);
     }
 }
 
+/*
+function isBigEnough(element) {
+  return element >= 15;
+}
 
+[12, 5, 8, 130, 44].find(isBigEnough);
+*/
 
-
-
-    /*
-
-    .toLowerCase()
-    var derrickCoordinates = [
-        { lat:29.889579, lng:-97.942417 },
-        { lat:29.888962, lng:-97.942326 },
-        { lat:29.888970, lng:-97.942107 },
-        { lat:29.889264, lng:-97.942159 },
-        { lat:29.889313, lng:-97.941819 },
-        { lat:29.889646, lng:-97.941899 },
-        { lat:29.889579, lng:-97.942417 }
-    ];
-
-    var alkekCoordinates = [
-        { lat:29.88844371604545, lng:-97.94277459383011},
-        { lat:29.889341342614987, lng:-97.94293016195297},
-        { lat:29.889294833664863, lng:-97.9433861374855},
-        { lat:29.888397206676533, lng:-97.94323056936264},
-        {lat: 29.88844371604545,lng: -97.94277459383011}
-    ];
-
-    var Derrick = new google.maps.Polygon({
-        paths: derrickCoordinates,
-        strokeColor: '#800000', //color: maroon
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#800000',
-        fillOpacity: 0.65
-    });
-
-    var Alkek = new google.maps.Polygon({
-        paths: alkekCoordinates,
-        strokeColor: '#000000', //color: maroon
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#ffd700',
-        fillOpacity: 0.65
-    });
-
-    Derrick.setMap(map);
-    Alkek.setMap(map);
-
-    */
