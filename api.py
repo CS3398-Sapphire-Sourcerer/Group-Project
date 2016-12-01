@@ -165,9 +165,6 @@ def answer_question(cli):
 
     # if no more questions, emit end status
 
-    # TODO: get user at max test from questionLogic
-    #socketio.emit('qLimit') #qLimit = some message saying "Reached max for today, try again tomorrow"
-
     # TODO : recalculate state on the basis of a correct question.
     # updateState()
 
@@ -175,14 +172,15 @@ def answer_question(cli):
     user = models.User.query.get(uid)
     user_question_session = questionLogic.question_handler(user.id, user.building)
     user_question_session.removeAnsweredQuestion()
-    Q_obj = user_question_session.serializeCurrentQuestion()
 
-    print("Sending next question")
-    print(Q_obj)
-
-
-    socketio.emit('question', Q_obj, room='user-{}'.format(uid))
-
+    if user_question_session.session_is_closed:
+        socketio.emit('noMoreQuestions', "", room='user-{}'.format(uid))
+        print("session is closed")
+    else:
+        Q_obj = user_question_session.serializeCurrentQuestion()
+        print("Sending next question")
+        print(Q_obj)
+        socketio.emit('question', Q_obj, room='user-{}'.format(uid))
 
 def updateUserStats(uid, answerIsCorrect): #Uid is the id of the user, result is a bool for question
     return

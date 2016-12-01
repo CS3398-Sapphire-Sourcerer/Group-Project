@@ -116,7 +116,7 @@ function alertQuestionBar(obj) {
     console.log("Alert User:");
     console.log("Received : ", obj);
 
-    document.getElementById("q_text_1").textContent = obj.result;
+    document.getElementById("q_text_1").textContent = "You're out of questions in this building, check back tomorrow!";
     document.getElementById("q_text_1").value = 0;
 
     console.groupEnd();

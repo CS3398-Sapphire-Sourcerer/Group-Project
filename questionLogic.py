@@ -167,11 +167,13 @@ class question_handler:
         datab.session.commit()
 
         q_entry = models.Q_List_Entry.query.filter_by(session_key=self.session.id).first()
-        print(q_entry.question_key)
-        self.current_question_data.question = models.Question.query.get(q_entry.question_key)
-        self.current_question_data.answers_list = self.getPotentialtAnswers(self.current_question_data.question)
-
-        print(self.current_question_data.question)
+        if q_entry is None:
+            self.session.session_is_open = False
+            self.session_is_closed = True
+            datab.session.commit()
+        else: #If not out of questions, get the next one
+            self.current_question_data.question = models.Question.query.get(q_entry.question_key)
+            self.current_question_data.answers_list = self.getPotentialtAnswers(self.current_question_data.question)
 
     def serializeCurrentQuestion(self):
         return {
