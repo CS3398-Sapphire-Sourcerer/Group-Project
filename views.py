@@ -226,6 +226,7 @@ def users_profile(uid):
 
 @app.route('/teams', methods=['GET'])
 def team():
+    #this is the page that displays the generates the team page to the server
     return flask.render_template('teams.html')
 
 
