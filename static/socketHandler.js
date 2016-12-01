@@ -24,6 +24,7 @@ function updateLocation() {
 
     if (locDifference.latitude < .00001 && locDifference.longitude < .00001) {
         console.log("Difference miniscule.");
+        console.groupEnd();  
         return;
     }
     else {
@@ -51,7 +52,6 @@ function updateLocation() {
             locationObj.continuous = 0;
             locationObj.lastBuilding = locObj.building;
         }
-        
         lastLocation = locationObj;
 
         let emitObject = locationObj;
@@ -62,7 +62,7 @@ function updateLocation() {
         console.log(".latitude : ", emitObject.latitude);
         console.log(".longitude : ", emitObject.longitude);
         console.log(".continuous : ", emitObject.continuous);
-        console.groupEnd();   
+        console.groupEnd();  
         socket.emit("changeLocation", emitObject);
     }
 }

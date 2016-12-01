@@ -106,12 +106,6 @@ function findVisiblePolygons(loc) {
 
 function updateMap(obj) {
     for (let i = 0; i < obj.length; i++) {
-        /*
-        let bldg = new google.maps.Polygon({
-            paths :
-        })
-        */
-
     }
 }
 
