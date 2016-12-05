@@ -6,51 +6,67 @@
 
 {%  block content %}
 <div class = "Teams">
-    <h3>Team info</h3>
+    <h1><b>Team info</b></h1>
     <div class="pure-g">
-        <div id="teamMaroon" class="pure-u-1 pure-u-md-1-3">
-        <h1><a href="/team/1">Maroon</a></h1>
-            <p class = "Points">Points:</p>
-            {%for X in Maroon%}
-            <li><a href = "/users/{{ X.id }}">{{ X.user_name }}</a></li>
-            {% endfor %}
-        </div>
-        <div id="teamGold" class="pure-u-1 pure-u-md-1-3">
-        <h1><a href="/team/2">Gold</a></h1>
-            <p class = "Points">Points:</p>
-            {% for X in Gold %}
-            <li><a href = "/users/{{ X.id }}">{{ X.user_name }}</a></li>
-            {% endfor %}
-        </div>
-        <div id="teamBlack" class="pure-u-1 pure-u-md-1-3">
-        <h1><a href="/team/3">Black</a></h1>
-            <p class = "Points">Points:</p>
-            {% for X in Black %}
-            <li><a href = "/users/{{ X.id }}">{{ X.user_name }}</a></li>
-            {% endfor %}
+        <div id="teamNeutral" class="pure-u-1 pure-u-md-1-3">
+            {% for team in teamobj %}
+                {% if team.id == 1 %}
+
+                {% elif team.id == 2 %}
+                    <div id="teamMaroon" class="pure-u-1 pure-u-md-1-3">
+                    <h3><b><a href="/team/{{ team.id }}">Team {{ team.name }}</a></b></h3>
+                    <p class = "Points">Points:{{ team.score }}</p>
+                    <p>Buildings Captured: </p>
+                    {%for X in maroon%}
+                        <li>{{ X.name }}</li>
+                    {% endfor %}
+                    </div>
+                {% elif team.id == 4 %}
+                    <div id="teamGold" class="pure-u-1 pure-u-md-1-3">
+                    <h3><b><a href="/team/{{ team.id }}">Team {{ team.name }}</a></b></h3>
+                    <p class = "Points">Points:{{ team.score }}</p>
+                    <p>Buildings Captured: </p>
+                    {% for X in gold %}
+                        <li>{{ X.name }}</li>
+                    {% endfor %}
+                    </div>
+                {% elif team.id == 3 %}
+                    <div id="teamBlack" class="pure-u-1 pure-u-md-1-3">
+                    <h3><b><a href="/team/{{ team.id }}">Team {{ team.name }}</a></b></h3>
+                    <p class = "Points">Points:{{ team.score }}</p>
+                    <p>Buildings Captured</p>
+                    {% for X in black %}
+                        <li>{{ X.name }}</li>
+                    {% endfor %}
+                    </div>
+                {% else %}
+                {% endif %}
+            {%endfor %}
         </div>
     </div>
 </div>
 
 <style>
+
     .Teams {
+        font-weight: bold;
         position: relative;
         margin-top: 10%;
         margin-left: 20%;
         align-content: center;
         }
     body {
+        overflow:auto;
         background: red; /* For browsers that do not support gradients */
         background: -webkit-linear-gradient(left, rgba(80, 18, 20, 0), rgba(80, 18, 20, 1)); /*Safari 5.1-6*/
         background: -o-linear-gradient(right, rgba(80, 18, 20, 0), rgba(80, 18, 20, 1)); /*Opera 11.1-12*/
         background: -moz-linear-gradient(right, rgba(80, 18, 20, 0), rgba(80, 18, 20, 1)); /*Fx 3.6-15*/
         background: linear-gradient(to right, rgba(80, 18, 20, 0), rgba(80, 18, 20, 1)); /*Standard*/
      }
-    h4 {
-            font-family: Monotype Corsiva, cursive;}
 
 
-    .Teams .pure-g #teamMaroon h1 {
+
+    .Teams .pure-g #teamMaroon a {
             background-color: rgba(80,18,20,1);
             color: white;
         }
@@ -63,27 +79,28 @@
         background-color: rgba(80, 18, 20,0.8);
         color: white;  }
 
-    .Teams .pure-g #teamGold h1 {
+    .Teams .pure-g #teamGold a {
         background-color: rgba(141, 115, 70 ,1);
-        color: black;  }
+        color: rgb(255,189,0);  }
     .Teams .pure-g #teamGold .Points li{
-        background-color: rgba(141, 115, 70, 0.8);}
+        background-color: rgba(141, 115, 70, 0.8);
+        color: rgb(255,189,0);}
     .Teams .pure-g #teamGold  {
         background-color: rgba(141, 115, 70 ,.6);
-        color: black;}
+        color: rgb(255,189,0);}
 
-     .Teams .pure-g #Black h1 {
+     .Teams .pure-g #teamBlack a {
         background-color: rgba(0,0, 0, 1);
-        color: lightskyblue;  }
+        color: rgb(5,227,253);  }
     .Teams .pure-g #teamBlack .Points li{
         background-color: rgba(0, 0, 0,.8);
-        color: lightskyblue;}
+        color: rgb(5,227,253);}
     .Teams .pure-g #teamBlack  {
         background-color: rgba(0, 0, 0, .6);
-        color: lightskyblue;}
+        color: rgb(5,227,253);}
 
 
-}</style>
+</style>
 
 
 

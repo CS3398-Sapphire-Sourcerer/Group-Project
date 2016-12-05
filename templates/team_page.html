@@ -8,45 +8,58 @@
 
 
   <div class = "Team">
-    <h1>Team{{teamInfo.name}}</h1>
+    <h1>Team
+    {% for X in teamInfo %}
+        {% if X.id == 1 %}
+            Neutral
+        {% elif X.id == 2 %}
+            Maroon
+        {% elif X.id == 4 %}
+            Gold
+        {% elif X.id == 3 %}
+            Black
+
+            </h1>
+        {% endif %}
+
+    {% endfor %}
+
     <h2>Roster</h2>
     <ul>
-        {% for X in rooster %}
+        {% for X in roster %}
         <li><a href = "/users/{{ X.id }}">{{ X.user_name }}</a></li>
         {% endfor %}
     </ul>
   </div>
 
-
-
-
     <style>
-
         body{
-
             background-attachment: fixed;
             background-position: center;
-            background: aqua; /* For browsers that do not support gradients */
-            background: -webkit-radial-gradient(black 5%, gold 15%, maroon 60%); /* Safari 5.1-6.0 */
-            background: -o-radial-gradient(black 5%, gold 15%, maroon 60%); /* For Opera 11.6 to 12.0 */
-            background: -moz-radial-gradient(black 5%, gold 15%, maroon 60%); /* For Firefox 3.6 to 15 */
-            background: radial-gradient(black 5%, gold 15%, maroon 60%); /* Standard syntax (must be last) */
-        }
+            background-color: #4b261d;
+            /* IE9, iOS 3.2+ */
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiM4ZDczNGEiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzUwMTIxNCIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuMjUiLz48c3RvcCBzdG9wLWNvbG9yPSIjMDAwMDAwIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMC41Ii8+PHN0b3Agc3RvcC1jb2xvcj0iIzUwMTIxNCIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNzUiLz48c3RvcCBzdG9wLWNvbG9yPSIjOGQ3MzRhIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMSIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCN2c2dnKSIgLz48L3N2Zz4=);
+            background-image: -webkit-gradient(linear, 0% 0%, 100% 100%,color-stop(0, rgb(141, 115, 74)),color-stop(0.25, rgb(80, 18, 20)),color-stop(0.5, rgb(0, 0, 0)),color-stop(0.75, rgb(80, 18, 20)),color-stop(1, rgb(141, 115, 74)));
+            /* Android 2.3 */
+            background-image: -webkit-repeating-linear-gradient(top left,rgb(141, 115, 74) 0%,rgb(80, 18, 20) 25%,rgb(0, 0, 0) 50%,rgb(80, 18, 20) 75%,rgb(141, 115, 74) 100%);
+            /* IE10+ */
+            background-image: repeating-linear-gradient(to bottom right,rgb(141, 115, 74) 0%,rgb(80, 18, 20) 25%,rgb(0, 0, 0) 50%,rgb(80, 18, 20) 75%,rgb(141, 115, 74) 100%);
+            background-image: -ms-repeating-linear-gradient(top left,rgb(141, 115, 74) 0%,rgb(80, 18, 20) 25%,rgb(0, 0, 0) 50%,rgb(80, 18, 20) 75%,rgb(141, 115, 74) 100%);
+            }
 
         .Team {
+            color: rgb(242, 242, 242);
+            font-weight: bold;
             margin-top: 10%;
             margin-left: 20%;
-            padding-left: 150px;
             align-content: center;
+         }
+        a{
+            color: rgb(255, 255, 26);
         }
         u1{
             font-size: medium;
         }
-        @media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    [class*="col-"] {
-        width: 100%;
-    }
-        }</style>
+        </style>
 
 {% endblock %}
