@@ -14,7 +14,6 @@ from sqlalchemy import desc
 import json
 from major_list_enum import Majors
 from upstart import populate_teams, populate_buildings, populate_questions
-from jinja2 import Template
 
 @app.before_first_request
 def gameSetup():
