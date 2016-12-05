@@ -180,26 +180,33 @@ def users_default():
 def users_profile(uid):
     tempUser = models.User.query.get(uid)
     teamObj = models.Team.query.get(tempUser.team)
+    captured = models.Building.query.all()
     if tempUser is None:
         # user does not exist at that id, go to 404 page.
         flask.abort(404)
 
-    return flask.render_template('user_profile.html', userInfo=tempUser, teamobj=teamObj, uid=uid)
+    return flask.render_template('user_profile.html', userInfo=tempUser, teamobj=teamObj, uid=uid, building = captured)
 
 
 @app.route('/teams', methods=['GET'])
 def team():
-    #this is the page that displays the generates the team page to the server
-    return flask.render_template('teams.html')
+    team_model = models.Team.query.all()
+    maroon = models.Building.query.filter_by(capture_value = 2)
+    gold = models.Building.query.filter_by(capture_value = 4)
+    black = models.Building.query.filter_by(capture_value = 3)
+
+
+    # this is the page that displays the generates the team page to the server
+    return flask.render_template('teams.html',teamobj=team_model, maroon = maroon, black = black, gold = gold)
 
 
 @app.route('/team/<int:team_id>', methods=['GET'])
 def team_page(team_id):
-    users = models.User.query.filter_by(team=team_id)
-    users = list(users)
-    team = models.Team.query.get(team_id)
+    team = models.User.query.filter_by(team = team_id)
+    users = list(team)
+    teamName = models.Team.query.filter_by(id = team_id)
 
-    return flask.render_template('team_page.html', rooster=users, teamInfo=team)
+    return flask.render_template('team_page.html', roster=users, teamInfo=teamName)
 
 
 @app.route('/signin', methods=['GET'])
@@ -214,10 +221,9 @@ def leader_board():
     # this is the page for displaying the leaderboard for the top 10 players for everyteam. It will have access
     # through the navi bar and filter the players with the highest scores
     l = models.User.query.all()
-    leaders = list(l)
-    leaders = sorted(leaders, key=lambda user: user.Score, reverse=True)
+    leaders = sorted(list(l), key = lambda highest: highest.Score, reverse = True)
     del leaders[10:]
-    return flask.render_template('leaderBoard.html', winnerCircle=leaders)
+    return flask.render_template('leaderBoard.html', winnerCircle = leaders)
 
 
 @app.route('/signin', methods=['POST'])

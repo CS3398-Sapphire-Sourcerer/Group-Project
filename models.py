@@ -74,14 +74,14 @@ class Q_List_Entry(datab.Model):
 
 class Team(datab.Model):
     __tablename__ = 'team'
-    name = datab.Column(datab.String(20))
     id = datab.Column(datab.Integer, primary_key=True, autoincrement=True)
+    name = datab.Column(datab.String(20))
     score = datab.Column(datab.Integer)
     # add method that calculates score
-    # Team 0 - Neutral
-    # Team 1 - Maroon
-    # Team 2 - Black
-    # Team 3 - Gold
+    # Team 1 - Neutral
+    # Team 2 - Maroon
+    # Team 3 - Black
+    # Team 4 - Gold
 
 class Building(datab.Model):
     __tablename__ = 'Building'

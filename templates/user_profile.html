@@ -7,6 +7,14 @@
     <div class = "teams">
         <h1>{{ userInfo.user_name }}'s Profile</h1>
         <h2>Team {{ teamobj.name }}</h2>
+        <h2>Buildings Captured:</h2>
+        <ul>
+            {% for player in building %}
+                {% if player.owner == userInfo.id %}
+                    <li>{{ player.name }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
         <h4>Points:{{ userInfo.Score }}</h4>
         <h4>Questions Correct:{{ userInfo.q_correct }}</h4>
         <h4>Total Questions Seen: {{ userInfo.q_total }}</h4>
