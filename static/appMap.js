@@ -38,7 +38,7 @@ function appMap () {
     // not valid anymore => return to last valid position
 
     lastValidCenter = map.getCenter();
-    console.log(lastValidCenter)
+    console.log(lastValidCenter);
 
     console.groupEnd();
 }
@@ -106,14 +106,15 @@ function getAssociatedColor(teamID) {
     // you are worried about this function
     //console.group("getAssociatedColor(teamID) [appMap.js]");
     //console.groupEnd();
-    return ( teamID == 1 ? '#800000' : 
-        teamID == 2 ? '#000000' :
-        teamID == 3 ? '#ffd700' : 
+    return ( teamID == 2 ? '#800000' : 
+        teamID == 3 ? '#000000' :
+        teamID == 4 ? '#ffd700' : 
         '#add8e6' );
 }
 
 function updateMap(obj) {
     console.group("updateMap(obj) [appMap.js]");
+    console.log(obj);
     for (let i = 0; i < obj.buildings.length; i++) {
         let index = buildingPolygons.findIndex(function (element) {
             return (element.buildingTag == obj.buildings[i].buildingTag)
@@ -130,6 +131,29 @@ function updateMap(obj) {
         buildingPolygons[index].setMap(map);
     }
     console.groupEnd();
+}
+
+function updateMapDelta(obj) {
+    console.log("GOT HERE");
+    if (Array.isArray(obj)) {
+        console.log("nooooooooooooo");
+    }
+    else {
+        console.log("MADE IT INTO THE ELSE");
+        console.log(obj);
+        let index = buildingPolygons.findIndex(function (element) {
+            return (element.buildingTag == obj.buildingTag)
+        });
+        let color = getAssociatedColor(obj.buildingOwner);
+
+        console.log(color);
+        console.log(buildingPolygons[index]);
+        
+        buildingPolygons[index].strokeColor = color;
+        buildingPolygons[index].fillColor = color;
+        buildingPolygons[index].fillOpacity = color == '#add8e6' ? 0.55 : 80;
+        buildingPolygons[index].setMap(map);   
+    }
 }
 
 /*
