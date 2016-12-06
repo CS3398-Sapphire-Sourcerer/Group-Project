@@ -147,8 +147,6 @@ def question_serv(uid, bldid):
 
 @socketio.on('answer')
 def answer_question(cli):
-    print("****answer****")
-    app.logger.info("****Answer****")
     # call the database and test the answer and question
     userAnswer = cli['userAnswerId']
     questionID = cli['questionId']
@@ -157,16 +155,9 @@ def answer_question(cli):
 
     questionObj = models.Question.query.get(questionID)
 
-    print("your answer:")
-    print(userAnswer)
-    print("correct answer:")
-    print(questionObj.q_answer)
-
     if int(userAnswer) == int(questionObj.q_answer):
-        print("You got it right!")
         result = "You got it right!"
     else:
-        print("You got it wrong :(")
         result = "You got it wrong."
 
     # 1 is correct, 0 is false
@@ -183,9 +174,6 @@ def answer_question(cli):
 
     # if no more questions, emit end status
 
-    # TODO : recalculate state on the basis of a correct question.
-    # updateState()
-
     uid = flask.session.get('auth_user')
     user = models.User.query.get(uid)
     user_question_session = questionLogic.question_handler(user.id, user.building)
@@ -194,11 +182,8 @@ def answer_question(cli):
     # TODO: This stuff should eventually be put in its own function
     if user_question_session.session_is_closed:
         socketio.emit('noMoreQuestions', "", room='user-{}'.format(uid))
-        print("session is closed")
     else:
         Q_obj = user_question_session.serializeCurrentQuestion()
-        print("Sending next question")
-        print(Q_obj)
         socketio.emit('question', Q_obj, room='user-{}'.format(uid))
 
 
@@ -231,9 +216,6 @@ def updateBuildingScore(uid, q_result, buildingTag):
             bld.capture_value += 1
             scoreChange = 1
         else:
-            app.logger.info(bld.capture_value)
-            app.logger.info(bld.owner)
-            app.logger.info(u_team.id)
             # user does not own building
             if bld.capture_value == 0:
                 bld.owner = u_team.id

@@ -59,30 +59,15 @@ def populate_buildings():
             new_building.type1 = build_count["major1"]
             new_building.type2 = build_count["major2"]
             new_building.building_shortcode = build_count["buildingTag"]
-            #print("name: ", new_building.name)
             datab.session.add(new_building)
 
-        #for build_count in obj["buildings"]:
-        #    new_building = models.Building()
-        #    new_building.name = build_count["buildingName"]
-
-        #    new_building.capture_value = stateObj
-        #    new_building.owner = 0
-        #    new_building.type1 = build_count["major1"]
-        #    new_building.type2 = build_count["major2"]
-        #    new_building.building_shortcode = build_count["buildingTag"]
-            #print("name: ", new_building.name)
-        #    datab.session.add(new_building)
         datab.session.commit()  # commit the building so we have an ID associated to store with coordinates
 
         for build_count in obj["buildings"]:
             for coord_count in build_count["coordinates"]:
                 new_coordinate = models.coordinate_point()
-                #print("In coord loop")
                 new_coordinate.long = coord_count["lng"]
-                #print("lng: ", new_coordinate.long)
                 new_coordinate.lat = coord_count["lat"]
-                #print("lat: ", new_coordinate.lat)
 
                 b = models.Building.query.filter_by(name=build_count["buildingName"]).first()
                 new_coordinate.building_group = b.id

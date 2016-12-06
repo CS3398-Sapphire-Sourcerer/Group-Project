@@ -63,7 +63,6 @@ class question_handler:
 
         if self.session is None:  # If query session does not exist, build a new session
             b = models.Building.query.get(building_id)
-            print("creating new quesion for building: ", building_id, " user: ", user_id)
             self.type = b.type1  # If you get errors, verify that this is a building object and not a standard query.
             self.question_index = 0
             self.buildNewQuestionSession(user_id, building_id)
@@ -82,7 +81,7 @@ class question_handler:
                 self.current_question_data.answers_list = self.getPotentialtAnswers(question)
         else:
             # The user's question session exist and is closed. Print some message saying they reached their max
-            print("Question Session is closed")
+            # print("Question Session is closed")
             self.session_is_closed = True
 
     def buildNewQuestionSession(self, user_id, building_id):
