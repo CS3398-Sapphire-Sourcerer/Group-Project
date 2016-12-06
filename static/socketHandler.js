@@ -15,7 +15,17 @@ function requestState() {
 }
 
 function updateLocation() {
-    console.group("sendLocation(position) [socketHandler.js]");
+    console.group("updateLocation(position) [socketHandler.js]");
+
+    marker.setMap(null);
+    marker = null;
+    marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locationObj.latitude, locationObj.longitude),
+        map: map,
+        icon: image,
+        title: 'Hello World!'
+    });
+
     let locDifference = {};
     if (lastLocation) {
         locDifference.latitude = locationObj.latitude - lastLocation.latitude;
@@ -171,4 +181,8 @@ function stateFullUpdate(obj) {
     console.groupEnd();
 }
 
-socket.on('stateUpdate', function () {});
+socket.on('updateState', stateUpdate);
+function stateUpdate(obj) {
+    console.log("received state update");
+    updateMapDelta(obj);
+}

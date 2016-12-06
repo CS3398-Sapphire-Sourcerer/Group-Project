@@ -5,6 +5,9 @@ Quiz cats
 
 {% block content %}
 
+<script>
+    var image = '/static/redicle.png';
+</script>
 
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 
@@ -41,7 +44,10 @@ Quiz cats
 
 <!-- User session ID data -->
 <meta id="userSessionID" data-name="uSID" data-other="{{g.user.id}}">
-<script>var userID = $('#userSessionID').data().other;</script>
+<script>
+    var marker = new google.maps.Marker();
+    var userID = $('#userSessionID').data().other;
+</script>
 
 
 <!-- Socket setup -->
