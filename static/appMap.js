@@ -144,17 +144,64 @@ function updateMapDelta(obj) {
         let index = buildingPolygons.findIndex(function (element) {
             return (element.buildingTag == obj.buildingTag)
         });
+        console.log("Building Owner: ", obj.buildingOwner);
         let color = getAssociatedColor(obj.buildingOwner);
 
         console.log(color);
         console.log(buildingPolygons[index]);
         
-        buildingPolygons[index].strokeColor = color;
+        //let paths = buildingPolygons[index].paths
+
+/*
+        paths: buildingCoords,
+        strokeColor: '#ffffff', //color: maroon
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#add8e6',
+        fillOpacity: 0.55
+*/
+        buildingPolygons[index].setMap(null);
+        buildingPolygons[index].setOptions({strokeColor: color, fillColor: color});
+        buildingPolygons[index].setMap(map);
+        /*let opacity = (color == '#add8e6' ? 0.55 : 60);
+        buildingPolygons[index].setOptions({
+            strokeColor: color,
+            fillColor: color,
+            fillCapacity: opacity
+        });
+        buildingPolygons[index].setMap(map);
+        */
+
+        /*buildingPolygons[index].strokeColor = color;
         buildingPolygons[index].fillColor = color;
         buildingPolygons[index].fillOpacity = color == '#add8e6' ? 0.55 : 80;
-        buildingPolygons[index].setMap(map);   
+        buildingPolygons[index].setMap(map);  
+        */
     }
 }
+
+
+/*
+    for (let i = 0; i < buildings.length; i++) {
+        let buildingCoords = buildings[i].coords;
+        var currentBuilding = new google.maps.Polygon({
+            paths: buildingCoords,
+            strokeColor: '#ffffff', //color: maroon
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#add8e6',
+            fillOpacity: 0.55
+        });
+        currentBuilding.setMap(map);
+        currentBuilding.buildingTag = buildings[i].buildingTag;
+        buildingPolygons.push(currentBuilding);
+
+        google.maps.event.addListener(currentBuilding, 'click', function (event) {
+            alert(buildings[i].buildingName);
+        });  
+    }
+    console.groupEnd();
+*/
 
 /*
 function isBigEnough(element) {

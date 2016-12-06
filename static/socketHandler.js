@@ -166,6 +166,7 @@ function emitAnswer(buttonObj) {
 }
 
 function testButtonValue(buttonObj) {
+
     alert(buttonObj.value);
 }
 
@@ -184,5 +185,6 @@ function stateFullUpdate(obj) {
 socket.on('updateState', stateUpdate);
 function stateUpdate(obj) {
     console.log("received state update");
+    console.log("obj : ", obj);
     updateMapDelta(obj);
 }

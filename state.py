@@ -26,26 +26,23 @@ def gameState():
 
     while req is not None:
         app.logger.info("Made it into the loop")
+        app.logger.info(req)
         if req['type'] == "new":
             app.logger.info("type is new")
             req = yield state
         if req['type'] == "delta":
             app.logger.info("type of request is delta")
+            #'type':'delta', 'buildingTag': buildingTag, 'owner': bld.owner, 'scoreChange': scoreChange})
             index = 0
             for i, v in enumerate(state["buildings"]): # in state["buildings"]:
                 if v["buildingTag"] == req["buildingTag"]:
-                    state["buildings"][i]["buildingScore"] += req["q_result"]
-                    if v["buildingOwner"] != req["owner"]:
-                        state["buildings"][i]["buildingScore"] = req["owner"]
+                    index = i
+                    state["buildings"][i]["buildingScore"] += req["scoreChange"]
+                    state["buildings"][i]["buildingOwner"] = req["owner"]
                     break
-            req = yield state["buildings"][i]
-                #if v["buildingTag"] == req["buildingTag"]:
-                #    index = 
-                #if (state['buildings'].index)
-            
+            req = yield state["buildings"][index]            
 
 
-# generators are fucking
 game = gameState()
 
 
@@ -62,4 +59,5 @@ def requestState(req):
 
 def updateState(req):
     response = game.send(req)
+    app.logger.info(response)
     return response

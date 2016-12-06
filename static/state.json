@@ -26,7 +26,7 @@
         {
             "buildingName" : "Albert B. Alkek Library",
             "buildingTag" : "ALK",
-            "buildingScore" : 50,
+            "buildingScore" : 1,
             "buildingOwner" : 3
         },
 
@@ -138,8 +138,8 @@
         {
             "buildingName" : "Derrick Hall",
             "buildingTag" : "DERR",
-            "buildingScore" : 20,
-            "buildingOwner" : 1
+            "buildingScore" : 0,
+            "buildingOwner" : 0
         },
 
         {

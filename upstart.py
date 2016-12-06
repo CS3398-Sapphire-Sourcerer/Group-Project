@@ -47,16 +47,32 @@ def populate_buildings():
         with open('static\\buildings.json', 'r') as building_list:
             obj = json.load(building_list)
 
-        for build_count in obj["buildings"]:
+        with open('static\\state.json', 'r') as state_list:
+            stateObj = json.load(state_list)
+
+        for i, build_count in enumerate(obj["buildings"]):
             new_building = models.Building()
             new_building.name = build_count["buildingName"]
-            new_building.capture_value = 0
-            new_building.owner = 0
+
+            new_building.capture_value = stateObj["buildings"][i]["buildingScore"]
+            new_building.owner = stateObj["buildings"][i]["buildingOwner"]
             new_building.type1 = build_count["major1"]
             new_building.type2 = build_count["major2"]
             new_building.building_shortcode = build_count["buildingTag"]
             #print("name: ", new_building.name)
             datab.session.add(new_building)
+
+        #for build_count in obj["buildings"]:
+        #    new_building = models.Building()
+        #    new_building.name = build_count["buildingName"]
+
+        #    new_building.capture_value = stateObj
+        #    new_building.owner = 0
+        #    new_building.type1 = build_count["major1"]
+        #    new_building.type2 = build_count["major2"]
+        #    new_building.building_shortcode = build_count["buildingTag"]
+            #print("name: ", new_building.name)
+        #    datab.session.add(new_building)
         datab.session.commit()  # commit the building so we have an ID associated to store with coordinates
 
         for build_count in obj["buildings"]:

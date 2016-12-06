@@ -224,16 +224,24 @@ def updateBuildingScore(uid, q_result, buildingTag):
     u_team = models.Team.query.get(user.team)
     bld = models.Building.query.filter_by(building_shortcode=buildingTag).first()
 
+    
+    scoreChange = None;
     if q_result:
         if bld.owner == u_team.id:
             bld.capture_value += 1
+            scoreChange = 1
         else:
+            app.logger.info(bld.capture_value)
+            app.logger.info(bld.owner)
+            app.logger.info(u_team.id)
             # user does not own building
             if bld.capture_value == 0:
                 bld.owner = u_team.id
                 bld.capture_value = 5
+                scoreChange = 5
             else:
                 bld.capture_value -= 1
+                scoreChange = -1
                 if bld.capture_value == 0:
                     bld.owner = 0
     else:
@@ -242,9 +250,10 @@ def updateBuildingScore(uid, q_result, buildingTag):
 
     datab.session.add(bld)
     datab.session.commit()
-    
+
+
     socketio.emit('updateState', 
-                  updateState({'type':'delta', 'buildingTag': buildingTag, 'owner': bld.owner, 'q_result': q_result}))
+                  updateState({'type':'delta', 'buildingTag': buildingTag, 'owner': bld.owner, 'scoreChange': scoreChange}))
 
 
 #force save
