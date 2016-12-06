@@ -11,7 +11,7 @@
 
 
 function appMap () {
-    console.group("appMap() [appMap.js]");
+    //console.group("appMap() [appMap.js]");
 
     var mapOptions = {
         center: new google.maps.LatLng(29.8893, -97.9402),
@@ -40,11 +40,11 @@ function appMap () {
     lastValidCenter = map.getCenter();
     console.log(lastValidCenter);
 
-    console.groupEnd();
+    //console.groupEnd();
 }
 
 function addBuildings(obj) {
-    console.group("addBuildings(obj) [appMap.js]");
+    //console.group("addBuildings(obj) [appMap.js]");
     for (let i = 0; i < obj["buildings"].length; i++) {
         buildings.push({
             "buildingName":obj["buildings"][i].buildingName,
@@ -52,7 +52,7 @@ function addBuildings(obj) {
             "coords":obj["buildings"][i].coordinates});
     }
     renderAllTheBuildings();
-    console.groupEnd();
+    //console.groupEnd();
 }
 
 function renderAllTheBuildings() {
