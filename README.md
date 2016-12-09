@@ -1,12 +1,16 @@
 # Group-Project
 •	About the project
+
 This project is a location-based, territory controlled, trivia game that allows students (currently at Tx. State) to create a profile, select one of three teams, and answer trivia questions based on the major (i.e. Computer Science, English, Nursing, exc.) of the current building they are in. 
 
 •	Team members
+
 Adam Garcia, Brittany Torelli, Casey Sledge, Claudia Ortiz, Collin Weir, Jeremiah Burks, Kaleb Jacobson
 
 •	How to compile and run program
+
 The program is developed in Pycharm using flask. In order to compile the program, you will need the following libraries: 
+
   •	Flask
   •	Flask-GoogleMaps
   •	Flask-script
@@ -15,6 +19,7 @@ The program is developed in Pycharm using flask. In order to compile the program
   •	MarkupSafe
   •	SQLAlchemy
   •	eventlet
+  
 In order to host the project on a live server vs local we used digital ocean. You can do this following the steps in their api 
   •	PUT LINK HERE
 To run the program on a local machine, compile and run the python file runserver.py
