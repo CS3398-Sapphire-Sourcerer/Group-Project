@@ -28,7 +28,8 @@ The program is developed in Pycharm using flask. In order to compile the program
   * eventlet
   
   * Bcrypt
-  
+ 
+## Deployment
 There are several different methods to get the project running. For running the project in the command line, you must do the command:
   python3 runserver.py socketserver 
  
