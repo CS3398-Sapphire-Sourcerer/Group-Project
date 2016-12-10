@@ -1,5 +1,4 @@
 # Group-Project
-# Group-Project
 ##	About the project
 
 This project is a location-based, territory controlled, trivia game that allows students (currently at Tx. State) to create a profile, select one of three teams, and answer trivia questions based on the major (i.e. Computer Science, English, Nursing, exc.) of the current building they are in. 
