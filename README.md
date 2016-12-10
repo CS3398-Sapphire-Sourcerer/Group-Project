@@ -7,9 +7,9 @@ This project is a location-based, territory controlled, trivia game that allows 
 
 Adam Garcia, Brittany Torelli, Casey Sledge, Claudia Ortiz, Collin Weir, Jeremiah Burks, Kaleb Jacobson
 
-##	How to compile and run program
+##	Neccessary Libraries f
 
-The program is developed in Pycharm using flask. In order to compile the program, you will need the following libraries: 
+The program is developed in Pycharm using flask. You can download these libraries using the pycharm package manager which is located within your virtual environment in the project interpreter settings, or you can use the pip tool which will allow for package downloads from the command line. In order to run the program, you will need the following libraries: 
 
   * Flask
   
@@ -29,6 +29,8 @@ The program is developed in Pycharm using flask. In order to compile the program
   
   * Bcrypt
  
+You  will also need to aquire an google API key for the maps access, this key can be inputed inside the api file. This key is unique to whoever is using this project.
+
 ## Deployment
 There are several different methods to get the project running. For running the project in the command line, you must do the command:
   python3 runserver.py socketserver 
