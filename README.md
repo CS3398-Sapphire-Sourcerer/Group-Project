@@ -27,9 +27,19 @@ The program is developed in Pycharm using flask. In order to compile the program
   
   * eventlet
   
-In order to host the project on a live server vs local we used digital ocean. You can do this following the steps in their api 
+  * Bcrypt
+  
+There are several different methods to get the project running. For running the project in the command line, you must do the command:
+  python3 runserver.py socketserver 
+ 
+To run the server in pycharm:
+ you need to right click on the runserver.py and click run and then edit the configuration and type in socketserver 
+ 
+Both of these methods will host the project on either the the 127.0.0.1:8000 or if you type ipconfig on your windows or ifconfig on your mac, you can see your IP address and other systems can type that IP address and the port 8000 to connect your server.
 
-  •	PUT LINK HERE
+If you are going to host on a server and want it to be accessible on the internet, you need to set up a dns service to point at your servers IP and then run the app locall on the server and use a utility like gunicorn to pass socket connections to the local app.
+ 
+ The documentation for Flask-SocketIO is a great resource for knowing how to host your production ready app and how to scale the architecture to manage load balancing and other at scale issues.
   
 To run the program on a local machine, compile and run the python file runserver.py
 
