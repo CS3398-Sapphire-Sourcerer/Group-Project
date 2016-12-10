@@ -11,14 +11,21 @@ Adam Garcia, Brittany Torelli, Casey Sledge, Claudia Ortiz, Collin Weir, Jeremia
 
 The program is developed in Pycharm using flask. In order to compile the program, you will need the following libraries: 
 
-  Flask
-  Flask-GoogleMaps
-  Flask-script
-  Flask-socketIO
-  Jinja2
-  MarkupSafe
-  SQLAlchemy
-  eventlet
+  * Flask
+  
+  * Flask-GoogleMaps
+  
+  * Flask-script
+  
+  * Flask-socketIO
+  
+  * Jinja2
+  
+  * MarkupSafe
+  
+  * SQLAlchemy
+  
+  * eventlet
   
 In order to host the project on a live server vs local we used digital ocean. You can do this following the steps in their api 
 
