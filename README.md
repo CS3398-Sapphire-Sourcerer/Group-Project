@@ -1,13 +1,16 @@
 # Group-Project
 ##	About the project
 
-This project is a location-based, territory controlled, trivia game that allows students (currently at Tx. State) to create a profile, select one of three teams, and answer trivia questions based on the major (i.e. Computer Science, English, Nursing, exc.) of the current building they are in. 
+This project is a location-based, territory controlled, trivia game that allows students (currently at Texas State University) to do the following:
+* to create a profile
+* select one of three teams (based on University school colors)
+* answer trivia questions based on the majors (i.e. Computer Science, English, Nursing, etc.) who occupy the building  
 
 ##	Team members
 
 Adam Garcia, Brittany Torelli, Casey Sledge, Claudia Ortiz, Collin Weir, Jeremiah Burks, Kaleb Jacobson
 
-##	How to compile and run program
+##	Neccessary Libraries
 
 The program is developed in Pycharm using flask. In order to compile the program, you will need the following libraries: 
 
@@ -43,7 +46,7 @@ After creating an account, using Google Maps API, the location of the user is us
 
 ##	Future design implementation
 
-In the future, more questions (including true or false) will be added along with the ability to select different difficulty of questions for the chance to earn more than 5 points in the session the user gets per day. 
+We plan to add more questions, which will including true or false. As well as add the ability to select the level of difficulty of the questions for the chance to earn more than 5 points in the session the user gets per day. 
 Also an update to the questions and building JSON file implementing the enum associated with each major instead of hard coding literal numbers. 
 
 ##	Major bottlenecks
