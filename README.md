@@ -35,20 +35,18 @@ The program is developed in Pycharm using flask. You can download these librarie
 You  will additionally need to aquire a google API key for the maps access. The key can be inputed inside the api file. This key is unique to whoever is using this project.
 
 ## Deployment
-There are several different methods to get the project running. 
+There are several different methods to get the project running.
 
-To running the project in the command line, you must run the command:
-  python3 runserver.py socketserver 
- 
-To run the server in pycharm:
-Right click on the runserver.py and click run and then edit the configuration and type in socketserver 
- 
-Both of these methods will host the project locally at 127.0.0.1:8000 or alternatively you can check your IP address on a termimal and use that IP along with the port 8000 to connect your server.
+To run the project in the command line, you must run the command: python3 runserver.py socketserver.
 
-If you are going to host on a server and want it to be accessible on the internet, you need to set up a dns service to point at your servers IP and then run the app locall on the server and use a utility like gunicorn to pass socket connections to the local app.
- 
- The documentation for Flask-SocketIO is a great resource for knowing how to host your production ready app and how to scale the architecture to manage load balancing and other at scale issues.
-  
+To run the server in pycharm: Right click on the runserver.py and click run and then edit the configuration and type in socketserver.
+
+Both of these methods will host the project locally at 127.0.0.1:8000 or alternatively you can check your IP address on a terminal and use that IP along with the port 8000 to connect your server.
+
+If you are going to host on a server and want it to be accessible on the internet, you need to set up a DNS service to point to your server's IP and then run the app locally on the server and use a utility like gunicorn to pass socket connections to the local app.
+
+The documentation for Flask-SocketIO is a great resource for knowing how to host your production ready app and how to scale the architecture to manage load balancing and other at scale issues.
+
 To run the program on a local machine, compile and run the python file runserver.py
 
 ##	Basic overview about the functionality achieved
