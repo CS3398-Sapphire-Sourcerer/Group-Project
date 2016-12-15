@@ -8,7 +8,7 @@ This project is a location-based, territory controlled, trivia game that allows 
 
 ##	Team members
 
-Adam Garcia, Brittany Torelli, Casey Sledge, Claudia Ortiz, Collin Weir, Jeremiah Burks, Kaleb Jacobson
+Adam Garcia, Brittany Torelli, Casey Sledge, Claudia Ortiz, Collin Weir, Kaleb Jacobson, Jeremiah Burks
 
 ##	Neccessary Libraries
 
