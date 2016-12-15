@@ -2,9 +2,9 @@
 ##	About the project
 
 This project is a location-based, territory controlled, trivia game that allows students (currently at Texas State University) do the following: 
- 1. to create a profile
- 2. select one of three teams (based on University school colors) 
- 3. answer trivia questions based on the majors (i.e. Computer Science, English, Nursing, etc.) who occupy the building 
+ 1. To create a profile.
+ 2. Select one of three teams (based on University school colors).
+ 3. Answer trivia questions based on the majors (i.e. Computer Science, English, Nursing, etc.) who occupy the building.
 
 ##	Team members
 
