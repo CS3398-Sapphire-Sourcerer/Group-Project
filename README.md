@@ -55,11 +55,12 @@ After creating an account, using Google Maps API, the location of the user is us
 
 ##	Future design implementation
 
-We plan to add more questions, which will including true or false. As well as add the ability to select the level of difficulty of the questions for the chance to earn more than 5 points in the session the user gets per day. 
-Also an update to the questions and building JSON file implementing the enum associated with each major instead of hard coding literal numbers. 
+1.)We plan to add more questions, which will include true or false. 
+2.)As well as add the ability to select the level of difficulty of the questions for the chance to earn more than 5 points in the session the user gets per day. 
+3.)Also an update to the questions and building JSON file implementing the enum associated with each major instead of hard coding literal numbers.  
 
 ##	Major bottlenecks
 
-Hosting the server so that the game is live instead of on a local machine. 
-Learning socketIO
+1.)Hosting the server so that the game is live instead of on a local machine. 
+2.)Learning socketIO
 
