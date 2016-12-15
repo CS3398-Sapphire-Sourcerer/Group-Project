@@ -2,9 +2,9 @@
 ##	About the project
 
 This project is a location-based, territory controlled, trivia game that allows students (currently at Texas State University) do the following: 
- * to create a profile
- * select one of three teams (based on University school colors) 
- * answer trivia questions based on the majors (i.e. Computer Science, English, Nursing, etc.) who occupy the building 
+ 1. to create a profile
+ 2. select one of three teams (based on University school colors) 
+ 3. answer trivia questions based on the majors (i.e. Computer Science, English, Nursing, etc.) who occupy the building 
 
 ##	Team members
 
@@ -55,12 +55,9 @@ After creating an account, using Google Maps API, the location of the user is us
 
 ##	Future design implementation
 
-1.)We plan to add more questions, which will include true or false. 
-2.)As well as add the ability to select the level of difficulty of the questions for the chance to earn more than 5 points in the session the user gets per day. 
-3.)Also an update to the questions and building JSON file implementing the enum associated with each major instead of hard coding literal numbers.  
+We plan to add more questions, which will include true or false. We also plan as well to add the ability to select the level of difficulty of the questions for the chance to earn more than 5 points in the session the user gets per day. Originally the team thought that limiting the points in the session per day would be beneficial. Also the team wants an update to the questions and building JSON file implementing the enum associated with each major instead of hard coding literal numbers. 
 
 ##	Major bottlenecks
 
-1.)Hosting the server so that the game is live instead of on a local machine. 
-2.)Learning socketIO
+Hosting the server so that the game is live instead of on a local machine as well as learning socketIO were major bottlenecks in this project.
 
