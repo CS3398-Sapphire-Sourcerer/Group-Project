@@ -1,13 +1,16 @@
 # Group-Project
 ##	About the project
 
-This project is a location-based, territory controlled, trivia game that allows students (currently at Tx. State) to create a profile, select one of three teams, and answer trivia questions based on the major (i.e. Computer Science, English, Nursing, exc.) of the current building they are in. 
+This project is a location-based, territory controlled, trivia game that allows students (currently at Texas State University) do the following: 
+ * to create a profile
+ * select one of three teams (based on University school colors) 
+ * answer trivia questions based on the majors (i.e. Computer Science, English, Nursing, etc.) who occupy the building 
 
 ##	Team members
 
 Adam Garcia, Brittany Torelli, Casey Sledge, Claudia Ortiz, Collin Weir, Jeremiah Burks, Kaleb Jacobson
 
-##	Neccessary Libraries f
+##	Neccessary Libraries
 
 The program is developed in Pycharm using flask. You can download these libraries using the pycharm package manager which is located within your virtual environment in the project interpreter settings, or you can use the pip tool which will allow for package downloads from the command line. In order to run the program, you will need the following libraries: 
 
@@ -29,16 +32,18 @@ The program is developed in Pycharm using flask. You can download these librarie
   
   * Bcrypt
  
-You  will also need to aquire an google API key for the maps access, this key can be inputed inside the api file. This key is unique to whoever is using this project.
+You  will additionally need to aquire a google API key for the maps access. The key can be inputed inside the api file. This key is unique to whoever is using this project.
 
 ## Deployment
-There are several different methods to get the project running. For running the project in the command line, you must do the command:
+There are several different methods to get the project running. 
+
+To running the project in the command line, you must run the command:
   python3 runserver.py socketserver 
  
 To run the server in pycharm:
- you need to right click on the runserver.py and click run and then edit the configuration and type in socketserver 
+Right click on the runserver.py and click run and then edit the configuration and type in socketserver 
  
-Both of these methods will host the project on either the the 127.0.0.1:8000 or if you type ipconfig on your windows or ifconfig on your mac, you can see your IP address and other systems can type that IP address and the port 8000 to connect your server.
+Both of these methods will host the project locally at 127.0.0.1:8000 or alternatively you can check your IP address on a termimal and use that IP along with the port 8000 to connect your server.
 
 If you are going to host on a server and want it to be accessible on the internet, you need to set up a dns service to point at your servers IP and then run the app locall on the server and use a utility like gunicorn to pass socket connections to the local app.
  
@@ -52,7 +57,7 @@ After creating an account, using Google Maps API, the location of the user is us
 
 ##	Future design implementation
 
-In the future, more questions (including true or false) will be added along with the ability to select different difficulty of questions for the chance to earn more than 5 points in the session the user gets per day. 
+We plan to add more questions, which will including true or false. As well as add the ability to select the level of difficulty of the questions for the chance to earn more than 5 points in the session the user gets per day. 
 Also an update to the questions and building JSON file implementing the enum associated with each major instead of hard coding literal numbers. 
 
 ##	Major bottlenecks
