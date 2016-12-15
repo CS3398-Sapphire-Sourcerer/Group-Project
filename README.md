@@ -25,9 +25,9 @@ The program is developed in Pycharm using flask. In order to compile the program
   
   * eventlet
   
-  Additionally, any client connecting will need the SocketIO.js library, available at socket.io
+Additionally, all clients will need the SocketIO.js library, version 1.4.5, available at socket.io/download, or by using the source below in the client page:
   
-  * <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script> 
+  * https://cdn.socket.io/socket.io-1.4.5.js
   
 In order to host the project on a live server vs local we used digital ocean. You can do this following the steps in their api 
 
