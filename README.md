@@ -13,8 +13,6 @@ The program is developed in Pycharm using flask. In order to compile the program
 
   * Flask
   
-  * Flask-GoogleMaps
-  
   * Flask-script
   
   * Flask-socketIO
@@ -26,6 +24,10 @@ The program is developed in Pycharm using flask. In order to compile the program
   * SQLAlchemy
   
   * eventlet
+  
+  Additionally, any client connecting will need the SocketIO.js library, available at socket.io
+  
+  * <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script> 
   
 In order to host the project on a live server vs local we used digital ocean. You can do this following the steps in their api 
 
