@@ -74,3 +74,15 @@ Also an update to the questions and building JSON file implementing the enum ass
 Hosting the server so that the game is live instead of on a local machine. 
 Learning socketIO
 
+
+##	Additional Tools and Frameworks that were integrated
+
+* Slack - communication platform for team
+* PyCharm - integrated with Git and Slack
+* Zenhub - to track groups work progress
+* Pure-CSS - used for applications webpages
+* Google Maps JavaScript API - used for mapping each user
+* JQuery - for integrating webpages
+* Bootstrap
+
+ 
