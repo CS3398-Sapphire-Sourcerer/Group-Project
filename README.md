@@ -2,9 +2,9 @@
 ##	About the project
 
 This project is a location-based, territory controlled, trivia game that allows Texas State University students to do the following:
-* to create a profile
-* select one of three teams (based on University school colors)
-* answer trivia questions based on the majors (i.e. Computer Science, English, Nursing, etc.) who occupy the building  
+* Create a profile 
+* Select one of three teams (based on University school colors)
+* Answer trivia questions based on the majors (i.e. Computer Science, English, Nursing, etc.) who occupy the building  
 
 ##	Team members
 
@@ -15,21 +15,13 @@ Adam Garcia, Brittany Torelli, Casey Sledge, Claudia Ortiz, Collin Weir, Jeremia
 The program is developed in Pycharm using flask. You can download these libraries using the pycharm package manager which is located within your virtual environment in the project interpreter settings, or you can use the pip tool which will allow for package downloads from the command line. In order to run the program, you will need the following libraries: 
 
   * Flask
-  
   * Flask-GoogleMaps
-  
   * Flask-script
-  
   * Flask-socketIO
-  
   * Jinja2
-  
   * MarkupSafe
-  
   * SQLAlchemy
-  
   * eventlet
-  
   * Bcrypt
  
 You  will additionally need to aquire a google API key for the maps access. The key can be inputed inside the api file. This key is unique to whoever is using this project. Additionally, all clients will need the SocketIO.js library, version 1.4.5, available at socket.io/download, or by using the source below in the client page:
@@ -40,10 +32,10 @@ You  will additionally need to aquire a google API key for the maps access. The 
 There are several different methods to get the project running. 
 
 To running the project in the command line, you must run the command:
-  python3 runserver.py socketserver 
+python3 runserver.py socketserver 
  
 To run the server in pycharm:
-Right click on the runserver.py and click run and then edit the configuration and type in socketserver 
+Right click on the runserver.py, click run, then edit the configuration and type in socketserver 
  
 Both of these methods will host the project locally at 127.0.0.1:8000 or alternatively you can check your IP address on a termimal and use that IP along with the port 8000 to connect your server.
 
@@ -75,10 +67,10 @@ Hosting the server so that the game is live instead of on a local machine.
 Learning socketIO
 
 
-##	Additional Tools and Frameworks that were integrated
+##	Additional Tools and Frameworks that were utilized
 
 * Slack - communication platform for team
-* PyCharm - integrated with Git and Slack
+* PyCharm - integrated with GitHub and Slack
 * Zenhub - to track groups work progress
 * Pure-CSS - used for applications webpages
 * Google Maps JavaScript API - used for mapping each user
